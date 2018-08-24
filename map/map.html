@@ -1,166 +1,76 @@
 <!DOCTYPE html>
 <html>
-<head>
-	
-	<title>Quick Start - Leaflet</title>
+    <head>
+        <title>get mapped fam!</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="leaflet.css"/>
+        <link rel="stylesheet" href="MarkerCluster.css" />
+        <link rel="stylesheet" href="MarkerCluster.Default.css" />  
+        
+        <script src="leaflet.js"></script>
+        <script src="leaflet.markercluster-src.js"></script>
+        <script src="Leaflet.MakiMarkers.js"></script>    
+     
+        <style type="text/css">
+            #mapid { height: 180px; }
+        </style>
+        
+    </head>
+    <body>
+        <!-- map default size -->
+        <div id="mapid" style="width: 1020px; height: 531px;"></div>
 
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+        <script>
+            //initial viewpoint and zoom
+            var mymap = L.map('mapid').setView([50.000, -40.000], 3);
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
-    <script>
-    /*
- * Leaflet plugin to create map icons using Maki Icons from MapBox.
- *
- * References:
- *   Maki Icons: https://www.mapbox.com/maki/
- *   Mapbox Marker API: https://www.mapbox.com/api-documentation/#retrieve-a-standalone-marker
- *   Possible icon names: https://raw.githubusercontent.com/mapbox/maki/master/layouts/all.json
- *
- * Usage:
- *   L.MakiMarkers.accessToken = "<YOUR_ACCESS_TOKEN>";
- *   var icon = L.MakiMarkers.icon({icon: "rocket", color: "#b0b", size: "m"});
- *
- * License:
- *   MIT: http://jseppi.mit-license.org/
- */
- /*global L:false */
-(function () {
-  "use strict";
-  L.MakiMarkers = {
-    accessToken: null,
-    defaultColor: "#0a0",
-    defaultIcon: "circle-stroked",
-    defaultSize: "m",
-    apiUrl: "https://api.mapbox.com/v4/marker/",
-    smallOptions: {
-      iconSize: [20, 50],
-      popupAnchor: [0,-20]
-    },
-    mediumOptions: {
-      iconSize: [30,70],
-      popupAnchor: [0,-30]
-    },
-    largeOptions: {
-      iconSize: [36,90],
-      popupAnchor: [0,-40]
-    }
-  };
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                maxZoom: 18,
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                
+                //select different map styles here, see https://www.mapbox.com/api-documentation/#maps
+                id: 'mapbox.streets'
 
-  L.MakiMarkers.Icon = L.Icon.extend({
-    options: {
-      //Mapbox API access token, see https://www.mapbox.com/api-documentation/?language=CLI#access-tokens
-      //Instead of setting with each icon, you can set globally as L.MakiMarkers.accessToken
-      accessToken: null,
-      //Maki icon: any valid name, see https://raw.githubusercontent.com/mapbox/maki/master/layouts/all.json
-      icon: L.MakiMarkers.defaultIcon,
-      //Marker color: short or long form hex color code
-      color: L.MakiMarkers.defaultColor,
-      //Marker size: "s" (small), "m" (medium), or "l" (large)
-      size: L.MakiMarkers.defaultSize,
-      shadowAnchor: null,
-      shadowSize: null,
-      shadowUrl: null,
-      className: "maki-marker"
-    },
+            }).addTo(mymap);
+            //we should also get an own accessToken at https://www.mapbox.com/studio/account/tokens/
+            L.MakiMarkers.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+            
+            //different icons, color coded to member roles
+            var iconTrialists = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#00FF00", size: "s"});
+            var iconPurples = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#9B59B6", size: "s"});
+            var iconBlues = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#3498DB", size: "s"});
+            var iconROW = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#E67E22", size: "s"});
+            var iconCunts = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#F1C40F", size: "s"});
 
-    initialize: function(options) {
-      var pin;
-      var tokenQuery;
+            var markers = L.markerClusterGroup();
+            
+            //every member location
+            markers.addLayer(L.marker([53.0700, -0.8065     ], {icon: iconPurples   }).bindPopup("<b>Mini-borg40</b><br />      Newark-on-Trent, UK"));         
+            markers.addLayer(L.marker([48.8566,  2.3522     ], {icon: iconBlues     }).bindPopup("<b>CristianoRicky16</b><br /> Paris, France"));              
+            markers.addLayer(L.marker([61.0666, -107.9917   ], {icon: iconROW       }).bindPopup("<b>DrHendrik</b><br />        Canada"));                            
+            markers.addLayer(L.marker([52.5454, -1.3766     ], {icon: iconPurples   }).bindPopup("<b>FaiNt87</b><br />          Hinckley, UK"));                      
+            markers.addLayer(L.marker([53.5964,  9.9382     ], {icon: iconBlues     }).bindPopup("<b>Fryde</b><br />            Hamburg, Germany"));                      
+            markers.addLayer(L.marker([51.7527, -0.3394     ], {icon: iconPurples   }).bindPopup("<b>Hushspesh</b><br />        Saint Albans, UK"));              
+            markers.addLayer(L.marker([51.3353, -0.7428     ], {icon: iconPurples   }).bindPopup("<b>Intemerata_</b><br />      Camberley, UK"));               
+            markers.addLayer(L.marker([52.5321,  13.5118    ], {icon: iconCunts     }).bindPopup("<b>LyRaD87cP</b><br />        Lichtenberg, Berlin, Germany"));     
+            markers.addLayer(L.marker([48.5069,  9.2038     ], {icon: iconCunts     }).bindPopup("<b>smashi__</b><br />         Reutlingen, Germany"));         
+            markers.addLayer(L.marker([51.3474, -2.9772     ], {icon: iconCunts     }).bindPopup("<b>The_Jedd</b><br />         Weston-super-Mare, UK"));     
+            markers.addLayer(L.marker([52.3764,  1.1083     ], {icon: iconPurples   }).bindPopup("<b>Vortex4950</b><br />       Diss, UK"));               
+            markers.addLayer(L.marker([36.7782, -119.4179   ], {icon: iconROW       }).bindPopup("<b>xeos_6</b><br />           California, USA"));                       
+            markers.addLayer(L.marker([52.3736,  4.8990     ], {icon: iconBlues     }).bindPopup("<b>KefsNL</b><br />           Amsterdam, Nederland"));                 
+            markers.addLayer(L.marker([50.7191, -1.8807     ], {icon: iconPurples   }).bindPopup("<b>Arctisfear</b><br />       Bournemouth, UK"));               
+            markers.addLayer(L.marker([52.6308,  1.2973     ], {icon: iconPurples   }).bindPopup("<b>Deecs259</b><br />         Norwich, UK"));                     
+            markers.addLayer(L.marker([52.4572,  13.3222    ], {icon: iconBlues     }).bindPopup("<b>JLXJPG</b><br />           Steglitz, Berlin, Germany"));           
+            markers.addLayer(L.marker([52.5145,  6.0977     ], {icon: iconBlues     }).bindPopup("<b>Insan1313</b><br />        Zwolle, Overijssel, Nederland"));  
+            
+            
+            mymap.addLayer(markers);
 
-      var accessToken = options.accessToken || L.MakiMarkers.accessToken;
-      if (!accessToken) {
-        throw new Error("Access to the Mapbox API requires a valid access token.");
-      }
+        </script>
 
-      tokenQuery = "?access_token=" + accessToken;
-      options = L.setOptions(this, options);
-
-      switch (options.size) {
-        case "s":
-          L.extend(options, L.MakiMarkers.smallOptions);
-          break;
-        case "l":
-          L.extend(options, L.MakiMarkers.largeOptions);
-          break;
-        default:
-          options.size = "m";
-          L.extend(options, L.MakiMarkers.mediumOptions);
-          break;
-      }
-
-      pin = "pin-" + options.size;
-
-      if (options.icon !== null) {
-        pin += "-" + options.icon;
-      }
-
-      if (options.color !== null) {
-        if (options.color.charAt(0) === "#") {
-          options.color = options.color.substr(1);
-        }
-
-        pin += "+" + options.color;
-      }
-
-      options.iconUrl = "" + L.MakiMarkers.apiUrl + pin +  ".png" + tokenQuery;
-      options.iconRetinaUrl = L.MakiMarkers.apiUrl + pin + "@2x.png" + tokenQuery;
-    }
-  });
-
-  L.MakiMarkers.icon = function(options) {
-    return new L.MakiMarkers.Icon(options);
-  };
-})();
-</script>
-    
-    <style type="text/css">
-        #mapid { height: 180px; }
-    </style>
-
-	
-</head>
-<body>
-
-
-
-<div id="mapid" style="width: 600px; height: 400px;"></div>
-<script>
-
-	var mymap = L.map('mapid').setView([50.505, -20.09], 2.4);
-
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox.streets'
-	}).addTo(mymap);
-    
-    L.MakiMarkers.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-   
-    var iconPurples = L.MakiMarkers.icon({ icon: "marker-stroked", color: "#9B59B6", size: "s"});
-    var iconBlues = L.MakiMarkers.icon({ icon: "marker-stroked", color: "#3498DB", size: "s"});
-    var iconROW = L.MakiMarkers.icon({ icon: "marker-stroked", color: "#E67E22", size: "s"});
-    var iconCunts = L.MakiMarkers.icon({ icon: "marker-stroked", color: "#F1C40F", size: "s"});
-
-   
-    /*
-    Here is where the work begins ;)
-    */
-   
-    L.marker([52.5123, 13.4977], {icon: iconCunts}).addTo(mymap).bindPopup("Daryl");
-    L.marker([48.5069, 9.20384], {icon: iconCunts}).addTo(mymap).bindPopup("Smashi");
-    L.marker([51.34765, -2.97782], {icon: iconCunts}).addTo(mymap).bindPopup("Jedd");
-    L.marker([53.5964, 9.9382], {icon: iconBlues}).addTo(mymap).bindPopup("Fryde");
-    L.marker([48.8577, 2.3463], {icon: iconBlues}).addTo(mymap).bindPopup("CristianoRicky");
-    L.marker([51.7509, -0.3396], {icon: iconPurples}).addTo(mymap).bindPopup("Hushspesh");
-    L.marker([36.7822, -119.4209], {icon: iconROW}).addTo(mymap).bindPopup("Xeos_6");
-
-</script>
-
-</body>
+    </body>
 </html>
