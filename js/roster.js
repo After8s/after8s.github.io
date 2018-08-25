@@ -87,7 +87,7 @@ function listMembers(rsp) {
         name = rsp[i].destinyUserInfo.displayName,
         joinDate = rsp[i].joinDate,
         joined = joinDate.substring(0, joinDate.indexOf('T')),
-        online = rsp[i].isOnline ? 'online' : '', // If online show 'online' if not show nothing
+        online = rsp[i].isOnline ? 'Online' : '', // If online show 'Online' if not show nothing
         icon = profile.iconPath,
         memberId = profile.membershipId,
         memberType = rsp[i].memberType,
@@ -115,11 +115,12 @@ function listMembers(rsp) {
           'data-searchable' : name,
         })
         .html(
-            '<th scope="row"><img src="https://www.bungie.net' + icon + '" style="width: 30px; height:30px"></th>' + // #
-            '<td>' + name + '</td>' + // Username
-            '<td class="text-warning">' + role + '</td>' + // Role - Not the discord role yet
-            '<td>' + online + '</td>' + // In game online status
-            '<td><a href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">Click</a></td>' // Bungie Profile 
+            '<th scope="row"><img src="https://www.bungie.net' + icon + '" style="width: 30px; height:30px"></th>' + // avatar
+            '<td class="align-middle">' + name + '</td>' + // Username
+            '<td class="text-warning align-middle">' + role + '</td>' + // Role - Not the discord role yet
+            '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined
+            '<td class="align-middle">' + online + '</td>' + // In game online status
+            '<td class="align-middle"><a href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">Click</a></td>' // Bungie Profile 
         );
 
 			member.appendTo(list);
