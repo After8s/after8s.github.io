@@ -87,7 +87,7 @@ function listMembers(rsp) {
         name = rsp[i].destinyUserInfo.displayName,
         joinDate = rsp[i].joinDate,
         joined = joinDate.substring(0, joinDate.indexOf('T')),
-        online = rsp[i].isOnline ? 'Online' : '', // If online show 'Online' if not show nothing
+        online = rsp[i].isOnline ? 'Online' : '', // If online show 'Online', if not show nothing
         icon = profile.iconPath,
         memberId = profile.membershipId,
         memberType = rsp[i].memberType,
@@ -120,7 +120,7 @@ function listMembers(rsp) {
             '<td class="text-warning align-middle">' + role + '</td>' + // Role - Not the discord role yet
             '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined
             '<td class="align-middle">' + online + '</td>' + // In game online status
-            '<td class="align-middle"><a href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">Click</a></td>' // Bungie Profile 
+            '<td class="align-middle"><a href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">View Profile</a></td>' // Bungie Profile 
         );
 
 			member.appendTo(list);
