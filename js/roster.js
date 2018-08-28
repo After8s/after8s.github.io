@@ -22,8 +22,7 @@ $.when(
 			var members = json.Response.results;
 
 			$.each(members, function(i) {
-				var member = members[i];
-				roster.push(member);
+				roster.push(members[i])
 			});
 
 			console.log('a8s member list:', members);
