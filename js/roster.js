@@ -119,7 +119,8 @@ function listMembers(rsp) {
             '<td class="text-warning align-middle">' + role + '</td>' + // Role - Not the discord role yet
             '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined
             '<td class="align-middle">' + online + '</td>' + // In game online status
-            '<td class="align-middle"><a target="_blank" href="https://destinytracker.com/d2/profile/psn/' + name + '">View Stats</a></td>' + // DTR Profile 
+            '<td class="align-middle"><a target="_blank" href="https://destinytracker.com/d2/profile/psn/' + name + '">View Stats</a></td>' + // DTR Profile
+            '<td class="align-middle"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // RR Profile 
             '<td class="align-middle"><a target="_blank" href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">View Profile</a></td>' // Bungie Profile 
         );
 
