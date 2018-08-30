@@ -86,7 +86,7 @@ function listMembers(rsp) {
                 name = rsp[i].destinyUserInfo.displayName,
                 joinDate = rsp[i].joinDate,
                 joined = joinDate.substring(0, joinDate.indexOf('T')),
-                online = rsp[i].isOnline ? 'Online' : '', // If online show 'Online', if not show nothing
+                online = rsp[i].isOnline
                 icon = profile.iconPath,
                 memberId = profile.membershipId,
                 memberType = rsp[i].memberType,
@@ -118,7 +118,7 @@ function listMembers(rsp) {
                     '<td class="align-middle">' + name + '</td>' + // Username
                     '<td class="text-warning align-middle">' + role + '</td>' + // Role - Not the discord role yet
                     '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined
-                    '<td class="align-middle">' + online + '</td>' + // In game online status
+                    '<td class="align-middle member-status"><span class="member-online" id="status-' + memberId + '">' + online + '</span></td>' + // In game online status
                     '<td class="align-middle"><a target="_blank" href="https://destinytracker.com/d2/profile/psn/' + name + '">View Stats</a></td>' + // DTR Profile
                     '<td class="align-middle"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // RR Profile 
                     '<td class="align-middle"><a target="_blank" href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">View Profile</a></td>' // Bungie Profile 

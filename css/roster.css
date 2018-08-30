@@ -1,0 +1,7 @@
+span.member-online {
+    color: #C3423F
+}
+
+span.member-online.online {
+    color: #4DAA57
+}
