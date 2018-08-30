@@ -105,7 +105,7 @@ function listMembers(rsp) {
             // configure DOM node and add to page
             member
                 .attr({
-                    'class': 'j-row vertical-center-row member',
+                    'class': 'text-left member',
                     'href': '/player.html?bungieId=' + memberId + '&destinyId=' + destinyId + '&joined=' + joined + '&rank=' + rank,
                     'title': 'See player profile for ' + name,
                     'data-joined': joined.replace(/-/g, ''),
@@ -116,12 +116,12 @@ function listMembers(rsp) {
                 .html(
                     '<th scope="row"><img src="https://www.bungie.net' + icon + '" style="width: 30px; height:30px"></th>' + // avatar
                     '<td class="align-middle">' + name + '</td>' + // Username
-                    '<td class="text-warning align-middle">' + role + '</td>' + // Role - Not the discord role yet
+                    '<td class="align-middle text-warning">' + role + '</td>' + // Role - Not the discord role yet
                     '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined
                     '<td class="align-middle member-status"><span class="member-online" id="status-' + memberId + '">' + online + '</span></td>' + // In game online status
-                    '<td class="align-middle"><a target="_blank" href="https://destinytracker.com/d2/profile/psn/' + name + '">View Stats</a></td>' + // DTR Profile
-                    '<td class="align-middle"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // RR Profile 
-                    '<td class="align-middle"><a target="_blank" href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">View Profile</a></td>' // Bungie Profile 
+                    '<td class="align-middle text-center"><a target="_blank" href="https://destinytracker.com/d2/profile/psn/' + name + '">View Stats</a></td>' + // DTR Profile
+                    '<td class="align-middle text-center"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // RR Profile 
+                    '<td class="align-middle text-center"><a target="_blank" href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">View Profile</a></td>' // Bungie Profile 
                 );
 
             member.appendTo(list);
