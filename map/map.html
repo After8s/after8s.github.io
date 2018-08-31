@@ -43,6 +43,9 @@
             
             mymap.addControl(new L.Control.Fullscreen());
             
+            //disabled mouse wheel zoom due to one page clan site layout
+            mymap.scrollWheelZoom.disable();
+            
             L.MakiMarkers.accessToken = mapboxAccessToken;
             
             //different icons, color coded to member roles
