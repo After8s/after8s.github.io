@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+		<script>
+			
+
+			$(document).ready(function() {
+			  var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
+
+			  var clan = {};
+			  clan.memberIds = [];
+			  clan.memberCount = 0;
+			  clan.membersFetched = 0;
+
+			  var CharStatsDataLocations = {};
+
+			  CharStatsDataLocations.pvpKills = 'Response.mergedAllCharacters.results.allPvP.allTime.kills.basic.value';
+			  CharStatsDataLocations.pvpDeaths = 'Response.mergedAllCharacters.results.allPvP.allTime.deaths.basic.value';
+			  CharStatsDataLocations.pvpWon = 'Response.mergedAllCharacters.results.allPvP.allTime.activitiesWon.basic.value';
+			  CharStatsDataLocations.pvpSuicides = 'Response.mergedAllCharacters.results.allPvP.allTime.suicides.basic.value';
+			  CharStatsDataLocations.pvpSeconds = 'Response.mergedAllCharacters.results.allPvP.allTime.secondsPlayed.basic.value';
+
+			  CharStatsDataLocations.pveKills = 'Response.mergedAllCharacters.results.allPvE.allTime.kills.basic.value';
+			  CharStatsDataLocations.pveDeaths = 'Response.mergedAllCharacters.results.allPvE.allTime.deaths.basic.value';
+			  CharStatsDataLocations.pveSuicides = 'Response.mergedAllCharacters.results.allPvE.allTime.suicides.basic.value';
+			  CharStatsDataLocations.pveHPE = 'Response.mergedAllCharacters.results.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
+			  CharStatsDataLocations.pveAdventures = 'Response.mergedAllCharacters.results.allPvE.allTime.adventuresCompleted.basic.value';
+			  CharStatsDataLocations.pveSeconds = 'Response.mergedAllCharacters.results.allPvE.allTime.secondsPlayed.basic.value';
+
+
+
+			  $.ajax({
+			    //get member infos from our clan
+			    url: 'https://www.bungie.net/Platform/GroupV2/1801684/Members/',
+			    headers: {
+			      'X-API-KEY': bungieAPIkey
+			    },
+			    method: 'GET',
+
+			  }).done(
+			    function(data) {
+			      //collect id strings from every clan member
+			      $.each(data.Response.results, function(index, value) {
+				clan.memberIds.push(value.destinyUserInfo.membershipId);
+			      });
+
+			      clan.memberCount = clan.memberIds.length;
+
+			      //iterate over every member
+			      $.each(clan.memberIds, function(index, memberid) {
+				$.ajax({
+				  url: 'https://www.bungie.net/Platform/Destiny2/2/Account/' + memberid + '/Stats/',
+				  headers: {
+				    'X-API-KEY': bungieAPIkey
+				  },
+				  method: 'GET',
+				}).done(function(data) {
+				  clan.membersFetched = clan.membersFetched + 1;
+
+				  $.each(CharStatsDataLocations, function(statName, statLocation) {
+				    if (!clan[statName]) clan[statName] = 0;
+				    clan[statName] = clan[statName] + getDescendantProp(data, statLocation);
+				  });
+
+				  $('#claninfo').html(outputClanData(clan));
+				});
+
+			      });
+
+			    });
+			});
+
+			function getDescendantProp(obj, desc) {
+			  var arr = desc.split('.');
+			  while (arr.length && (obj = obj[arr.shift()]));
+			  return obj;
+			}
+
+			function convertSeconds(s) {
+			  var d, h, m;
+			  m = Math.floor(s / 60);
+			  s = s % 60;
+			  h = Math.floor(m / 60);
+			  m = m % 60;
+			  d = Math.floor(h / 24);
+			  h = h % 24;
+			  return d + ' days ' + h + ' hours ' + m + ' minutes'
+
+			}
+
+			function outputClanData(clanobject) {
+			  var html = '';
+
+			  html += 'PVP Kills: ' + (clanobject.pvpKills).toLocaleString('en').bold();
+			  html += '</br>PVP Deaths: ' + (clanobject.pvpDeaths).toLocaleString('en').bold();
+			  html += '</br>PVP Games Won: ' + (clanobject.pvpWon).toLocaleString('en').bold();
+			  html += '</br>PVP Suicides: ' + (clanobject.pvpSuicides).toLocaleString('en').bold();
+			  html += '</br>PVP Time: ' + convertSeconds(clanobject.pvpSeconds).bold();
+			  html += '</br>';
+			  html += '</br>PVE Kills: ' + (clanobject.pveKills).toLocaleString('en').bold();
+			  html += '</br>PVE Deaths: ' + (clanobject.pveDeaths).toLocaleString('en').bold();
+			  html += '</br>PVE Suicides: ' + (clanobject.pveSuicides).toLocaleString('en').bold();
+			  html += '</br>PVE Heroic Public Events: ' + (clanobject.pveHPE).toLocaleString('en').bold();
+			  html += '</br>PVE Adventures: ' + (clanobject.pveAdventures).toLocaleString('en').bold();
+			  html += '</br>PVE Time: ' + convertSeconds(clanobject.pveSeconds).bold();
+
+			  html += '</br></br>Data collected from members: (' + clanobject.membersFetched + '/' + clanobject.memberCount + ')';
+
+			  return html;
+			}
+
+
+		</script>
+	</head>
+	<body>
+		<div id="claninfo"></div>
+	</body>
+</html>
