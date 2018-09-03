@@ -17,14 +17,17 @@
 			  var CharStatsDataLocations = {};
 
 			  CharStatsDataLocations.pvpKills = 'Response.mergedAllCharacters.results.allPvP.allTime.kills.basic.value';
-			  CharStatsDataLocations.pvpDeaths = 'Response.mergedAllCharacters.results.allPvP.allTime.deaths.basic.value';
+			  CharStatsDataLocations.pvpAssists = 'Response.mergedAllCharacters.results.allPvP.allTime.assists.basic.value';
+			  CharStatsDataLocations.pvpKD = 'Response.mergedAllCharacters.results.allPvP.allTime.killsDeathsRatio.basic.value';
 			  CharStatsDataLocations.pvpWon = 'Response.mergedAllCharacters.results.allPvP.allTime.activitiesWon.basic.value';
+			  CharStatsDataLocations.pvpDeaths = 'Response.mergedAllCharacters.results.allPvP.allTime.deaths.basic.value';
 			  CharStatsDataLocations.pvpSuicides = 'Response.mergedAllCharacters.results.allPvP.allTime.suicides.basic.value';
 			  CharStatsDataLocations.pvpSeconds = 'Response.mergedAllCharacters.results.allPvP.allTime.secondsPlayed.basic.value';
 
 			  CharStatsDataLocations.pveKills = 'Response.mergedAllCharacters.results.allPvE.allTime.kills.basic.value';
 			  CharStatsDataLocations.pveDeaths = 'Response.mergedAllCharacters.results.allPvE.allTime.deaths.basic.value';
 			  CharStatsDataLocations.pveSuicides = 'Response.mergedAllCharacters.results.allPvE.allTime.suicides.basic.value';
+			  CharStatsDataLocations.pveOrbs = 'Response.mergedAllCharacters.results.allPvE.allTime.orbsDropped.basic.value';
 			  CharStatsDataLocations.pveHPE = 'Response.mergedAllCharacters.results.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
 			  CharStatsDataLocations.pveAdventures = 'Response.mergedAllCharacters.results.allPvE.allTime.adventuresCompleted.basic.value';
 			  CharStatsDataLocations.pveSeconds = 'Response.mergedAllCharacters.results.allPvE.allTime.secondsPlayed.basic.value';
@@ -94,14 +97,19 @@
 			  var html = '';
 
 			  html += 'PVP Kills: ' + (clanobject.pvpKills).toLocaleString('en').bold();
-			  html += '</br>PVP Deaths: ' + (clanobject.pvpDeaths).toLocaleString('en').bold();
+			  html += '</br>PVP Assists: ' + (clanobject.pvpAssists).toLocaleString('en').bold();
 			  html += '</br>PVP Games Won: ' + (clanobject.pvpWon).toLocaleString('en').bold();
+			  html += '</br>PVP Deaths: ' + (clanobject.pvpDeaths).toLocaleString('en').bold();
 			  html += '</br>PVP Suicides: ' + (clanobject.pvpSuicides).toLocaleString('en').bold();
+			  html += '</br>PVP K/D: ' + Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100;
+			  html += '</br>PVP Collective K/D: ' + Math.round(clanobject.pvpKD * 100) / 100;
+			  html += '</br>PVP (K+A)/D: ' + Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100;
 			  html += '</br>PVP Time: ' + convertSeconds(clanobject.pvpSeconds).bold();
 			  html += '</br>';
 			  html += '</br>PVE Kills: ' + (clanobject.pveKills).toLocaleString('en').bold();
 			  html += '</br>PVE Deaths: ' + (clanobject.pveDeaths).toLocaleString('en').bold();
 			  html += '</br>PVE Suicides: ' + (clanobject.pveSuicides).toLocaleString('en').bold();
+			  html += '</br>PVE Orbs Created: ' + (clanobject.pveOrbs).toLocaleString('en').bold();
 			  html += '</br>PVE Heroic Public Events: ' + (clanobject.pveHPE).toLocaleString('en').bold();
 			  html += '</br>PVE Adventures: ' + (clanobject.pveAdventures).toLocaleString('en').bold();
 			  html += '</br>PVE Time: ' + convertSeconds(clanobject.pveSeconds).bold();
