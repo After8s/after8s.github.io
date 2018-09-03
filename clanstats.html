@@ -102,8 +102,8 @@
 			  html += '</br>PVP Deaths: ' + (clanobject.pvpDeaths).toLocaleString('en').bold();
 			  html += '</br>PVP Suicides: ' + (clanobject.pvpSuicides).toLocaleString('en').bold();
 			  html += '</br>PVP K/D: ' + Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100;
-			  html += '</br>PVP Collective K/D: ' + Math.round(clanobject.pvpKD * 100) / 100;
 			  html += '</br>PVP (K+A)/D: ' + Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100;
+			  html += '</br>PVP Collective K/D: ' + Math.round(clanobject.pvpKD * 100) / 100;
 			  html += '</br>PVP Time: ' + convertSeconds(clanobject.pvpSeconds).bold();
 			  html += '</br>';
 			  html += '</br>PVE Kills: ' + (clanobject.pveKills).toLocaleString('en').bold();
