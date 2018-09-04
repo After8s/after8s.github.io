@@ -2,144 +2,224 @@
 <html>
 	<head>
 		<style>
-			dl {
-				width: 450px;
-				font-family: Muli,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
-			}
-			dt {
-				width: 100%;
-				vertical-align: middle;
-			}
-			dd {
-				font-weight: bold;    
-				margin-top: -1em;
-				text-align: right;
-				vertical-align: middle;
-			}
+            body {
+               font-family: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+            }
+            dl {
+               width: 450px;
+            }
+
+            dt {
+               width: 100%;
+               vertical-align: middle;
+            }
+
+            dd {
+               font-weight: bold;
+               margin-top: -1em;
+               text-align: right;
+               vertical-align: middle;
+            }
+            .spinner {
+              margin: 0 auto 0;
+              /*dth: 170px;*/
+              text-align: center;
+            }
+
+            .spinner > div {
+              width: 12px;
+              height: 12px;
+              background-color: #333;
+
+              border-radius: 100%;
+              display: inline-block;
+              -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+              animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            }
+
+            .spinner .bounce1 {
+              -webkit-animation-delay: -0.32s;
+              animation-delay: -0.32s;
+            }
+
+            .spinner .bounce2 {
+              -webkit-animation-delay: -0.16s;
+              animation-delay: -0.16s;
+            }
+
+            @-webkit-keyframes sk-bouncedelay {
+              0%, 80%, 100% { -webkit-transform: scale(0) }
+              40% { -webkit-transform: scale(1.0) }
+            }
+
+            @keyframes sk-bouncedelay {
+              0%, 80%, 100% { 
+                -webkit-transform: scale(0);
+                transform: scale(0);
+              } 40% { 
+                -webkit-transform: scale(1.0);
+                transform: scale(1.0);
+              }
+            }
 		</style>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 		<script>
-			
+           
+           var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
 
-			$(document).ready(function() {
-			  var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
+           var clan = {};
+           clan.memberIds = [];
+           clan.memberCount = 0;
+           clan.membersFetched = 0;
+           clan.memberName = {};
+           clan.retryCounter = {};
+           clan.unresolvedMemberNames = [];
+           
+           var CharStatsDataLocations = {};
 
-			  var clan = {};
-			  clan.memberIds = [];
-			  clan.memberCount = 0;
-			  clan.membersFetched = 0;
+           CharStatsDataLocations.pvpKills = 'Response.mergedAllCharacters.results.allPvP.allTime.kills.basic.value';
+           CharStatsDataLocations.pvpAssists = 'Response.mergedAllCharacters.results.allPvP.allTime.assists.basic.value';
+           CharStatsDataLocations.pvpKD = 'Response.mergedAllCharacters.results.allPvP.allTime.killsDeathsRatio.basic.value';
+           CharStatsDataLocations.pvpWon = 'Response.mergedAllCharacters.results.allPvP.allTime.activitiesWon.basic.value';
+           CharStatsDataLocations.pvpDeaths = 'Response.mergedAllCharacters.results.allPvP.allTime.deaths.basic.value';
+           CharStatsDataLocations.pvpSuicides = 'Response.mergedAllCharacters.results.allPvP.allTime.suicides.basic.value';
+           CharStatsDataLocations.pvpSeconds = 'Response.mergedAllCharacters.results.allPvP.allTime.secondsPlayed.basic.value';
 
-			  var CharStatsDataLocations = {};
+           CharStatsDataLocations.pveKills = 'Response.mergedAllCharacters.results.allPvE.allTime.kills.basic.value';
+           CharStatsDataLocations.pveDeaths = 'Response.mergedAllCharacters.results.allPvE.allTime.deaths.basic.value';
+           CharStatsDataLocations.pveSuicides = 'Response.mergedAllCharacters.results.allPvE.allTime.suicides.basic.value';
+           CharStatsDataLocations.pveOrbs = 'Response.mergedAllCharacters.results.allPvE.allTime.orbsDropped.basic.value';
+           CharStatsDataLocations.pveHPE = 'Response.mergedAllCharacters.results.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
+           CharStatsDataLocations.pveAdventures = 'Response.mergedAllCharacters.results.allPvE.allTime.adventuresCompleted.basic.value';
+           CharStatsDataLocations.pveSeconds = 'Response.mergedAllCharacters.results.allPvE.allTime.secondsPlayed.basic.value';
 
-			  CharStatsDataLocations.pvpKills = 'Response.mergedAllCharacters.results.allPvP.allTime.kills.basic.value';
-			  CharStatsDataLocations.pvpAssists = 'Response.mergedAllCharacters.results.allPvP.allTime.assists.basic.value';
-			  CharStatsDataLocations.pvpKD = 'Response.mergedAllCharacters.results.allPvP.allTime.killsDeathsRatio.basic.value';
-			  CharStatsDataLocations.pvpWon = 'Response.mergedAllCharacters.results.allPvP.allTime.activitiesWon.basic.value';
-			  CharStatsDataLocations.pvpDeaths = 'Response.mergedAllCharacters.results.allPvP.allTime.deaths.basic.value';
-			  CharStatsDataLocations.pvpSuicides = 'Response.mergedAllCharacters.results.allPvP.allTime.suicides.basic.value';
-			  CharStatsDataLocations.pvpSeconds = 'Response.mergedAllCharacters.results.allPvP.allTime.secondsPlayed.basic.value';
-
-			  CharStatsDataLocations.pveKills = 'Response.mergedAllCharacters.results.allPvE.allTime.kills.basic.value';
-			  CharStatsDataLocations.pveDeaths = 'Response.mergedAllCharacters.results.allPvE.allTime.deaths.basic.value';
-			  CharStatsDataLocations.pveSuicides = 'Response.mergedAllCharacters.results.allPvE.allTime.suicides.basic.value';
-			  CharStatsDataLocations.pveOrbs = 'Response.mergedAllCharacters.results.allPvE.allTime.orbsDropped.basic.value';
-			  CharStatsDataLocations.pveHPE = 'Response.mergedAllCharacters.results.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
-			  CharStatsDataLocations.pveAdventures = 'Response.mergedAllCharacters.results.allPvE.allTime.adventuresCompleted.basic.value';
-			  CharStatsDataLocations.pveSeconds = 'Response.mergedAllCharacters.results.allPvE.allTime.secondsPlayed.basic.value';
+           $(document).ready(function() {
 
 
+              $.ajax({
+                 //get member infos from our clan
+                 url: 'https://www.bungie.net/Platform/GroupV2/1801684/Members/',
+                 headers: {
+                    'X-API-KEY': bungieAPIkey
+                 },
+                 method: 'GET',
 
-			  $.ajax({
-			    //get member infos from our clan
-			    url: 'https://www.bungie.net/Platform/GroupV2/1801684/Members/',
-			    headers: {
-			      'X-API-KEY': bungieAPIkey
-			    },
-			    method: 'GET',
+              }).done(
+                 function(data) {
+                    //collect id strings from every clan member
+                    $.each(data.Response.results, function(index, value) {
+                       clan.memberIds.push(value.destinyUserInfo.membershipId);
+                       clan.retryCounter[value.destinyUserInfo.membershipId] = 0;
+                       clan.memberName[value.destinyUserInfo.membershipId] = value.destinyUserInfo.displayName;
+                    });
 
-			  }).done(
-			    function(data) {
-			      //collect id strings from every clan member
-			      $.each(data.Response.results, function(index, value) {
-				clan.memberIds.push(value.destinyUserInfo.membershipId);
-			      });
+                    clan.memberCount = clan.memberIds.length;
 
-			      clan.memberCount = clan.memberIds.length;
+                    //iterate over every member
+                    $.each(clan.memberIds, function(index, memberid) {
+                       getAccountData(memberid);
 
-			      //iterate over every member
-			      $.each(clan.memberIds, function(index, memberid) {
-				$.ajax({
-				  url: 'https://www.bungie.net/Platform/Destiny2/2/Account/' + memberid + '/Stats/',
-				  headers: {
-				    'X-API-KEY': bungieAPIkey
-				  },
-				  method: 'GET',
-				}).done(function(data) {
-				  clan.membersFetched = clan.membersFetched + 1;
+                    });
 
-				  $.each(CharStatsDataLocations, function(statName, statLocation) {
-				    if (!clan[statName]) clan[statName] = 0;
-				    clan[statName] = clan[statName] + getDescendantProp(data, statLocation);
-				  });
+                 });
+           });
+            
+            $(document).ajaxStop(function() {
+                if (clan.unresolvedMemberNames.length>0) {
+                    $('.spinner').html('(unable to fetch '+clan.unresolvedMemberNames.join(', ')+')');
+                } else {
+                    $('.spinner').hide();
+                }
+            });
 
-				  $('#claninfo').html(outputClanData(clan));
-				});
+           function getAccountData(memberid) {
+              //track number of tries for every member
+              clan.retryCounter[memberid] = clan.retryCounter[memberid] + 1;
+              if (clan.retryCounter[memberid] > 10) {
+                //give up on him =/
+                 clan.unresolvedMemberNames.push(clan.memberName[memberid]);
+                 return;
+              }
 
-			      });
+              $.ajax({
+                 url: 'https://www.bungie.net/Platform/Destiny2/2/Account/' + memberid + '/Stats/',
+                 headers: {
+                    'X-API-KEY': bungieAPIkey
+                 },
+                 method: 'GET',
 
-			    });
-			});
+              }).done(function(data) {
 
-			function getDescendantProp(obj, desc) {
-			  var arr = desc.split('.');
-			  while (arr.length && (obj = obj[arr.shift()]));
-			  return obj;
-			}
+                 if (data.ErrorCode > 1 || !data.Response) {
+                    getAccountData(memberid); //try again
+                 } else {
+                    clan.membersFetched = clan.membersFetched + 1;
+                    $.each(CharStatsDataLocations, function(statName, statLocation) {
+                       if (!clan[statName]) clan[statName] = 0;
+                       clan[statName] = clan[statName] + getDescendantProp(data, statLocation);
+                    });
 
-			function convertSeconds(s) {
-			  var d, h, m;
-			  m = Math.floor(s / 60);
-			  s = s % 60;
-			  h = Math.floor(m / 60);
-			  m = m % 60;
-			  d = Math.floor(h / 24);
-			  h = h % 24;
-			  return d + ' days, ' + h + ' hours, ' + m + ' minutes'
+                    $('#claninfo').html(outputClanData(clan));
+                 }
 
-			}
+              });
+              return;
+           }
 
-			function outputClanData(clanobject) {
-			  var html = '';
+           function getDescendantProp(obj, desc) {
+              var arr = desc.split('.');
+              while (arr.length && (obj = obj[arr.shift()]));
+              return obj;
+           }
 
-			  html += '<dt>PVP Kills</dt><dd>' + (clanobject.pvpKills).toLocaleString('en') + '</dd>';
-			  html += '<dt>PVP Assists</dt><dd>' + (clanobject.pvpAssists).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVP Games Won</dt><dd>' + (clanobject.pvpWon).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVP Deaths</dt><dd>' + (clanobject.pvpDeaths).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVP Suicides</dt><dd>' + (clanobject.pvpSuicides).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVP K/D</dt><dd>' + (Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVP (K+A)/D</dt><dd>' + (Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVP Collective K/D</dt><dd>' + (Math.round(clanobject.pvpKD * 100) / 100).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVP Time</dt><dd>' + convertSeconds(clanobject.pvpSeconds)+ '</dd>';
-			  html += '</br>';
-			  html += '<dt>PVE Kills</dt><dd>' + (clanobject.pveKills).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVE Deaths</dt><dd>' + (clanobject.pveDeaths).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVE Suicides</dt><dd>' + (clanobject.pveSuicides).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVE Orbs Created</dt><dd>' + (clanobject.pveOrbs).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVE Adventures</dt><dd>' + (clanobject.pveAdventures).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVE Heroic Public Events</dt><dd>' + (clanobject.pveHPE).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVE Time</dt><dd>' + convertSeconds(clanobject.pveSeconds)+ '</dd>';
-			  html += '</br>';
-			  html += '</br><dt>Data collected from members: (' + clanobject.membersFetched + '/' + clanobject.memberCount + ')</dt>';
+           function convertSeconds(s) {
+              var d, h, m;
+              m = Math.floor(s / 60);
+              s = s % 60;
+              h = Math.floor(m / 60);
+              m = m % 60;
+              d = Math.floor(h / 24);
+              h = h % 24;
+              return d + ' days, ' + h + ' hours, ' + m + ' minutes'
 
-			  return html;
-			}
+           }
 
+           function outputClanData(clanobject) {
+              var html = '';
+
+              html += '<dt>PVP Kills</dt><dd>' + (clanobject.pvpKills).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Assists</dt><dd>' + (clanobject.pvpAssists).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Games Won</dt><dd>' + (clanobject.pvpWon).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Deaths</dt><dd>' + (clanobject.pvpDeaths).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Suicides</dt><dd>' + (clanobject.pvpSuicides).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP K/D</dt><dd>' + (Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP (K+A)/D</dt><dd>' + (Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Collective K/D</dt><dd>' + (Math.round(clanobject.pvpKD * 100) / 100).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Time</dt><dd>' + convertSeconds(clanobject.pvpSeconds) + '</dd>';
+              html += '</br>';
+              html += '<dt>PVE Kills</dt><dd>' + (clanobject.pveKills).toLocaleString('en') + '</dd>';
+              html += '<dt>PVE Deaths</dt><dd>' + (clanobject.pveDeaths).toLocaleString('en') + '</dd>';
+              html += '<dt>PVE Suicides</dt><dd>' + (clanobject.pveSuicides).toLocaleString('en') + '</dd>';
+              html += '<dt>PVE Orbs Created</dt><dd>' + (clanobject.pveOrbs).toLocaleString('en') + '</dd>';
+              html += '<dt>PVE Adventures</dt><dd>' + (clanobject.pveAdventures).toLocaleString('en') + '</dd>';
+              html += '<dt>PVE Heroic Public Events</dt><dd>' + (clanobject.pveHPE).toLocaleString('en') + '</dd>';
+              html += '<dt>PVE Time</dt><dd>' + convertSeconds(clanobject.pveSeconds) + '</dd>';
+              html += '</br>';
+              html += '</br><dt>Data collected from members: (' + clanobject.membersFetched + '/' + clanobject.memberCount + ')</dt>';
+
+              return html;
+           }
 
 		</script>
 	</head>
 	<body>
 		<dl id="claninfo"></dl>
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
 	</body>
 </html>
