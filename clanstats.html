@@ -3,16 +3,18 @@
 	<head>
 		<style>
 			dl {
-				width: 360px;
+				width: 450px;
 				font-family: Muli,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 			}
 			dt {
 				width: 100%;
+				vertical-align: middle;
 			}
 			dd {
 				font-weight: bold;    
-				margin-top: -1.3em;
-				text-align: right
+				margin-top: -1em;
+				text-align: right;
+				vertical-align: middle;
 			}
 		</style>
 		
@@ -125,12 +127,10 @@
 			  html += '<dt>PVE Deaths</dt><dd>' + (clanobject.pveDeaths).toLocaleString('en')+ '</dd>';
 			  html += '<dt>PVE Suicides</dt><dd>' + (clanobject.pveSuicides).toLocaleString('en')+ '</dd>';
 			  html += '<dt>PVE Orbs Created</dt><dd>' + (clanobject.pveOrbs).toLocaleString('en')+ '</dd>';
-			  html += '<dt>PVE Heroic Public Events</dt><dd>' + (clanobject.pveHPE).toLocaleString('en')+ '</dd>';
 			  html += '<dt>PVE Adventures</dt><dd>' + (clanobject.pveAdventures).toLocaleString('en')+ '</dd>';
+			  html += '<dt>PVE Heroic Public Events</dt><dd>' + (clanobject.pveHPE).toLocaleString('en')+ '</dd>';
 			  html += '<dt>PVE Time</dt><dd>' + convertSeconds(clanobject.pveSeconds)+ '</dd>';
-
 			  html += '</br>';
-			  
 			  html += '</br><dt>Data collected from members: (' + clanobject.membersFetched + '/' + clanobject.memberCount + ')</dt>';
 
 			  return html;
