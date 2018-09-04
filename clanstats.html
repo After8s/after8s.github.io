@@ -109,6 +109,10 @@
               }).done(
                  function(data) {
                     //collect id strings from every clan member
+		     if (!data.Response) {
+               		$('#claninfo').html('API down?');
+               		return;
+            	    }
                     $.each(data.Response.results, function(index, value) {
                        clan.memberIds.push(value.destinyUserInfo.membershipId);
                        clan.retryCounter[value.destinyUserInfo.membershipId] = 0;
