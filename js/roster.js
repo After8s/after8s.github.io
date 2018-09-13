@@ -22,7 +22,7 @@ twitch['Mini-B0rg40']      = 'terrybjsr27';
 twitch['FaiNt87']          = 'rebslack';
 twitch['Deecs259']         = 'deecs259';
 twitch['CristianoRicky16'] = 'ricdvs';
-twitch['Puntmannetje']     = 'https://twitch.tv/puntmannetje';
+twitch['Puntmannetje']     = 'puntmannetje';
 twitch['Murdie1']          = 'gabbercrew';
 twitch['Phyrne-']          = 'phyrne';
 
