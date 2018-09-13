@@ -44,7 +44,7 @@
             mymap.addControl(new L.Control.Fullscreen());
             
             //disabled mouse wheel zoom due to one page clan site layout
-            mymap.scrollWheelZoom.disable();
+            //mymap.scrollWheelZoom.disable();
             
             L.MakiMarkers.accessToken = mapboxAccessToken;
             
@@ -54,44 +54,50 @@
             var iconBlues = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#3498DB", size: "s"});
             var iconROW = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#E67E22", size: "s"});
             var iconCunts = L.MakiMarkers.icon({ icon: "circle-stroked", color: "#F1C40F", size: "s"});
-
+            
+            
+            //every member location data
+            var m = [];
+            m.push({name:'DrHendrik'           ,icon:iconROW         ,city:'Canada'						    ,coords:[61.0666, -107.9917]});
+            m.push({name:'xeos_6'              ,icon:iconROW         ,city:'California,USA'				    ,coords:[36.7782, -119.4179]});
+            m.push({name:'Mini-borg40'         ,icon:iconPurples     ,city:'Newark-on-Trent,UK'			    ,coords:[53.0700, -0.8065]});
+            m.push({name:'CristianoRicky16'    ,icon:iconBlues       ,city:'Paris,France'				    ,coords:[48.8566,  2.3522]});
+            m.push({name:'FaiNt87'             ,icon:iconPurples     ,city:'Hinckley,UK'				    ,coords:[52.5454, -1.3766]});
+            m.push({name:'Fryde'               ,icon:iconBlues       ,city:'Hamburg,Germany'			    ,coords:[53.5964,  9.9382]});
+            m.push({name:'Hushspesh'           ,icon:iconPurples     ,city:'SaintAlbans,UK'				    ,coords:[51.7527, -0.3394]});
+            m.push({name:'Intemerata_'         ,icon:iconPurples     ,city:'Camberley,UK'				    ,coords:[51.3353, -0.7428]});
+            m.push({name:'LyRaD87cP'           ,icon:iconCunts       ,city:'Lichtenberg,Berlin,Germany'	    ,coords:[52.5321,  13.5118]});
+            m.push({name:'smashi__'            ,icon:iconCunts       ,city:'Reutlingen,Germany'			    ,coords:[48.5069,  9.2038]});
+            m.push({name:'The_Jedd'            ,icon:iconCunts       ,city:'Weston-super-Mare,UK'		    ,coords:[51.3474, -2.9772]});
+            m.push({name:'Vortex4950'          ,icon:iconPurples     ,city:'Diss,UK'					    ,coords:[52.3764,  1.1083]});
+            m.push({name:'KefsNL'              ,icon:iconBlues       ,city:'Amsterdam,Nederland'		    ,coords:[52.3736,  4.8990]});
+            m.push({name:'Arctisfear'          ,icon:iconPurples     ,city:'Bournemouth,UK'				    ,coords:[50.7191, -1.8807]});
+            m.push({name:'Deecs259'            ,icon:iconPurples     ,city:'Norwich,UK'					    ,coords:[52.6308,  1.2973]});
+            m.push({name:'JLXJPG'              ,icon:iconBlues       ,city:'Steglitz,Berlin,Germany'	    ,coords:[52.4572,  13.3222]});
+            m.push({name:'Insan1313'           ,icon:iconBlues       ,city:'Zwolle,Overijssel,Nederland'    ,coords:[52.5145,  6.0977]});
+            m.push({name:'iHackEpic'           ,icon:iconBlues       ,city:'Bodegraven,Nederland'		    ,coords:[52.0732,  4.7589]});
+            m.push({name:'Ty-Ni'               ,icon:iconBlues       ,city:'Haarlem,Nederland'			    ,coords:[52.3811,  4.635278]});
+            m.push({name:'Puntmannetje'        ,icon:iconBlues       ,city:'Rotterdam,Nederland'		    ,coords:[51.919860, 4.473654]});
+            m.push({name:'benanderson'         ,icon:iconPurples     ,city:'Exeter,UK'					    ,coords:[50.718750, -3.5339172]});
+            m.push({name:'Deanmcsound'         ,icon:iconBlues       ,city:'Ireland'					    ,coords:[53.140899, -7.685237]});
+            m.push({name:'johnigame'           ,icon:iconBlues       ,city:'Munich,Germany'				    ,coords:[48.137394, 11.575710]});
+            m.push({name:'murdie1'             ,icon:iconPurples     ,city:'Scotland'					    ,coords:[57.282963, -4.468677]});
+            m.push({name:'Phyrne-'             ,icon:iconPurples     ,city:'Hitchin,Hertfordshire,UK'	    ,coords:[51.948725, -0.284280]});
+            m.push({name:'ejr978'              ,icon:iconPurples     ,city:'Manchester,UK'				    ,coords:[53.480845, -2.242874]});
+            m.push({name:'AksumiT'             ,icon:iconBlues       ,city:'Sweden'						    ,coords:[62.803528, 16.474650]});
+            m.push({name:'ronobear87'          ,icon:iconPurples     ,city:'Sheffield,UK'				    ,coords:[53.3821, -1.4651]});
+            m.push({name:'shinedonkey'         ,icon:iconPurples     ,city:'Nottingham,UK'				    ,coords:[52.9558, -1.1491]});
+                        
+                        
+                        
+            //add all markers to the layer
             var markers = L.markerClusterGroup();
             
-            //every member location
-            markers.addLayer(L.marker([53.0700, -0.8065      ], {icon: iconPurples   }).bindPopup("<b>Mini-borg40</b><br />      Newark-on-Trent, UK"));         
-            markers.addLayer(L.marker([48.8566,  2.3522      ], {icon: iconBlues     }).bindPopup("<b>CristianoRicky16</b><br /> Paris, France"));              
-            markers.addLayer(L.marker([61.0666, -107.9917    ], {icon: iconROW       }).bindPopup("<b>DrHendrik</b><br />        Canada"));                            
-            markers.addLayer(L.marker([52.5454, -1.3766      ], {icon: iconPurples   }).bindPopup("<b>FaiNt87</b><br />          Hinckley, UK"));                      
-            markers.addLayer(L.marker([53.5964,  9.9382      ], {icon: iconBlues     }).bindPopup("<b>Fryde</b><br />            Hamburg, Germany"));                     
-            markers.addLayer(L.marker([51.7527, -0.3394      ], {icon: iconPurples   }).bindPopup("<b>Hushspesh</b><br />        Saint Albans, UK"));              
-            markers.addLayer(L.marker([51.3353, -0.7428      ], {icon: iconPurples   }).bindPopup("<b>Intemerata_</b><br />      Camberley, UK"));               
-            markers.addLayer(L.marker([52.5321,  13.5118     ], {icon: iconCunts     }).bindPopup("<b>LyRaD87cP</b><br />        Lichtenberg, Berlin, Germany"));     
-            markers.addLayer(L.marker([48.5069,  9.2038      ], {icon: iconCunts     }).bindPopup("<b>smashi__</b><br />         Reutlingen, Germany"));         
-            markers.addLayer(L.marker([51.3474, -2.9772      ], {icon: iconCunts     }).bindPopup("<b>The_Jedd</b><br />         Weston-super-Mare, UK"));     
-            markers.addLayer(L.marker([52.3764,  1.1083      ], {icon: iconPurples   }).bindPopup("<b>Vortex4950</b><br />       Diss, UK"));               
-            markers.addLayer(L.marker([36.7782, -119.4179    ], {icon: iconROW       }).bindPopup("<b>xeos_6</b><br />           California, USA"));                      
-            markers.addLayer(L.marker([52.3736,  4.8990      ], {icon: iconBlues     }).bindPopup("<b>KefsNL</b><br />           Amsterdam, Nederland"));                 
-            markers.addLayer(L.marker([50.7191, -1.8807      ], {icon: iconPurples   }).bindPopup("<b>Arctisfear</b><br />       Bournemouth, UK"));               
-            markers.addLayer(L.marker([52.6308,  1.2973      ], {icon: iconPurples   }).bindPopup("<b>Deecs259</b><br />         Norwich, UK"));                     
-            markers.addLayer(L.marker([52.4572,  13.3222     ], {icon: iconBlues     }).bindPopup("<b>JLXJPG</b><br />           Steglitz, Berlin, Germany"));           
-            markers.addLayer(L.marker([52.5145,  6.0977      ], {icon: iconBlues     }).bindPopup("<b>Insan1313</b><br />        Zwolle, Overijssel, Nederland"));  
-            markers.addLayer(L.marker([52.0732,  4.7589      ], {icon: iconBlues     }).bindPopup("<b>iHackEpic</b><br />        Bodegraven, Nederland"));  
-            markers.addLayer(L.marker([52.3811,  4.635278    ], {icon: iconBlues     }).bindPopup("<b>Ty-Ni</b><br />            Haarlem, Nederland"));  
-            markers.addLayer(L.marker([51.919860, 4.473654   ], {icon: iconBlues     }).bindPopup("<b>Puntmannetje</b><br />     Rotterdam, Nederland"));  
-            markers.addLayer(L.marker([50.718750, -3.5339172 ], {icon: iconPurples   }).bindPopup("<b>benanderson</b><br />      Exeter, UK"));  
-            markers.addLayer(L.marker([53.140899, -7.685237  ], {icon: iconBlues     }).bindPopup("<b>Deanmcsound</b><br />      Ireland"));  
-            markers.addLayer(L.marker([48.137394, 11.575710  ], {icon: iconBlues     }).bindPopup("<b>johnigame</b><br />        Munich, Germany"));  
-            markers.addLayer(L.marker([57.282963, -4.468677  ], {icon: iconPurples   }).bindPopup("<b>murdie1</b><br />          Scotland"));  
-            markers.addLayer(L.marker([51.948725, -0.284280  ], {icon: iconPurples   }).bindPopup("<b>Phyrne-</b><br />          Hitchin, Hertfordshire, UK"));  
-            markers.addLayer(L.marker([53.480845, -2.242874  ], {icon: iconPurples   }).bindPopup("<b>ejr978</b><br />           Manchester, UK"));  
-            markers.addLayer(L.marker([62.803528, 16.474650  ], {icon: iconBlues     }).bindPopup("<b>AksumiT</b><br />          Sweden"));  
-            markers.addLayer(L.marker([53.3821, -1.4651      ], {icon: iconPurples   }).bindPopup("<b>ronobear87</b><br />       Sheffield, UK"));
-            markers.addLayer(L.marker([52.9558, -1.1491      ], {icon: iconPurples   }).bindPopup("<b>shinedonkey</b><br />      Nottingham, UK"));   
-             
-        
+            for (var i in m) {
+                markers.addLayer(L.marker(m[i].coords, {icon: m[i].icon}).bindPopup("<b>"+m[i].name+"</b><br />"+m[i].city,{autoClose:false,closeButton:false,closeOnClick:false}).on('mouseover', function (e) {this.openPopup();}));         
+            }          
             
             mymap.addLayer(markers);
-            
           
         </script>
 
