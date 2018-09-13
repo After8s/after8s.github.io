@@ -7,7 +7,7 @@ var apiKey = "0a11942f318647978979f13ad8aa53ee", // production
 var roster = [];
 
 var twitch = new Object();
-twitch['the_jedd']         = 'the_j3dd';
+twitch['The_Jedd']         = 'the_j3dd';
 twitch['smashi__']         = 'supersmashi';
 twitch['ArctisFear']       = 'arctisfear';
 twitch['Intemerata_']      = 'intemerata_';
