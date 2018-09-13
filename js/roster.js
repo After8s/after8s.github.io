@@ -6,6 +6,26 @@ var apiKey = "0a11942f318647978979f13ad8aa53ee", // production
 
 var roster = [];
 
+var twitch = new Object();
+twitch['the_jedd']         = 'the_j3dd';
+twitch['smashi__']         = 'supersmashi';
+twitch['ArctisFear']       = 'arctisfear';
+twitch['Intemerata_']      = 'intemerata_';
+twitch['Ty-Ni']            = 'ty_ni';
+twitch['Ronobear87']       = 'ronobear87';
+twitch['Fryde']            = 'fry_de';
+twitch['iHackEpic']        = 'ihackepic';
+twitch['Hushspesh']        = 'hushspesh101';
+twitch['LyRaD87cP']        = 'dazzah87';
+twitch['Vortex4950']       = 'vortex4950';
+twitch['Mini-B0rg40']      = 'terrybjsr27';
+twitch['FaiNt87']          = 'rebslack';
+twitch['Deecs259']         = 'deecs259';
+twitch['CristianoRicky16'] = 'ricdvs';
+twitch['Puntmannetje']     = 'https://twitch.tv/puntmannetje';
+twitch['Murdie1']          = 'gabbercrew';
+twitch['Phyrne-']          = 'phyrne';
+
 $.when(
         // get A8 roster
         $.ajax({
@@ -114,13 +134,14 @@ function listMembers(rsp) {
                     'data-searchable': name,
                 })
                 .html(
-                    '<th scope="row"><img src="https://www.bungie.net' + icon + '" style="width: 30px; height:30px"></th>' + // avatar
-                    '<td class="align-middle">' + name + '</td>' + // Username
-                    '<td class="align-middle text-warning">' + role + '</td>' + // Role - Not the discord role yet
-                    '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined
+                    '<th scope="row"><img src="https://www.bungie.net' + icon + '" style="width: 30px; height:30px"></th>' + // Avatar
+                    '<td class="align-middle">' + name + '</td>' + // PSN username
+                    '<td class="align-middle text-warning">' + role + '</td>' + // Role - Not the Discord role yet
+                    '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined date
                     '<td class="align-middle member-status"><span class="member-online" id="status-' + memberId + '">' + online + '</span></td>' + // In game online status
+                    '<td class="align-middle text-center">'+((!twitch[name]) ? '' : '<a target="_blank" href="https://twitch.tv/' + twitch[name] +'"><img src="img/twitch_icon.png" style="width: 20px; height:20px"></a>')+'</td>' +  // Twitch - yes, show icon | no, show nothing
                     '<td class="align-middle text-center"><a target="_blank" href="https://destinytracker.com/d2/profile/psn/' + name + '">View Stats</a></td>' + // DTR Profile
-                    '<td class="align-middle text-center"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // RR Profile 
+                    '<td class="align-middle text-center"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // Raid Report Profile 
                     '<td class="align-middle text-center"><a target="_blank" href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">View Profile</a></td>' // Bungie Profile 
                 );
 
