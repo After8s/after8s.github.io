@@ -12,7 +12,7 @@ twitch['smashi__']         = 'supersmashi';
 twitch['ArctisFear']       = 'arctisfear';
 twitch['Intemerata_']      = 'intemerata_';
 twitch['Ty-Ni']            = 'ty_ni';
-twitch['Ronobear87']       = 'ronobear87';
+twitch['ronobear87']       = 'ronobear87';
 twitch['Fryde']            = 'fry_de';
 twitch['iHackEpic']        = 'ihackepic';
 twitch['Hushspesh']        = 'hushspesh101';
@@ -23,7 +23,7 @@ twitch['FaiNt87']          = 'rebslack';
 twitch['Deecs259']         = 'deecs259';
 twitch['CristianoRicky16'] = 'ricdvs';
 twitch['Puntmannetje']     = 'puntmannetje';
-twitch['Murdie1']          = 'gabbercrew';
+twitch['murdie1']          = 'gabbercrew';
 twitch['Phyrne-']          = 'phyrne';
 
 $.when(
