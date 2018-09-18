@@ -211,7 +211,6 @@
               html += '<dt>PVP Suicides</dt><dd>' + (clanobject.pvpSuicides).toLocaleString('en') + '</dd>';
               html += '<dt>PVP K/D</dt><dd>' + (Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
               html += '<dt>PVP (K+A)/D</dt><dd>' + (Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP Collective K/D</dt><dd>' + (Math.round(clanobject.pvpKD * 100) / 100).toLocaleString('en') + '</dd>';
               html += '<dt>PVP Time</dt><dd>' + convertSeconds(clanobject.pvpSeconds) + '</dd>';
               html += '</br>';
               html += '<dt><img src="https://www.bungie.net/common/destiny2_content/icons/icon_md2de6954efb417d6571bea9202dbadfd.png" width="20" height="20"> We Ran out of Medals</dt><dd>' + (clanobject.pvpWROOMs).toLocaleString('en') + '</dd>';
