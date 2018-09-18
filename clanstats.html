@@ -86,6 +86,7 @@
            CharStatsDataLocations.pvpDeaths = 'Response.mergedAllCharacters.results.allPvP.allTime.deaths.basic.value';
            CharStatsDataLocations.pvpSuicides = 'Response.mergedAllCharacters.results.allPvP.allTime.suicides.basic.value';
            CharStatsDataLocations.pvpSeconds = 'Response.mergedAllCharacters.results.allPvP.allTime.secondsPlayed.basic.value';
+	   CharStatsDataLocations.pvpWROOMs = 'Response.mergedAllCharacters.results.allPvP.allTime.medalStreakAbsurd.basic.value';
 
            CharStatsDataLocations.pveKills = 'Response.mergedAllCharacters.results.allPvE.allTime.kills.basic.value';
            CharStatsDataLocations.pveDeaths = 'Response.mergedAllCharacters.results.allPvE.allTime.deaths.basic.value';
@@ -152,6 +153,7 @@
                  headers: {
                     'X-API-KEY': bungieAPIkey
                  },
+		 data: { groups: "1,3"} ,
                  method: 'GET',
 
               }).done(function(data) {
@@ -203,7 +205,9 @@
               html += '<dt>PVP Collective K/D</dt><dd>' + (Math.round(clanobject.pvpKD * 100) / 100).toLocaleString('en') + '</dd>';
               html += '<dt>PVP Time</dt><dd>' + convertSeconds(clanobject.pvpSeconds) + '</dd>';
               html += '</br>';
-              html += '<dt>PVE Kills</dt><dd>' + (clanobject.pveKills).toLocaleString('en') + '</dd>';
+              html += '<dt><img alt="We Ran out of Medals" src="https://www.destinygamewiki.com/mediawiki/images/3/39/We_ran_out_of_medals_medal1.png" width="24" height="24"></dt><dd>' + (clanobject.pvpWROOMs).toLocaleString('en') + '</dd>';
+      	      html += '</br>';
+      	      html += '<dt>PVE Kills</dt><dd>' + (clanobject.pveKills).toLocaleString('en') + '</dd>';
               html += '<dt>PVE Deaths</dt><dd>' + (clanobject.pveDeaths).toLocaleString('en') + '</dd>';
               html += '<dt>PVE Suicides</dt><dd>' + (clanobject.pveSuicides).toLocaleString('en') + '</dd>';
               html += '<dt>PVE Orbs Created</dt><dd>' + (clanobject.pveOrbs).toLocaleString('en') + '</dd>';
