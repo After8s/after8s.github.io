@@ -204,15 +204,6 @@
            function outputClanData(clanobject) {
               var html = '';
 
-              html += '<dt>PVP Kills</dt><dd>' + (clanobject.pvpKills).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP Assists</dt><dd>' + (clanobject.pvpAssists).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP Games Won</dt><dd>' + (clanobject.pvpWon).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP Deaths</dt><dd>' + (clanobject.pvpDeaths).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP Suicides</dt><dd>' + (clanobject.pvpSuicides).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP K/D</dt><dd>' + (Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP (K+A)/D</dt><dd>' + (Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
-              html += '<dt>PVP Time</dt><dd>' + convertSeconds(clanobject.pvpSeconds) + '</dd>';
-              html += '</br>';
               html += '<dt><img src="https://www.bungie.net/common/destiny2_content/icons/icon_md2de6954efb417d6571bea9202dbadfd.png" width="20" height="20"> We Ran out of Medals</dt><dd>' + (clanobject.pvpWROOMs).toLocaleString('en') + '</dd>';
               html += '<dt><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m3c7546b477f5378b3c605f4be6d45376.png" width="20" height="20"> Undefeated</dt><dd>' + (clanobject.pvpUndefeats).toLocaleString('en') + '</dd>';
               html += '<dt><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mf6bdc19ff454b545dec8e847696f8d57.png" width="20" height="20"> Invincible</dt><dd>' + (clanobject.pvpInvincible).toLocaleString('en') + '</dd>';
@@ -223,7 +214,20 @@
               html += '<dt><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mdbab442edbc7e7ecd6a56f5ac1b1dd47.png" width="20" height="20"> Ruthless</dt><dd>' + (clanobject.pvpRuthless).toLocaleString('en') + '</dd>';
               html += '<dt><img src="https://www.bungie.net/common/destiny2_content/icons/icon_me582cbac24c4cecd6f728afc67f882f9.png" width="20" height="20"> Fight Me!</dt><dd>' + (clanobject.pvpFightMe).toLocaleString('en') + '</dd>';
               html += '<dt><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m164efd3b6b3104df99c3b86a6522f68b.png" width="20" height="20"> Not So Fast, My Friend</dt><dd>' + (clanobject.pvpNSFMF).toLocaleString('en') + '</dd>';
-      	      html += '</br>';
+              
+              html += '</br>';
+
+              html += '<dt>PVP Kills</dt><dd>' + (clanobject.pvpKills).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Assists</dt><dd>' + (clanobject.pvpAssists).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Games Won</dt><dd>' + (clanobject.pvpWon).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Deaths</dt><dd>' + (clanobject.pvpDeaths).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Suicides</dt><dd>' + (clanobject.pvpSuicides).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP K/D</dt><dd>' + (Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP (K+A)/D</dt><dd>' + (Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString('en') + '</dd>';
+              html += '<dt>PVP Time</dt><dd>' + convertSeconds(clanobject.pvpSeconds) + '</dd>';
+      	      
+              html += '</br>';
+
       	      html += '<dt>PVE Kills</dt><dd>' + (clanobject.pveKills).toLocaleString('en') + '</dd>';
               html += '<dt>PVE Deaths</dt><dd>' + (clanobject.pveDeaths).toLocaleString('en') + '</dd>';
               html += '<dt>PVE Suicides</dt><dd>' + (clanobject.pveSuicides).toLocaleString('en') + '</dd>';
