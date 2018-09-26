@@ -2,96 +2,203 @@
 <html>
   <head>
     <style>
-            body {
-               font-family: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-            }
-             .spinner {
-               margin: 0 auto 0;
-               /*dth: 170px;*/
-               text-align: center;
-            }
-             .spinner>div {
-               width: 12px;
-               height: 12px;
-               background-color: #333;
-               border-radius: 100%;
-               display: inline-block;
-               -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-               animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-            }
-             .spinner .bounce1 {
-               -webkit-animation-delay: -0.32s;
-               animation-delay: -0.32s;
-            }
-             .spinner .bounce2 {
-               -webkit-animation-delay: -0.16s;
-               animation-delay: -0.16s;
-            }
-             @-webkit-keyframes sk-bouncedelay {
-               0%,
-               80%,
-               100% {
-                  -webkit-transform: scale(0)
-               }
-               40% {
-                  -webkit-transform: scale(1.0)
-               }
-            }
-             @keyframes sk-bouncedelay {
-               0%,
-               80%,
-               100% {
-                  -webkit-transform: scale(0);
-                  transform: scale(0);
-               }
-               40% {
-                  -webkit-transform: scale(1.0);
-                  transform: scale(1.0);
-               }
-            }
-             .counter {
-               background-color: #f5f5f5;
-               padding: 10px 0;
-               border-radius: 5px;
-               line-height: 1 !important;
-            }
-             .count-title {
-               font-size: 14px;
-               font-weight: normal;
-               margin-top: 10px;
-               margin-bottom: 0;
-               text-align: center;
-            }
-             .count-text {
-               font-size: 14px;
-               font-weight: bold;
-               margin-top: 10px;
-               margin-bottom: 0;
-               text-align: center;
-            }
-             .fa-2x {
-               margin: 0 auto;
-               float: none;
-               display: table;
-               color: #4ad1e5;
-            }
-             .row {
-               margin-top: 10px;
-               margin-bottom: 10px;
-            }
-             .slimrow {
-               margin: 0 auto !important;
-               width: 130px;
-            }
+      body {
+    font-family: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+.counter {
+   background-color: #f5f5f5;
+   padding: 10px 0;
+   border-radius: 5px;
+   line-height: 1 !important;
+}
+.count-title {
+   font-size: 14px;
+   font-weight: normal;
+   margin-top: 10px;
+   margin-bottom: 0;
+   text-align: center;
+}
+.count-text {
+   font-size: 14px;
+   font-weight: bold;
+   margin-top: 10px;
+   margin-bottom: 0;
+   text-align: center;
+}
+.fa-2x {
+   margin: 0 auto;
+   float: none;
+   display: table;
+   color: #4ad1e5;
+}
+.row {
+   margin-top: 10px;
+   margin-bottom: 10px;
+}
+.slimrow {
+   margin: 0 auto !important;
+   width: 130px;
+}
+
+* {box-sizing: border-box}
+
+/* Style the tab */
+.tab {
+    float: left;
+//    border: 1px solid #ccc;
+//    background-color: #f1f1f1;
+  
+  width: 25%;
+    height: 400px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #eee;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+ //   padding: 0px 12px;
+//    border: 1px solid #ccc;
+    background-color: #eee;
+    width: 75%;
+    border-left: none;
+    height: 400px;
+}
+th {
+   border:0px !important;
+   width: 10% !important;
+   }
+td {
+   border:0px !important;
+   width: 45% !important;
+   height: 40px !important;
+}
+
+.sk-folding-cube {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+}
+
+.sk-folding-cube .sk-cube {
+  float: left;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+          transform: scale(1.1); 
+}
+.sk-folding-cube .sk-cube:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+          animation: sk-foldCubeAngle 2.4s infinite linear both;
+  -webkit-transform-origin: 100% 100%;
+      -ms-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+}
+.sk-folding-cube .sk-cube2 {
+  -webkit-transform: scale(1.1) rotateZ(90deg);
+          transform: scale(1.1) rotateZ(90deg);
+}
+.sk-folding-cube .sk-cube3 {
+  -webkit-transform: scale(1.1) rotateZ(180deg);
+          transform: scale(1.1) rotateZ(180deg);
+}
+.sk-folding-cube .sk-cube4 {
+  -webkit-transform: scale(1.1) rotateZ(270deg);
+          transform: scale(1.1) rotateZ(270deg);
+}
+.sk-folding-cube .sk-cube2:before {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.sk-folding-cube .sk-cube3:before {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s; 
+}
+.sk-folding-cube .sk-cube4:before {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+@-webkit-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+            transform: perspective(140px) rotateX(-180deg);
+    opacity: 0; 
+  } 25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+            transform: perspective(140px) rotateX(0deg);
+    opacity: 1; 
+  } 90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+    opacity: 0; 
+  } 
+}
+
+@keyframes sk-foldCubeAngle {
+  0%, 10% {
+    -webkit-transform: perspective(140px) rotateX(-180deg);
+            transform: perspective(140px) rotateX(-180deg);
+    opacity: 0; 
+  } 25%, 75% {
+    -webkit-transform: perspective(140px) rotateX(0deg);
+            transform: perspective(140px) rotateX(0deg);
+    opacity: 1; 
+  } 90%, 100% {
+    -webkit-transform: perspective(140px) rotateY(180deg);
+            transform: perspective(140px) rotateY(180deg);
+    opacity: 0; 
+  }
+}
+
+.cubelegend {
+   margin : 10px auto 0 auto;
+   text-align: center;
+}
     </style>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    
     <script>
            
-            //v3.0.0
+          //v4.0.0
           var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
            var clan = {};
           clan.memberIds = [];
@@ -125,7 +232,21 @@
                 CharStatsDataLocations.pveHPE = 'Response.mergedAllCharacters.results.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
                 CharStatsDataLocations.pveAdventures = 'Response.mergedAllCharacters.results.allPvE.allTime.adventuresCompleted.basic.value';
                 CharStatsDataLocations.pveSeconds = 'Response.mergedAllCharacters.results.allPvE.allTime.secondsPlayed.basic.value';
-           $(document).ready(function() {
+          
+          $(document).ready(function() {
+           
+            $('#tablink1').click(()=>{
+            	openTab('tablink1', 't1');
+            });
+            $('#tablink2').click(()=>{
+            	openTab('tablink2', 't2');
+            });
+            $('#tablink3').click(()=>{
+            	openTab('tablink3', 't3');
+            });
+            //default
+            $('#tablink1').click();
+           
               $.ajax({
                 //get member infos from our clan
                 url: 'https://www.bungie.net/Platform/GroupV2/1801684/Members/',
@@ -154,9 +275,9 @@
           });
            $(document).ajaxStop(function() {
              if (clan.unresolvedMemberNames.length > 0) {
-                $('.spinner').html('(unable to fetch ' + clan.unresolvedMemberNames.join(', ') + ')');
+                $('.sk-folding-cube').html('(unable to fetch ' + clan.unresolvedMemberNames.join(', ') + ')');
              } else {
-                $('.spinner').hide();
+                $('.sk-folding-cube').hide();
              }
            });
            function getAccountData(memberid) {
@@ -236,149 +357,193 @@
               return;
           }
 
+   
+         function openTab(btn, tabName) {
+					 $('.tabcontent').hide();	          
+                $('.tablinks').removeClass( "active" );
+                $('#' + tabName ).show();
+                $('#' + btn).addClass("active");
+            }
+
+
+
     </script>
   </head>
   <body>
-        <div class="spinner">
-           <div class="bounce1"></div>
-           <div class="bounce2"></div>
-           <div class="bounce3"></div>
-        </div>
+      
 
-  <div id="claninfo" class="container table-responsive-sm">
-     <table class="table table-bordered table-sm">
+<div class="tab" id="claninfo">
+  <button id="tablink1" class="tablinks" >Vanguard</button>
+  <button id="tablink2" class="tablinks" >Crucible</button>
+  <button id="tablink3" class="tablinks" >PVP Medals</button>
+   
+    <div class="spinner">
+   
+      <div class="cubelegend"><span id="membercounter"></span> members</div>
+   
+      <div class="sk-folding-cube">
+        <div class="sk-cube1 sk-cube"></div>
+        <div class="sk-cube2 sk-cube"></div>
+        <div class="sk-cube4 sk-cube"></div>
+        <div class="sk-cube3 sk-cube"></div>
+      </div>
+    </div>  
+
+</div>
+
+<div id="t1" class="tabcontent">
+<div  class=" table-responsive-sm">
+     <table class="table table-sm">
       <tbody>
         <tr>
-          <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/0e0111755dc85e72c37ca211876859b2.png" width="30" height="30" style="filter: invert(50%);"></th>
-          <td style="width: 50%" class="count-text align-middle">PVE Total Time</td>
-          <td style="width: 50%" id="pveSeconds" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/0e0111755dc85e72c37ca211876859b2.png" width="30" height="30" style="filter: invert(50%);"></th>
+          <td class="count-text align-middle">PVE Total Time</td>
+          <td id="pveSeconds" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVE Kills</td>
-          <td style="width: 40%" id="pveKills" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVE Kills</td>
+          <td id="pveKills" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVE Deaths</td>
-          <td style="width: 40%" id="pveDeaths" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVE Deaths</td>
+          <td id="pveDeaths" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVE Suicides</td>
-          <td style="width: 40%" id="pveSuicides" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVE Suicides</td>
+          <td id="pveSuicides" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">Orbs Created</td>
-          <td style="width: 40%" id="pveOrbs" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">Orbs Created</td>
+          <td id="pveOrbs" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/2e8dc88df22900c574902b3a565779c6.png" width="30" height="30" style="filter: invert(50%);"></th>
-          <td style="width: 40%" class="count-text align-middle">Adventures Completed</td>
-          <td style="width: 40%" id="pveAdventures" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/2e8dc88df22900c574902b3a565779c6.png" width="30" height="30" style="filter: invert(50%);"></th>
+          <td class="count-text align-middle">Adventures Completed</td>
+          <td id="pveAdventures" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/0fcd2aead5b32536b6110471b3ba2bfb.png" width="30" height="30" style="filter: invert(50%);"></th>
-          <td style="width: 40%" class="count-text align-middle">Heroic Public Events</td>
-          <td style="width: 40%" id="pveHPE" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/0fcd2aead5b32536b6110471b3ba2bfb.png" width="30" height="30" style="filter: invert(50%);"></th>
+          <td class="count-text align-middle">Heroic Public Events</td>
+          <td id="pveHPE" class="align-middle text-center"></td>
         </tr>
         <tr>
       </tbody>
     </table>
   </div>
-  <div id="claninfo" class="container table-responsive-sm">
-     <table class="table table-bordered table-sm">
+
+</div>
+
+<div id="t2" class="tabcontent">
+  <div class=" table-responsive-sm">
+     <table class="table table-sm">
       <tbody>
-          <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/1c165e33b1c673f192cd778773e775cd.png" width="30" height="30" style="filter: invert(50%);"></th>
-          <td style="width: 50%" class="count-text align-middle">PVP Total Time</td>
-          <td style="width: 50%" id="pvpSeconds" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/1c165e33b1c673f192cd778773e775cd.png" width="30" height="30" style="filter: invert(50%);"></th>
+          <td class="count-text align-middle">PVP Total Time</td>
+          <td  id="pvpSeconds" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVP Kills</td>
-          <td style="width: 40%" id="pvpKills" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVP Kills</td>
+          <td id="pvpKills" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVP Deaths</td>
-          <td style="width: 40%" id="pvpDeaths" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVP Deaths</td>
+          <td id="pvpDeaths" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVP Suicides</td>
-          <td style="width: 40%" id="pvpSuicides" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVP Suicides</td>
+          <td id="pvpSuicides" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVP Assists</td>
-          <td style="width: 40%" id="pvpAssists" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVP Assists</td>
+          <td id="pvpAssists" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVP Games Won</td>
-          <td style="width: 40%" id="pvpWon" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVP Games Won</td>
+          <td id="pvpWon" class="align-middle text-center"></td>
         </tr>
         <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVP K/D</td>
-          <td style="width: 40%" id="pvpKD" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVP K/D</td>
+          <td id="pvpKD" class="align-middle text-center"></td>
         </tr>
          <tr>
-          <th style="width: 5" scope="row" class="align-middle text-center"></th>
-          <td style="width: 40%" class="count-text align-middle">PVP (K+A)/D</td>
-          <td style="width: 40%" id="pvpKDA" class="align-middle text-center"></td>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVP (K+A)/D</td>
+          <td id="pvpKDA" class="align-middle text-center"></td>
         </tr>
       </tbody>
     </table>
    </div>
-   <div id="claninfo" class="container table-responsive-sm">
-     <table class="table table-bordered table-sm">
+</div>
+
+<div id="t3" class="tabcontent">
+ <div class="table-responsive-sm">
+     <table class="table table-sm">
       <tbody>
-          <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_md2de6954efb417d6571bea9202dbadfd.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">We Ran out of Medals</td>
-          <td style="width: 50%" id="pvpWROOMs" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_md2de6954efb417d6571bea9202dbadfd.png" width="30" height="30"></th>
+          <td class="count-text align-middle">We Ran out of Medals</td>
+          <td id="pvpWROOMs" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m3c7546b477f5378b3c605f4be6d45376.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Undefeated</td>
-          <td style="width: 50%" id="pvpUndefeats" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m3c7546b477f5378b3c605f4be6d45376.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Undefeated</td>
+          <td id="pvpUndefeats" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mf6bdc19ff454b545dec8e847696f8d57.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Invincible</td>
-          <td style="width: 50%" id="pvpInvincible" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mf6bdc19ff454b545dec8e847696f8d57.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Invincible</td>
+          <td id="pvpInvincible" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5be2652a5476087266bb9cf3f95e8372.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Annihilation</td>
-          <td style="width: 50%" id="pvpAnnihilation" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5be2652a5476087266bb9cf3f95e8372.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Annihilation</td>
+          <td id="pvpAnnihilation" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5bee79e64764fa4c94d795848d4362e6.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Double Play</td>
-          <td style="width: 50%" id="pvpDoubles" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5bee79e64764fa4c94d795848d4362e6.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Double Play</td>
+          <td id="pvpDoubles" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_ma60aa3835852cc63462a8539e9543419.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Lights Out</td>
-          <td style="width: 50%" id="pvpLightsOut" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_ma60aa3835852cc63462a8539e9543419.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Lights Out</td>
+          <td id="pvpLightsOut" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mee5acb046145e887d1e7698fa0171603.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">From the Jaws of Defeat</td>
-          <td style="width: 50%" id="pvpComeback" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mee5acb046145e887d1e7698fa0171603.png" width="30" height="30"></th>
+          <td class="count-text align-middle">From the Jaws of Defeat</td>
+          <td id="pvpComeback" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mdbab442edbc7e7ecd6a56f5ac1b1dd47.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Ruthless</td>
-          <td style="width: 50%" id="pvpRuthless" class="align-middle text-center"></td>
+        <tr>
+          <th ope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mdbab442edbc7e7ecd6a56f5ac1b1dd47.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Ruthless</td>
+          <td id="pvpRuthless" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_me582cbac24c4cecd6f728afc67f882f9.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Fight Me!</td>
-          <td style="width: 50%" id="pvpFightMe" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_me582cbac24c4cecd6f728afc67f882f9.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Fight Me!</td>
+          <td id="pvpFightMe" class="align-middle text-center"></td>
         </tr>
-        <th style="width: 2" scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m164efd3b6b3104df99c3b86a6522f68b.png" width="30" height="30"></th>
-          <td style="width: 50%" class="count-text align-middle">Not So Fast, My Friend</td>
-          <td style="width: 50%" id="pvpNSFMF" class="align-middle text-center"></td>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m164efd3b6b3104df99c3b86a6522f68b.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Not So Fast, My Friend</td>
+          <td id="pvpNSFMF" class="align-middle text-center"></td>
         </tr>
       </tbody>
     </table>
    </div>
-   <div class="text-left">Data collected from members: <span id="membercounter"></span></div>
-  </div>
+</div>
+
   </body>
 </html>
