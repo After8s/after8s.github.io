@@ -206,7 +206,7 @@ button:focus {
     
     <script>
            
-          //v4.5.0
+             //v4.0.0
           var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
            var clan = {};
           clan.memberIds = [];
@@ -215,32 +215,42 @@ button:focus {
           clan.memberName = {};
           clan.retryCounter = {};
           clan.unresolvedMemberNames = [];
-          var CharStatsDataLocations = {};
-	    
-	CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
-	CharStatsDataLocations.pvpAssists = 'Response.allPvP.allTime.assists.basic.value';
-	CharStatsDataLocations.pvpKD = 'Response.allPvP.allTime.killsDeathsRatio.basic.value';
-	CharStatsDataLocations.pvpWon = 'Response.allPvP.allTime.activitiesWon.basic.value';
-	CharStatsDataLocations.pvpDeaths = 'Response.allPvP.allTime.deaths.basic.value';
-	CharStatsDataLocations.pvpSuicides = 'Response.allPvP.allTime.suicides.basic.value';
-	CharStatsDataLocations.pvpSeconds = 'Response.allPvP.allTime.secondsPlayed.basic.value';
-	CharStatsDataLocations.pvpWROOMs = 'Response.allPvP.allTime.medalStreakAbsurd.basic.value';
-	CharStatsDataLocations.pvpUndefeats = 'Response.allPvP.allTime.medalMatchUndefeated.basic.value';
-	CharStatsDataLocations.pvpInvincible = 'Response.allPvP.allTime.medalShowdownUndefeated.basic.value';
-	CharStatsDataLocations.pvpComeback = 'Response.allPvP.allTime.medalMatchComeback.basic.value';
-	CharStatsDataLocations.pvpDoubles = 'Response.allPvP.allTime.medalMulti2x.basic.value';
-	CharStatsDataLocations.pvpLightsOut = 'Response.allPvP.allTime.medalMulti4x.basic.value';
-	CharStatsDataLocations.pvpAnnihilation = 'Response.allPvP.allTime.medalMultiEntireTeam.basic.value';
-	CharStatsDataLocations.pvpRuthless = 'Response.allPvP.allTime.medalStreak5x.basic.value';
-	CharStatsDataLocations.pvpFightMe = 'Response.allPvP.allTime.medalMatchMostDamage.basic.value';
-	CharStatsDataLocations.pvpNSFMF = 'Response.allPvP.allTime.medalSuperShutdown.basic.value';
-	CharStatsDataLocations.pveKills = 'Response.allPvE.allTime.kills.basic.value';
-	CharStatsDataLocations.pveDeaths = 'Response.allPvE.allTime.deaths.basic.value';
-	CharStatsDataLocations.pveSuicides = 'Response.allPvE.allTime.suicides.basic.value';
-	CharStatsDataLocations.pveOrbs = 'Response.allPvE.allTime.orbsDropped.basic.value';
-	CharStatsDataLocations.pveHPE = 'Response.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
-	CharStatsDataLocations.pveAdventures = 'Response.allPvE.allTime.adventuresCompleted.basic.value';
-	CharStatsDataLocations.pveSeconds = 'Response.allPvE.allTime.secondsPlayed.basic.value';
+           var CharStatsDataLocations = {};
+CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
+CharStatsDataLocations.pvpAssists = 'Response.allPvP.allTime.assists.basic.value';
+CharStatsDataLocations.pvpKD = 'Response.allPvP.allTime.killsDeathsRatio.basic.value';
+CharStatsDataLocations.pvpWon = 'Response.allPvP.allTime.activitiesWon.basic.value';
+CharStatsDataLocations.pvpDeaths = 'Response.allPvP.allTime.deaths.basic.value';
+CharStatsDataLocations.pvpSuicides = 'Response.allPvP.allTime.suicides.basic.value';
+CharStatsDataLocations.pvpSeconds = 'Response.allPvP.allTime.secondsPlayed.basic.value';
+CharStatsDataLocations.pvpWROOMs = 'Response.allPvP.allTime.medalStreakAbsurd.basic.value';
+CharStatsDataLocations.pvpUndefeats = 'Response.allPvP.allTime.medalMatchUndefeated.basic.value';
+CharStatsDataLocations.pvpInvincible = 'Response.allPvP.allTime.medalShowdownUndefeated.basic.value';
+CharStatsDataLocations.pvpComeback = 'Response.allPvP.allTime.medalMatchComeback.basic.value';
+CharStatsDataLocations.pvpDoubles = 'Response.allPvP.allTime.medalMulti2x.basic.value';
+CharStatsDataLocations.pvpLightsOut = 'Response.allPvP.allTime.medalMulti4x.basic.value';
+CharStatsDataLocations.pvpAnnihilation = 'Response.allPvP.allTime.medalMultiEntireTeam.basic.value';
+CharStatsDataLocations.pvpRuthless = 'Response.allPvP.allTime.medalStreak5x.basic.value';
+CharStatsDataLocations.pvpFightMe = 'Response.allPvP.allTime.medalMatchMostDamage.basic.value';
+CharStatsDataLocations.pvpNSFMF = 'Response.allPvP.allTime.medalSuperShutdown.basic.value';
+CharStatsDataLocations.pveKills = 'Response.allPvE.allTime.kills.basic.value';
+CharStatsDataLocations.pveDeaths = 'Response.allPvE.allTime.deaths.basic.value';
+CharStatsDataLocations.pveSuicides = 'Response.allPvE.allTime.suicides.basic.value';
+CharStatsDataLocations.pveOrbs = 'Response.allPvE.allTime.orbsDropped.basic.value';
+CharStatsDataLocations.pveHPE = 'Response.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
+CharStatsDataLocations.pveAdventures = 'Response.allPvE.allTime.adventuresCompleted.basic.value';
+CharStatsDataLocations.pveSeconds = 'Response.allPvE.allTime.secondsPlayed.basic.value';
+
+CharStatsDataLocations.raidsCleared = 'Response.raid.allTime.activitiesCleared.basic.value';
+
+CharStatsDataLocations.gambitSeconds = 'Response.allPvECompetitive.allTime.secondsPlayed.basic.value';
+CharStatsDataLocations.gambitWins = 'Response.allPvECompetitive.allTime.activitiesWon.basic.value';
+CharStatsDataLocations.gambitInvadingKills = 'Response.allPvECompetitive.allTime.invasionKills.basic.value';
+CharStatsDataLocations.gambitInvaderKills = 'Response.allPvECompetitive.allTime.invaderKills.basic.value';
+CharStatsDataLocations.gambitInvaderDeaths = 'Response.allPvECompetitive.allTime.invaderDeaths.basic.value';
+CharStatsDataLocations.gambitMotesDep = 'Response.allPvECompetitive.allTime.motesDeposited.basic.value';
+CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.primevalDamage.basic.value';
+
 
           $(document).ready(function() {
            
@@ -252,6 +262,9 @@ button:focus {
             });
             $('#tablink3').click(()=>{
             	openTab('tablink3', 't3');
+            });
+            $('#tablink4').click(()=>{
+            	openTab('tablink4', 't4');
             });
             //default
             $('#tablink1').click();
@@ -302,10 +315,10 @@ button:focus {
                 headers: {
                    'X-API-KEY': bungieAPIkey
                 },
-               	data: { 
-			groups: "1,3",//general,medals
-			modes: '4,5,7,64' //raid,allpve,allpvp,allpvecomp(gambit)
-		} ,
+              	data: { 
+            			groups: "1,3",//general,medals
+            			modes: '4,5,7,64' //raid,allpve,allpvp,allpvecomp(ambit)
+            		} ,
                 method: 'GET',
               }).done(function(data) {
                  if (data.ErrorCode > 1 || !data.Response) {
@@ -337,7 +350,8 @@ button:focus {
              return d + ' days, ' + h + ' hours, ' + m + ' minutes'
            }
            function outputClanData(clanobject) {
-             $('#pvpKills').html((clanobject.pvpKills).toLocaleString('en'));
+  
+     $('#pvpKills').html((clanobject.pvpKills).toLocaleString('en'));
              $('#pvpAssists').html((clanobject.pvpAssists).toLocaleString('en'));
              $('#pvpWon').html((clanobject.pvpWon).toLocaleString('en'));
              $('#pvpDeaths').html((clanobject.pvpDeaths).toLocaleString('en'));
@@ -363,6 +377,17 @@ button:focus {
              $('#pveAdventures').html((clanobject.pveAdventures).toLocaleString('en'));
              $('#pveHPE').html((clanobject.pveHPE).toLocaleString('en'));
              $('#pveSeconds').html(convertSeconds(clanobject.pveSeconds));
+             
+             $('#raidClears').html((clanobject.raidsCleared).toLocaleString('en'));
+             
+             $('#gambitSeconds').html(convertSeconds(clanobject.gambitSeconds));
+             $('#gambitWins').html((clanobject.gambitWins).toLocaleString('en'));
+             $('#gambitPrimeDmg').html((clanobject.gambitPrimeDmg).toLocaleString('en'));
+             $('#gambitInvadingKills').html((clanobject.gambitInvadingKills).toLocaleString('en'));
+             $('#gambitInvaderKills').html((clanobject.gambitInvaderKills).toLocaleString('en'));
+             $('#gambitInvaderDeaths').html((clanobject.gambitInvaderDeaths).toLocaleString('en'));
+             $('#gambitMotesDep').html((clanobject.gambitMotesDep).toLocaleString('en'));   
+
              $('#membercounter').html(clanobject.membersFetched + '/' + clanobject.memberCount);
               return;
           }
@@ -377,15 +402,17 @@ button:focus {
 
 
 
+
     </script>
   </head>
   <body>
-      
-
+  
+  
 <div class="tab" id="claninfo">
   <button id="tablink1" class="tablinks">Vanguard <img src="https://www.bungie.net/common/destiny2_content/icons/0e0111755dc85e72c37ca211876859b2.png" width="70px" height="70px" style="filter: invert(50%);float: right; margin:-20px -10px -20px 0;"></button>
   <button id="tablink2" class="tablinks">Crucible <img src="https://www.bungie.net/common/destiny2_content/icons/1c165e33b1c673f192cd778773e775cd.png" width="50px" height="50px" style="filter: invert(50%);float: right; margin:-10px 0 -10px 0;"></button>
-  <button id="tablink3" class="tablinks">PVP Medals</button>
+  <button id="tablink3" class="tablinks">Gambit <img src="https://www.bungie.net/common/destiny2_content/icons/18d85eb068d7d38e9dd996422dbd6b9e.png" width="50px" height="50px" style="filter: invert(50%);float: right; margin:-10px 0 -10px 0;"></button>
+  <button id="tablink4" class="tablinks">PVP Medals</button>
    
     <div class="spinner">
    
@@ -448,7 +475,7 @@ button:focus {
         <tr>
           <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/cc284c44465f8e6d36c3f77e11812086.png" width="30" height="30" style="filter: invert(50%);"></th>
           <td class="count-text align-middle">Total Raid Completions</td>
-          <td class="align-middle text-left">2602</td>
+          <td id="raidClears" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/de690898cb7c0b37b047c91568c1f6ec.png" width="30" height="30" style="filter: invert(50%);"></th>
@@ -516,6 +543,51 @@ button:focus {
 </div>
 
 <div id="t3" class="tabcontent">
+  <div class=" table-responsive-sm">
+     <table class="table table-sm">
+      <tbody>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/18d85eb068d7d38e9dd996422dbd6b9e.png" width="30" height="30" style="filter: invert(50%);"></th>
+          <td class="count-text align-middle">PVEVP Total Time</td>
+          <td  id="gambitSeconds" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVEVP Wins</td>
+          <td id="gambitWins" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVEVP Kills As Invader</td>
+          <td id="gambitInvadingKills" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVEVP Invaders Killed</td>
+          <td id="gambitInvaderKills" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVEVP Deaths By Invaders</td>
+          <td id="gambitInvaderDeaths" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVEVP Motes Deposited</td>
+          <td id="gambitMotesDep" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">PVEVP Primeval Damage</td>
+          <td id="gambitPrimeDmg" class="align-middle text-left"></td>
+        </tr>
+      </tbody>
+    </table>
+   </div>
+</div>
+
+
+<div id="t4" class="tabcontent">
  <div class="table-responsive-sm">
      <table class="table table-sm">
       <tbody>
