@@ -2,7 +2,7 @@
 <html>
   <head>
     <style>
-      body {
+body {
     font-family: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
@@ -206,7 +206,7 @@ button:focus {
     
     <script>
            
-          //v4.0.0
+          //v4.5.0
           var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
            var clan = {};
           clan.memberIds = [];
@@ -215,32 +215,33 @@ button:focus {
           clan.memberName = {};
           clan.retryCounter = {};
           clan.unresolvedMemberNames = [];
-           var CharStatsDataLocations = {};
-                CharStatsDataLocations.pvpKills = 'Response.mergedAllCharacters.results.allPvP.allTime.kills.basic.value';
-                CharStatsDataLocations.pvpAssists = 'Response.mergedAllCharacters.results.allPvP.allTime.assists.basic.value';
-                CharStatsDataLocations.pvpKD = 'Response.mergedAllCharacters.results.allPvP.allTime.killsDeathsRatio.basic.value';
-                CharStatsDataLocations.pvpWon = 'Response.mergedAllCharacters.results.allPvP.allTime.activitiesWon.basic.value';
-                CharStatsDataLocations.pvpDeaths = 'Response.mergedAllCharacters.results.allPvP.allTime.deaths.basic.value';
-                CharStatsDataLocations.pvpSuicides = 'Response.mergedAllCharacters.results.allPvP.allTime.suicides.basic.value';
-                CharStatsDataLocations.pvpSeconds = 'Response.mergedAllCharacters.results.allPvP.allTime.secondsPlayed.basic.value';
-                CharStatsDataLocations.pvpWROOMs = 'Response.mergedAllCharacters.results.allPvP.allTime.medalStreakAbsurd.basic.value';
-                CharStatsDataLocations.pvpUndefeats = 'Response.mergedAllCharacters.results.allPvP.allTime.medalMatchUndefeated.basic.value';
-                CharStatsDataLocations.pvpInvincible = 'Response.mergedAllCharacters.results.allPvP.allTime.medalShowdownUndefeated.basic.value';
-                CharStatsDataLocations.pvpComeback = 'Response.mergedAllCharacters.results.allPvP.allTime.medalMatchComeback.basic.value';
-                CharStatsDataLocations.pvpDoubles = 'Response.mergedAllCharacters.results.allPvP.allTime.medalMulti2x.basic.value';
-                CharStatsDataLocations.pvpLightsOut = 'Response.mergedAllCharacters.results.allPvP.allTime.medalMulti4x.basic.value';
-                CharStatsDataLocations.pvpAnnihilation = 'Response.mergedAllCharacters.results.allPvP.allTime.medalMultiEntireTeam.basic.value';
-                CharStatsDataLocations.pvpRuthless = 'Response.mergedAllCharacters.results.allPvP.allTime.medalStreak5x.basic.value';
-                CharStatsDataLocations.pvpFightMe = 'Response.mergedAllCharacters.results.allPvP.allTime.medalMatchMostDamage.basic.value';
-                CharStatsDataLocations.pvpNSFMF = 'Response.mergedAllCharacters.results.allPvP.allTime.medalSuperShutdown.basic.value';
-                CharStatsDataLocations.pveKills = 'Response.mergedAllCharacters.results.allPvE.allTime.kills.basic.value';
-                CharStatsDataLocations.pveDeaths = 'Response.mergedAllCharacters.results.allPvE.allTime.deaths.basic.value';
-                CharStatsDataLocations.pveSuicides = 'Response.mergedAllCharacters.results.allPvE.allTime.suicides.basic.value';
-                CharStatsDataLocations.pveOrbs = 'Response.mergedAllCharacters.results.allPvE.allTime.orbsDropped.basic.value';
-                CharStatsDataLocations.pveHPE = 'Response.mergedAllCharacters.results.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
-                CharStatsDataLocations.pveAdventures = 'Response.mergedAllCharacters.results.allPvE.allTime.adventuresCompleted.basic.value';
-                CharStatsDataLocations.pveSeconds = 'Response.mergedAllCharacters.results.allPvE.allTime.secondsPlayed.basic.value';
-          
+          var CharStatsDataLocations = {};
+	    
+	CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
+	CharStatsDataLocations.pvpAssists = 'Response.allPvP.allTime.assists.basic.value';
+	CharStatsDataLocations.pvpKD = 'Response.allPvP.allTime.killsDeathsRatio.basic.value';
+	CharStatsDataLocations.pvpWon = 'Response.allPvP.allTime.activitiesWon.basic.value';
+	CharStatsDataLocations.pvpDeaths = 'Response.allPvP.allTime.deaths.basic.value';
+	CharStatsDataLocations.pvpSuicides = 'Response.allPvP.allTime.suicides.basic.value';
+	CharStatsDataLocations.pvpSeconds = 'Response.allPvP.allTime.secondsPlayed.basic.value';
+	CharStatsDataLocations.pvpWROOMs = 'Response.allPvP.allTime.medalStreakAbsurd.basic.value';
+	CharStatsDataLocations.pvpUndefeats = 'Response.allPvP.allTime.medalMatchUndefeated.basic.value';
+	CharStatsDataLocations.pvpInvincible = 'Response.allPvP.allTime.medalShowdownUndefeated.basic.value';
+	CharStatsDataLocations.pvpComeback = 'Response.allPvP.allTime.medalMatchComeback.basic.value';
+	CharStatsDataLocations.pvpDoubles = 'Response.allPvP.allTime.medalMulti2x.basic.value';
+	CharStatsDataLocations.pvpLightsOut = 'Response.allPvP.allTime.medalMulti4x.basic.value';
+	CharStatsDataLocations.pvpAnnihilation = 'Response.allPvP.allTime.medalMultiEntireTeam.basic.value';
+	CharStatsDataLocations.pvpRuthless = 'Response.allPvP.allTime.medalStreak5x.basic.value';
+	CharStatsDataLocations.pvpFightMe = 'Response.allPvP.allTime.medalMatchMostDamage.basic.value';
+	CharStatsDataLocations.pvpNSFMF = 'Response.allPvP.allTime.medalSuperShutdown.basic.value';
+	CharStatsDataLocations.pveKills = 'Response.allPvE.allTime.kills.basic.value';
+	CharStatsDataLocations.pveDeaths = 'Response.allPvE.allTime.deaths.basic.value';
+	CharStatsDataLocations.pveSuicides = 'Response.allPvE.allTime.suicides.basic.value';
+	CharStatsDataLocations.pveOrbs = 'Response.allPvE.allTime.orbsDropped.basic.value';
+	CharStatsDataLocations.pveHPE = 'Response.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
+	CharStatsDataLocations.pveAdventures = 'Response.allPvE.allTime.adventuresCompleted.basic.value';
+	CharStatsDataLocations.pveSeconds = 'Response.allPvE.allTime.secondsPlayed.basic.value';
+
           $(document).ready(function() {
            
             $('#tablink1').click(()=>{
@@ -297,13 +298,14 @@ button:focus {
                 return;
              }
               $.ajax({
-                url: 'https://www.bungie.net/Platform/Destiny2/2/Account/' + memberid + '/Stats/',
+                url: 'https://www.bungie.net/Platform/Destiny2/2/Account/' + memberid + '/Character/0/Stats/',
                 headers: {
                    'X-API-KEY': bungieAPIkey
                 },
-                data: {
-                   groups: "1,3"
-                },
+               	data: { 
+			groups: "1,3",//general,medals
+			modes: '4,5,7,64' //raid,allpve,allpvp,allpvecomp(gambit)
+		} ,
                 method: 'GET',
               }).done(function(data) {
                  if (data.ErrorCode > 1 || !data.Response) {
