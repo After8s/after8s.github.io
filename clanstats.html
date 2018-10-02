@@ -233,6 +233,8 @@ CharStatsDataLocations.pvpAnnihilation = 'Response.allPvP.allTime.medalMultiEnti
 CharStatsDataLocations.pvpRuthless = 'Response.allPvP.allTime.medalStreak5x.basic.value';
 CharStatsDataLocations.pvpFightMe = 'Response.allPvP.allTime.medalMatchMostDamage.basic.value';
 CharStatsDataLocations.pvpNSFMF = 'Response.allPvP.allTime.medalSuperShutdown.basic.value';
+CharStatsDataLocations.pvpSnipes = 'Response.allPvP.allTime.weaponKillsSniper.basic.value';
+
 CharStatsDataLocations.pveKills = 'Response.allPvE.allTime.kills.basic.value';
 CharStatsDataLocations.pveDeaths = 'Response.allPvE.allTime.deaths.basic.value';
 CharStatsDataLocations.pveSuicides = 'Response.allPvE.allTime.suicides.basic.value';
@@ -247,9 +249,13 @@ CharStatsDataLocations.gambitSeconds = 'Response.allPvECompetitive.allTime.secon
 CharStatsDataLocations.gambitWins = 'Response.allPvECompetitive.allTime.activitiesWon.basic.value';
 CharStatsDataLocations.gambitInvadingKills = 'Response.allPvECompetitive.allTime.invasionKills.basic.value';
 CharStatsDataLocations.gambitInvaderKills = 'Response.allPvECompetitive.allTime.invaderKills.basic.value';
-CharStatsDataLocations.gambitInvaderDeaths = 'Response.allPvECompetitive.allTime.invaderDeaths.basic.value';
 CharStatsDataLocations.gambitMotesDep = 'Response.allPvECompetitive.allTime.motesDeposited.basic.value';
+CharStatsDataLocations.gambitMotesDenied = 'Response.allPvECompetitive.allTime.motesDenied.basic.value';
 CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.primevalDamage.basic.value';
+CharStatsDataLocations.gambitKills = 'Response.allPvECompetitive.allTime.kills.basic.value';
+CharStatsDataLocations.gambitAoO = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_invader_kill_four.basic.value';
+CharStatsDataLocations.gambitOverkillmonger = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_overkillmonger.basic.value';
+CharStatsDataLocations.gambitNSD = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_never_say_die.basic.value';
 
 
           $(document).ready(function() {
@@ -317,7 +323,7 @@ CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.prim
                 },
               	data: { 
             			groups: "1,3",//general,medals
-            			modes: '4,5,7,64' //raid,allpve,allpvp,allpvecomp(ambit)
+            			modes: '4,5,7,64' //raid,allpve,allpvp,allpvecomp(gambit)
             		} ,
                 method: 'GET',
               }).done(function(data) {
@@ -370,6 +376,8 @@ CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.prim
              $('#pvpRuthless').html((clanobject.pvpRuthless).toLocaleString('en'));
              $('#pvpFightMe').html((clanobject.pvpFightMe).toLocaleString('en'));
              $('#pvpNSFMF').html((clanobject.pvpNSFMF).toLocaleString('en'));
+             $('#pvpSnipes').html((clanobject.pvpSnipes).toLocaleString('en'));
+             
              $('#pveKills').html((clanobject.pveKills).toLocaleString('en'));
              $('#pveDeaths').html((clanobject.pveDeaths).toLocaleString('en'));
              $('#pveSuicides').html((clanobject.pveSuicides).toLocaleString('en'));
@@ -385,8 +393,12 @@ CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.prim
              $('#gambitPrimeDmg').html((clanobject.gambitPrimeDmg).toLocaleString('en'));
              $('#gambitInvadingKills').html((clanobject.gambitInvadingKills).toLocaleString('en'));
              $('#gambitInvaderKills').html((clanobject.gambitInvaderKills).toLocaleString('en'));
-             $('#gambitInvaderDeaths').html((clanobject.gambitInvaderDeaths).toLocaleString('en'));
-             $('#gambitMotesDep').html((clanobject.gambitMotesDep).toLocaleString('en'));   
+             $('#gambitMotesDep').html((clanobject.gambitMotesDep).toLocaleString('en'));
+             $('#gambitMotesDenied').html((clanobject.gambitMotesDenied).toLocaleString('en'));
+             $('#gambitKills').html((clanobject.gambitKills).toLocaleString('en'));
+             $('#gambitAoO').html((clanobject.gambitAoO).toLocaleString('en'));  
+             $('#gambitOverkillmonger').html((clanobject.gambitOverkillmonger).toLocaleString('en')); 
+             $('#gambitNSD').html((clanobject.gambitNSD).toLocaleString('en'));   
 
              $('#membercounter').html(clanobject.membersFetched + '/' + clanobject.memberCount);
               return;
@@ -434,22 +446,22 @@ CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.prim
       <tbody>
         <tr>
           <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/0e0111755dc85e72c37ca211876859b2.png" width="30" height="30" style="filter: invert(50%);"></th>
-          <td class="count-text align-middle">PVE Total Time</td>
+          <td class="count-text align-middle">Total Time</td>
           <td id="pveSeconds" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVE Kills</td>
+          <td class="count-text align-middle">Kills</td>
           <td id="pveKills" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVE Deaths</td>
+          <td class="count-text align-middle">Deaths</td>
           <td id="pveDeaths" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVE Suicides</td>
+          <td class="count-text align-middle">Suicides</td>
           <td id="pveSuicides" class="align-middle text-left"></td>
         </tr>
         <tr>
@@ -494,42 +506,47 @@ CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.prim
       <tbody>
         <tr>
           <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/1c165e33b1c673f192cd778773e775cd.png" width="30" height="30" style="filter: invert(50%);"></th>
-          <td class="count-text align-middle">PVP Total Time</td>
+          <td class="count-text align-middle">Total Time</td>
           <td  id="pvpSeconds" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVP Kills</td>
+          <td class="count-text align-middle">Kills</td>
           <td id="pvpKills" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVP Deaths</td>
+          <td class="count-text align-middle">Deaths</td>
           <td id="pvpDeaths" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVP Suicides</td>
+          <td class="count-text align-middle">Suicides</td>
           <td id="pvpSuicides" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVP Assists</td>
+          <td class="count-text align-middle">Assists</td>
           <td id="pvpAssists" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVP Games Won</td>
+          <td class="count-text align-middle">Sniper Kills</td>
+          <td id="pvpSnipes" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">Games Won</td>
           <td id="pvpWon" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVP K/D</td>
+          <td class="count-text align-middle">K/D</td>
           <td id="pvpKD" class="align-middle text-left"></td>
         </tr>
          <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVP (K+A)/D</td>
+          <td class="count-text align-middle">(K+A)/D</td>
           <td id="pvpKDA" class="align-middle text-left"></td>
         </tr>
         <tr>
@@ -548,44 +565,58 @@ CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.prim
       <tbody>
         <tr>
           <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/18d85eb068d7d38e9dd996422dbd6b9e.png" width="30" height="30" style="filter: invert(50%);"></th>
-          <td class="count-text align-middle">PVEVP Total Time</td>
+          <td class="count-text align-middle">Total Time</td>
           <td  id="gambitSeconds" class="align-middle text-left"></td>
+        </tr>
+         <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">Kills</td>
+          <td id="gambitKills" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVEVP Wins</td>
+          <td class="count-text align-middle">Wins</td>
           <td id="gambitWins" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVEVP Kills As Invader</td>
+          <td class="count-text align-middle">Kills As Invader</td>
           <td id="gambitInvadingKills" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVEVP Invaders Killed</td>
+          <td class="count-text align-middle">Invaders Killed</td>
           <td id="gambitInvaderKills" class="align-middle text-left"></td>
         </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVEVP Deaths By Invaders</td>
-          <td id="gambitInvaderDeaths" class="align-middle text-left"></td>
-        </tr>
-        <tr>
-          <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVEVP Motes Deposited</td>
+          <td class="count-text align-middle">Motes Deposited</td>
           <td id="gambitMotesDep" class="align-middle text-left"></td>
         </tr>
+         <tr>
+          <th scope="row" class="align-middle text-center"></th>
+          <td class="count-text align-middle">Motes Denied</td>
+          <td id="gambitMotesDenied" class="align-middle text-left"></td>
+        </tr>
         <tr>
           <th scope="row" class="align-middle text-center"></th>
-          <td class="count-text align-middle">PVEVP Primeval Damage</td>
+          <td class="count-text align-middle">Total Primeval Damage</td>
           <td id="gambitPrimeDmg" class="align-middle text-left"></td>
+        </tr>
+        <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/e65df7432d03d5562d166e2163605a2f.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Army of One</td>
+          <td id="gambitAoO" class="align-middle text-left"></td>
+        </tr>
+          <tr>
+          <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/abab5fdafe7e0dde4b82955b38fe2333.png" width="30" height="30"></th>
+          <td class="count-text align-middle">Never Say Die</td>
+          <td id="gambitNSD" class="align-middle text-left"></td>
         </tr>
       </tbody>
     </table>
    </div>
 </div>
-
 
 <div id="t4" class="tabcontent">
  <div class="table-responsive-sm">
