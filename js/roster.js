@@ -26,6 +26,7 @@ twitch['Puntmannetje']     = 'puntmannetje';
 twitch['murdie1']          = 'gabbercrew';
 twitch['Phyrne-']          = 'phyrne';
 twitch['DrHendrik']        = 'drhendrik';
+twitch['LiamRS24']		   = 'liamrs24';
 
 $.when(
         // get A8 roster
