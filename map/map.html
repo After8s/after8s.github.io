@@ -29,7 +29,7 @@
             var mapboxAccessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';            
             
             //initial viewpoint and zoom
-            var mymap = L.map('mapid').setView([50.000, -40.000], 3);
+            var mymap = L.map('mapid').setView([54.000, 8.000], 4);
 
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token='+mapboxAccessToken, {
                 maxZoom: 18,
@@ -37,7 +37,7 @@
                     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
                 //select different map styles here, see https://www.mapbox.com/api-documentation/#maps
-                id: 'mapbox.streets'
+                id: 'mapbox.dark'
 
             }).addTo(mymap);
             
@@ -58,7 +58,6 @@
             
             //every member location data
             var m = [];
-            m.push({name:'DrHendrik'           ,icon:iconROW         ,city:'Canada'						    ,coords:[45.151, -78.267]});
             m.push({name:'Mini-borg40'         ,icon:iconPurples     ,city:'Newark-on-Trent,UK'			    ,coords:[53.0700, -0.8065]});
             m.push({name:'CristianoRicky16'    ,icon:iconBlues       ,city:'Paris,France'				    ,coords:[48.8566,  2.3522]});
             m.push({name:'FaiNt87'             ,icon:iconPurples     ,city:'Hinckley,UK'				    ,coords:[52.5454, -1.3766]});
@@ -91,9 +90,10 @@
             m.push({name:'ctrcmo1029'          ,icon:iconPurples     ,city:'Buxton,UK'                      ,coords:[53.2571, -1.9113]});
                         
             //recycle bin for ex-clannies                      
-            // m.push({name:'xeos_6'              ,icon:iconROW         ,city:'California,USA'				    ,coords:[36.7782, -119.4179]});
+            // m.push({name:'xeos_6'              ,icon:iconROW         ,city:'California,USA'				   ,coords:[36.7782, -119.4179]});
             // m.push({name:'shinedonkey'         ,icon:iconPurples     ,city:'Nottingham,UK'                  ,coords:[52.9558, -1.1491]});
-            // m.push({name:'ejr978'              ,icon:iconPurples     ,city:'Manchester,UK'                   ,coords:[53.480845, -2.242874]});
+            // m.push({name:'ejr978'              ,icon:iconPurples     ,city:'Manchester,UK'                  ,coords:[53.480845, -2.242874]});
+            // m.push({name:'DrHendrik'           ,icon:iconROW         ,city:'Canada'                         ,coords:[45.151, -78.267]});
                         
             //add all markers to the layer
             var markers = L.markerClusterGroup();

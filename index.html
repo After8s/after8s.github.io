@@ -8,7 +8,6 @@
         window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-        
                 gtag('config', 'UA-125575411-1');
     </script>
     <link rel="icon" type="img/png" href="img/favicon.png">
@@ -18,15 +17,15 @@
     <meta name="author" content="">
     <title>After8s</title>
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    
     <!-- Custom styles for this template -->
+	 <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/resume.min.css" rel="stylesheet">
-    <link href="css/roster.css" rel="stylesheet">
-    <link href="css/twitch.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -68,7 +67,7 @@
     </nav>
     <div class="container-fluid p-0">
         <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-            <div class="my-auto">
+            <div class="my-auto noover">
                 <h1 class="mb-0">We are the
 
                 <span class="text-primary">After8s</span>
@@ -130,7 +129,7 @@
     <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="stats">
         <div class="my-auto">
             <h2 class="mb-2">Clan Stats</h2>
-            <iframe src="clanstats.html" width="800" height="500" frameborder="0"></iframe>
+            <iframe src="clanstats.html" width="100%" height="500" frameborder="0" class="scr"></iframe>
         </div>
     </section>
 
@@ -139,7 +138,7 @@
     <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="map">
         <div class="my-auto">
             <h2 class="mb-2">Get mapped</h2>
-            <iframe src="map/map.html" width="1050" height="550" frameborder="0"></iframe>
+            <iframe src="map/map.html" width="100%" height="550" frameborder="0"></iframe>
         </div>
     </section>
     
@@ -148,7 +147,7 @@
     <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="fat">
         <div class="my-auto">
             <h2 class="mb-2">Forsaken Activity Tracker (FAT)</h2>
-            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1_GeTqm9yGwWoeSowKWju4eQC3X7TT65E1YvNC3F0eOWzB61Rs-E08s3fbQxOOqD3T1nmoKwKPNYF/pubhtml?widget=false&amp;headers=false&amp;chrome=false" width="637" height="578" frameborder="1"></iframe>
+            <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1_GeTqm9yGwWoeSowKWju4eQC3X7TT65E1YvNC3F0eOWzB61Rs-E08s3fbQxOOqD3T1nmoKwKPNYF/pubhtml?widget=false&amp;headers=false&amp;chrome=false" id="trak" width="611" height="554" class="scrollbar" frameborder="0"></iframe>
         </div>
     </section>
     
@@ -159,12 +158,12 @@
             <h2 class="mb-2">Vault of Class</h2>
             
             <!--BEGIN HEAD-->
-            <div id="container" style="width:75%;">
+            <div id="container" class="vc" style="width:75%;">
             <div id="accordion" style="width:60%;">
             <!--END HEAD-->
 
                     <!--BEGIN FIRST CARD-->
-                    <div class="card border-success mb-3 text-center">
+                    <div class="card border bg-primary mb-3">
                         <div class="card-header">
                             <a class="collapsed card-link text-center" data-toggle="collapse" href="#collapseFIRST">
                                 <h4 class="text-info my-auto">Year 1 Awards</h4>
@@ -270,7 +269,7 @@
                     <!--END FIRST CARD-->
 
                     <!--BEGIN SECOND CARD-->
-                    <div class="card border-success mb-3 text-center">
+                    <div class="card border bg-primary mb-3 text-center">
                         <div class="card-header">
                             <a class="collapsed card-link text-center" data-toggle="collapse" href="#collapseSECOND">
                                 <h4 class="text-info my-auto">Raid Speedruns</h4>
@@ -282,7 +281,7 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a target="_blank" href="http://raid.report/pgcr/1850300390">Leviathan (Normal)</a>
+                                                <a target="_blank" href="https://raid.report/pgcr/1850300390">Leviathan (Normal)</a>
                                             </td>
                                             <td>
                                                 <strong>25m 54s</strong>
@@ -290,7 +289,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a target="_blank" href="http://raid.report/pgcr/1850407614">Leviathan (Prestige)</a>
+                                                <a target="_blank" href="https://raid.report/pgcr/1850407614">Leviathan (Prestige)</a>
                                             </td>
                                             <td>
                                                 <strong>27m 10s</strong>
@@ -298,7 +297,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a target="_blank" href="http://raid.report/pgcr/2013660559">Leviathan, Eater of Worlds (Normal)</a>
+                                                <a target="_blank" href="https://raid.report/pgcr/2013660559">Leviathan, Eater of Worlds (Normal)</a>
                                             </td>
                                             <td>
                                                 <strong>21m 47s</strong>
@@ -306,10 +305,18 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <a target="_blank" href="http://raid.report/pgcr/1825557143">Leviathan, Spire of Stars (Normal)</a>
+                                                <a target="_blank" href="https://raid.report/pgcr/1825557143">Leviathan, Spire of Stars (Normal)</a>
                                             </td>
                                             <td>
                                                 <strong>22m 34s</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a target="_blank" href="https://raid.report/pgcr/2646353913">Last Wish (Normal)</a>
+                                            </td>
+                                            <td>
+                                                <strong>48m 00s</strong>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -320,7 +327,7 @@
                     <!--END SECOND CARD-->
 
                     <!--BEGIN THIRD CARD-->
-                    <div class="card border-success mb-3 text-center">
+                    <div class="card border bg-primary mb-3 text-center">
                         <div class="card-header">
                             <a class="collapsed card-link text-center" data-toggle="collapse" href="#collapseTHIRD">
                                 <h4 class="text-info my-auto">2-3 man raids</h4>
@@ -330,21 +337,21 @@
                             <div class="card-body text-left">
                                 <p class="text-left">
                                     <strong>2-man Calus</strong>:
-                                    <a target="_blank" href="http://raid.report/pgcr/1958344572">http://raid.report/pgcr/1958344572</a>
+                                    <a target="_blank" href="https://raid.report/pgcr/1958344572">http://raid.report/pgcr/1958344572</a>
                                     </br>
                                     *
                                     <a target="_blank" href="https://www.twitch.tv/videos/290692334">Murdie1's POV</a>
                                     </br>
                                     <hr/>
                                     <strong>3-man Calus</strong>:
-                                    <a target="_blank" href="http://raid.report/pgcr/1587972742">http://raid.report/pgcr/1587972742</a>
+                                    <a target="_blank" href="https://raid.report/pgcr/1587972742">http://raid.report/pgcr/1587972742</a>
                                     </br>
                                     *
                                     <a target="_blank" href="https://youtu.be/1Diba7egEt4">Ty-Ni's POV</a>
                                     </br>
                                     <hr/>
                                     <strong>3-man Argos</strong>:
-                                    <a target="_blank" href="http://raid.report/pgcr/1550920993">http://raid.report/pgcr/1550920993</a>
+                                    <a target="_blank" href="https://raid.report/pgcr/1550920993">http://raid.report/pgcr/1550920993</a>
                                     </br>
                                     *
                                     <a target="_blank" href="https://youtu.be/AtnT3SgEqNg">The_Jedd's POV</a> |
@@ -353,7 +360,7 @@
                                     </br>
                                     <hr/>
                                     <strong>3-man Argos</strong>:
-                                    <a target="_blank" href="http://raid.report/pgcr/2068550081">http://raid.report/pgcr/2068550081</a>
+                                    <a target="_blank" href="https://raid.report/pgcr/2068550081">http://raid.report/pgcr/2068550081</a>
                                 </p>
                             </div>
                         </div>
@@ -361,7 +368,7 @@
                     <!--END THIRD CARD-->
 
                     <!--BEGIN FOURTH CARD-->
-                    <div class="card border-success mb-3 text-center">
+                    <div class="card border bg-primary mb-3 text-center">
                         <div class="card-header">
                             <a class="collapsed card-link text-center" data-toggle="collapse" href="#collapseFOURTH">
                                 <h4 class="text-info my-auto">Clan Firsts</h4>
@@ -373,13 +380,13 @@
                                     <strong>Raids:</strong>
                                     </br>
                                     *
-                                    <a target="_blank" href="http://raid.report/pgcr/331879710">Leviathan (Normal)</a> |
+                                    <a target="_blank" href="https://raid.report/pgcr/331879710">Leviathan (Normal)</a> |
 
-                                    <a target="_blank" href="http://raid.report/pgcr/845632586">Leviathan (Prestige)</a>
+                                    <a target="_blank" href="https://raid.report/pgcr/845632586">Leviathan (Prestige)</a>
                                     </br>
-                                    * <a target="_blank" href="http://raid.report/pgcr/1218234435">Eater of Worlds (Normal)</a>
+                                    * <a target="_blank" href="https://raid.report/pgcr/1218234435">Eater of Worlds (Normal)</a>
                                     </br>
-                                    * <a target="_blank" href="http://raid.report/pgcr/1689256351">Spire of Stars (Normal)</a>
+                                    * <a target="_blank" href="https://raid.report/pgcr/1689256351">Spire of Stars (Normal)</a>
                                     </br>
                                     * <a target="_blank" href="https://raid.report/pgcr/2468410881">Last Wish (Normal)</a>
                                     </br>
@@ -432,21 +439,15 @@
                         </br>
                         <strong>What we are looking for:</strong>
                         </br>
-                        * Players who are looking to be part of a team for the long term
-                        </br>
-                        * We don’t want players who log on once a week solely for a raid and aren’t active in Discord
+                        * Players who are looking to be part of a team for the long term and don’t just log on once a week solely for a raid and aren’t active in Discord
                         </br>
                         * Players with a good raiding background, but also willingness to improve and thorough knowledge about the game
                         </br>
                         * Nobody wants to be that weak link in a team, but we don’t want players who aren’t willing to ask for help
                         </br>
+                        * Minimum of 700 hours in Destiny 2 and at least 30 raid clears in Destiny 2
+                        </br>
                         * PvP KD of at least 1.25
-                        </br>
-                        * Minimum of 700 hours in Destiny 2
-                        </br>
-                        * D2Y1 Prestige raiding experience preferred, but not essential
-                        </br>
-                        * At least 30 raid clears in Destiny 2
 
                         </br>
                         </br>
@@ -461,10 +462,10 @@
 </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
     <!-- Custom scripts for this template -->
     <script src="js/resume.min.js"></script>
     <script src="js/roster.js"></script>
