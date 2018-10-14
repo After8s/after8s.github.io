@@ -103,7 +103,7 @@ html{
 .tab button {
     display: block;
     background-color: inherit;
-        color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, .5);
     padding: 22px 16px;
     width: 100%;
     border: none;
@@ -112,7 +112,7 @@ html{
     cursor: pointer;
     transition: 0.3s;
     font-size: 17px;
-	font-weight:bold;
+	  font-weight:bold;
 }
 
 /* Change background color of buttons on hover */
@@ -129,8 +129,7 @@ html{
 /* Style the tab content */
 .tabcontent {
     float: left;
-
-    width: 100% !important;
+    width: 70% !important;
     border-left: none;
     height: 400px;
 }
