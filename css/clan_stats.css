@@ -130,7 +130,7 @@ html{
 .tabcontent {
     float: left;
 
-    width: 75%;
+    width: 100% !important;
     border-left: none;
     height: 400px;
 }
