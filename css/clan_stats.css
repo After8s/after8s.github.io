@@ -146,11 +146,11 @@ td {
 
 /* bng logo color adjustments */
 .tab button.active img {
-	filter:invert(10%) !important;
+	filter:invert(20%) !important;
 }
 
 .whitelogo {
-	filter:invert(10%);
+	filter:invert(20%);
 }
 
 .greylogo {
