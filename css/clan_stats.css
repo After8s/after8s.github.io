@@ -144,6 +144,20 @@ td {
    height: 40px !important;
 }
 
+/* bng logo color adjustments */
+.tab button.active img {
+	filter:invert(10%) !important;
+}
+
+.whitelogo {
+	filter:invert(10%);
+}
+
+.greylogo {
+	filter:invert(50%);
+}
+
+/* spinner animation */
 .sk-folding-cube {
   margin: 20px auto;
   width: 40px;
