@@ -12,12 +12,13 @@
              //v4.0.0
           var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
            var clan = {};
-          clan.memberIds = [];
-          clan.memberCount = 0;
-          clan.membersFetched = 0;
-          clan.memberName = {};
-          clan.retryCounter = {};
-          clan.unresolvedMemberNames = [];
+           clan.memberIds = [];
+           clan.memberCount = 0;
+           clan.membersFetched = 0;
+           clan.memberName = {};
+           clan.retryCounter = {};
+           clan.unresolvedMemberNames = [];
+           clan.membersWithLuna = 0;
            var CharStatsDataLocations = {};
 CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
 CharStatsDataLocations.pvpAssists = 'Response.allPvP.allTime.assists.basic.value';
@@ -101,6 +102,7 @@ CharStatsDataLocations.gambitNSD = 'Response.allPvECompetitive.allTime.medals_pv
                     //iterate over every member
                    $.each(clan.memberIds, function(index, memberid) {
                       getAccountData(memberid);
+                      checkForLunasHowl(memberid);
                     });
                  });
           });
@@ -143,6 +145,26 @@ CharStatsDataLocations.gambitNSD = 'Response.allPvECompetitive.allTime.medals_pv
               });
              return;
           }
+          
+        function checkForLunasHowl(memberid) {
+              $.ajax({
+                url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=900',
+                headers: {
+                   'X-API-KEY': bungieAPIkey
+                },
+              	 method: 'GET',
+              }).done(function(data) {
+                 if (data.ErrorCode > 1 || !data.Response) {
+                   checkForLunasHowl(memberid); //try again
+                } else {
+                	//2362939119 is the hashid for lunas triumph
+                   clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[2362939119].objectives[0].progress;
+                   outputClanData(clan);
+                }
+              });
+             return;
+          }
+          
            function getDescendantProp(obj, desc) {
              var arr = desc.split('.');
              while (arr.length && (obj = obj[arr.shift()]));
@@ -180,6 +202,7 @@ CharStatsDataLocations.gambitNSD = 'Response.allPvECompetitive.allTime.medals_pv
              $('#pvpFightMe').html((clanobject.pvpFightMe).toLocaleString('en'));
              $('#pvpNSFMF').html((clanobject.pvpNSFMF).toLocaleString('en'));
              $('#pvpSnipes').html((clanobject.pvpSnipes).toLocaleString('en'));
+             $('#pvpLunas').html(clanobject.membersWithLuna);
              
              $('#pveKills').html((clanobject.pveKills).toLocaleString('en'));
              $('#pveDeaths').html((clanobject.pveDeaths).toLocaleString('en'));
@@ -354,8 +377,8 @@ CharStatsDataLocations.gambitNSD = 'Response.allPvECompetitive.allTime.medals_pv
         </tr>
          <tr>
           <th scope="row" class="align-middle text-center"><img src="img/luna.jpg" width="30" height="30" class=""></th>
-          <td class="count-text align-middle">Luna's Howl</td>
-          <td id="" class="align-middle text-left">16</td>
+          <td class="count-text align-middle">Luna's Howls</td>
+          <td id="pvpLuna" class="align-middle text-left">0</td>
         </tr>
       </tbody>
     </table>
