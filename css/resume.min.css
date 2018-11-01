@@ -1,130 +1,269 @@
-/*!
- * Start Bootstrap - Resume v5.0.1 (https://startbootstrap.com/template-overviews/resume)
- * Copyright 2013-2018 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE)
- */body{background-color:#2F363D;font-family:Muli,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';padding-top:54px;color:#fff}@media (min-width:992px){body{padding-top:0;padding-left:13rem}}h1,h2,h3,h4,h5,h6{font-family:'Saira Extra Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';font-weight:700;text-transform:uppercase;color:white}h1{color:white;font-size:5rem;line-height:4.5rem}h2{font-size:3rem}h3{font-size:2rem}p.lead{font-size:1.15rem;font-weight:400}.subheading{text-transform:uppercase;font-weight:500;font-family:'Saira Extra Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';font-size:1.5rem}.social-icons a{display:inline-block;height:3.5rem;width:3.5rem;background-color:#495057;color:#fff!important;border-radius:100%;text-align:center;font-size:1.5rem;line-height:3.5rem;margin-right:1rem}.social-icons a:last-child{margin-right:0}.social-icons a:hover{background-color:#bd5d38}.dev-icons{font-size:3rem}.dev-icons .list-inline-item i:hover{color:#bd5d38}#sideNav .navbar-nav .nav-item .nav-link{font-weight:800;letter-spacing:.05rem;text-transform:uppercase}#sideNav .navbar-toggler:focus{outline-color:#d48a6e}@media (min-width:992px){#sideNav{text-align:center;position:fixed;top:0;left:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:14rem;height:100vh}#sideNav .navbar-brand{display:-webkit-box;display:-ms-flexbox;display:flex;margin:auto auto 0;padding:.5rem}#sideNav .navbar-brand .img-profile{max-width:10rem;max-height:10rem;}#sideNav .navbar-collapse{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-flex:0;-ms-flex-positive:0;flex-grow:0;width:100%;margin-bottom:auto}#sideNav .navbar-collapse .navbar-nav{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:100%}#sideNav .navbar-collapse .navbar-nav .nav-item{display:block}#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{display:block}}section.resume-section{padding-top:5rem!important;padding-bottom:5rem!important;max-width:75rem}section.resume-section .resume-item .resume-date{min-width:none}@media (min-width:768px){section.resume-section{min-height:100vh}section.resume-section .resume-item .resume-date{min-width:18rem}}@media (min-width:992px){section.resume-section{padding-top:1rem!important;padding-bottom:1rem!important}}.bg-primary{background-color:#13191E !important}.text-primary{color:#44C948!important}a{color:#44C948}a:active,a:focus,a:hover{color:#824027}
- /* Tablet and bigger */
- 
+/*! * Start Bootstrap - Resume v5.0.1 (https://startbootstrap.com/template-overviews/resume) * Copyright 2013-2018 Start Bootstrap * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE) */
+body{
+    background-color:#2F363D;
+    font-family:Muli,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    padding-top:54px;
+    color:#fff
+}
+@media (min-width:992px){
+    body{
+        padding-top:0;
+        padding-left:13rem
+    }
+}
+h1,h2,h3,h4,h5,h6{
+    font-family:'Saira Extra Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    font-weight:700;
+    text-transform:uppercase;
+    color:white
+}
+h1{
+    color:white;
+    font-size:5rem;
+    line-height:4.5rem
+}
+h2{
+    font-size:3rem
+}
+h3{
+    font-size:2rem
+}
+p.lead{
+    font-size:1.15rem;
+    font-weight:400
+}
+.subheading{
+    text-transform:uppercase;
+    font-weight:500;
+    font-family:'Saira Extra Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    font-size:1.5rem
+}
+.social-icons a{
+    display:inline-block;
+    height:3.5rem;
+    width:3.5rem;
+    background-color:#495057;
+    color:#fff!important;
+    border-radius:100%;
+    text-align:center;
+    font-size:1.5rem;
+    line-height:3.5rem;
+    margin-right:1rem
+}
+.social-icons a:last-child{
+    margin-right:0
+}
+.social-icons a:hover{
+    background-color:#bd5d38
+}
+.dev-icons{
+    font-size:3rem
+}
+.dev-icons .list-inline-item i:hover{
+    color:#bd5d38
+}
+#sideNav .navbar-nav .nav-item .nav-link{
+    font-weight:800;
+    letter-spacing:.05rem;
+    text-transform:uppercase
+}
+#sideNav .navbar-toggler:focus{
+    outline-color:#d48a6e
+}
+@media (min-width:992px){
+    #sideNav{
+        text-align:center;
+        position:fixed;
+        top:0;
+        left:0;
+        display:-webkit-box;
+        display:-ms-flexbox;
+        display:flex;
+        -webkit-box-orient:vertical;
+        -webkit-box-direction:normal;
+        -ms-flex-direction:column;
+        flex-direction:column;
+        width:14rem;
+        height:100vh
+    }
+    #sideNav .navbar-brand{
+        display:-webkit-box;
+        display:-ms-flexbox;
+        display:flex;
+        margin:auto auto 0;
+        padding:.5rem
+    }
+    #sideNav .navbar-brand .img-profile{
+        max-width:10rem;
+        max-height:10rem;
+    }
+    #sideNav .navbar-collapse{
+        display:-webkit-box;
+        display:-ms-flexbox;
+        display:flex;
+        -webkit-box-align:start;
+        -ms-flex-align:start;
+        align-items:flex-start;
+        -webkit-box-flex:0;
+        -ms-flex-positive:0;
+        flex-grow:0;
+        width:100%;
+        margin-bottom:auto
+    }
+    #sideNav .navbar-collapse .navbar-nav{
+        -webkit-box-orient:vertical;
+        -webkit-box-direction:normal;
+        -ms-flex-direction:column;
+        flex-direction:column;
+        width:100%
+    }
+    #sideNav .navbar-collapse .navbar-nav .nav-item{
+        display:block
+    }
+    #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{
+        display:block
+    }
+}
+section.resume-section{
+    padding-top:5rem!important;
+    padding-bottom:5rem!important;
+    max-width:75rem
+}
+section.resume-section .resume-item .resume-date{
+    min-width:none
+}
+@media (min-width:768px){
+    section.resume-section{
+        min-height:100vh
+    }
+    section.resume-section .resume-item .resume-date{
+        min-width:18rem
+    }
+}
+@media (min-width:992px){
+    section.resume-section{
+        padding-top:1rem!important;
+        padding-bottom:1rem!important
+    }
+}
+.bg-primary{
+    background-color:#13191E !important
+}
+.text-primary{
+    color:#44C948!important
+}
+a{
+    color:#44C948
+}
+a:active,a:focus,a:hover{
+    color:#824027
+}
+/* Tablet and bigger */
  @media ( max-width: 768px ) {
-	 .vc{
-		width:100% !Important;
-	}
-	.vc #accordion{
-		width:100% !Important;
-	}
-	
-	
-	
- }
-@media ( max-width: 695px ) {
-	 #trak{
-		width:100% !Important;
-	} 
-	.table{
-	overflow-x: scroll;
-    display: block;
-	}
-	
-
-	.table::-webkit-scrollbar-track
-	{
-		-webkit-box-shadow: inset 0 0 6px white;
-		border-radius: 10px;
-		background-color:white;
-	}
-
-	.table::-webkit-scrollbar
-	{
-		width: 12px;
-		background-color: #375a7f;
-	}
-
-	.table::-webkit-scrollbar-thumb
-	{
-		border-radius: 10px;
-		-webkit-box-shadow: inset 0 0 6px white;
-		background-color: #375a7f;
-	}
-	
-	
-}
-.noover{
-	    overflow: hidden;
-}
-
-
-@media ( min-width: 768px ) {
-    .grid-divider {
-        position: relative;
-        padding: 0;
+     .vc{
+         width:100% !Important;
     }
-    .grid-divider>[class*='col-'] {
-        position: static;
-    }
-    .grid-divider>[class*='col-']:nth-child(n+2):before {
-        content: "";
-        border-left: 1px solid #DDD;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-    }
-    .col-padding {
-        padding: 0 15px;
+     .vc #accordion{
+         width:100% !Important;
     }
 }
-
-
-.btn-twitch { 
-  color: #FFFFFF; 
-  background-color: #6441A5; 
-  border-color: #2F1F4E; 
-} 
- 
-.btn-twitch:hover, 
-.btn-twitch:focus, 
-.btn-twitch:active, 
-.btn-twitch.active, 
-.open .dropdown-toggle.btn-twitch { 
-  color: #FFFFFF; 
-  background-color: #472e75; 
-  border-color: #2F1F4E; 
-} 
- 
-.btn-twitch:active, 
-.btn-twitch.active, 
-.open .dropdown-toggle.btn-twitch { 
-  background-image: none; 
-} 
- 
-.btn-twitch.disabled, 
-.btn-twitch[disabled], 
-fieldset[disabled] .btn-twitch, 
-.btn-twitch.disabled:hover, 
-.btn-twitch[disabled]:hover, 
-fieldset[disabled] .btn-twitch:hover, 
-.btn-twitch.disabled:focus, 
-.btn-twitch[disabled]:focus, 
-fieldset[disabled] .btn-twitch:focus, 
-.btn-twitch.disabled:active, 
-.btn-twitch[disabled]:active, 
-fieldset[disabled] .btn-twitch:active, 
-.btn-twitch.disabled.active, 
-.btn-twitch[disabled].active, 
-fieldset[disabled] .btn-twitch.active { 
-  background-color: #6441A5; 
-  border-color: #2F1F4E; 
-} 
- 
-.btn-twitch .badge { 
-  color: #6441A5; 
-  background-color: #FFFFFF; 
+ @media ( max-width: 695px ) {
+     #trak{
+         width:100% !Important;
+    }
+     .table{
+         overflow-x: scroll;
+         display: block;
+    }
+     .table::-webkit-scrollbar-track {
+         -webkit-box-shadow: inset 0 0 6px white;
+         border-radius: 10px;
+         background-color:white;
+    }
+     .table::-webkit-scrollbar {
+         width: 12px;
+         background-color: #375a7f;
+    }
+     .table::-webkit-scrollbar-thumb {
+         border-radius: 10px;
+         -webkit-box-shadow: inset 0 0 6px white;
+         background-color: #375a7f;
+    }
+}
+ .noover{
+     overflow: hidden;
+}
+ @media ( min-width: 768px ) {
+     .grid-divider {
+         position: relative;
+         padding: 0;
+    }
+     .grid-divider>[class*='col-'] {
+         position: static;
+    }
+     .grid-divider>[class*='col-']:nth-child(n+2):before {
+         content: "";
+         border-left: 1px solid #DDD;
+         position: absolute;
+         top: 0;
+         bottom: 0;
+    }
+     .col-padding {
+         padding: 0 15px;
+    }
+}
+ .btn-twitch {
+     color: #FFFFFF;
+     background-color: #6441A5;
+     border-color: #2F1F4E;
+}
+ .btn-twitch:hover, .btn-twitch:focus, .btn-twitch:active, .btn-twitch.active, .open .dropdown-toggle.btn-twitch {
+     color: #FFFFFF;
+     background-color: #472e75;
+     border-color: #2F1F4E;
+}
+ .btn-twitch:active, .btn-twitch.active, .open .dropdown-toggle.btn-twitch {
+     background-image: none;
+}
+ .btn-twitch.disabled, .btn-twitch[disabled], fieldset[disabled] .btn-twitch, .btn-twitch.disabled:hover, .btn-twitch[disabled]:hover, fieldset[disabled] .btn-twitch:hover, .btn-twitch.disabled:focus, .btn-twitch[disabled]:focus, fieldset[disabled] .btn-twitch:focus, .btn-twitch.disabled:active, .btn-twitch[disabled]:active, fieldset[disabled] .btn-twitch:active, .btn-twitch.disabled.active, .btn-twitch[disabled].active, fieldset[disabled] .btn-twitch.active {
+     background-color: #6441A5;
+     border-color: #2F1F4E;
+}
+ .btn-twitch .badge {
+     color: #6441A5;
+     background-color: #FFFFFF;
+}
+ span.member-online {
+     color: #E54D42;
+}
+ span.member-online.online {
+     color: #44C948;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #2F363D;
 }
 
 
-span.member-online {
-    color: #E54D42;
-}
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
 
-span.member-online.online {
-    color: #44C948;
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
 }
