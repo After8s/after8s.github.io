@@ -258,3 +258,12 @@ body {
   background-color: #2F363D;
   border-top: 1px solid #171B1E;
 }
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
