@@ -25,7 +25,6 @@ twitch['CristianoRicky16'] = 'ricdvs';
 twitch['Puntmannetje']     = 'puntmannetje';
 twitch['murdie1']          = 'gabbercrew';
 twitch['Phyrne-']          = 'phyrne';
-twitch['DrHendrik']        = 'drhendrik';
 twitch['LiamRS24']		   = 'liamrs24';
 twitch['ctrcmo1029']       = 'ctrcmo1029';
 twitch['Dannilad09']       = 'dannilad';
