@@ -20,7 +20,6 @@
         clan.unresolvedMemberNames = [];
         clan.membersWithLuna = 0;
         clan.membersWithMalf = 0;
-        clan.membersWithMT = 0;
 
         var CharStatsDataLocations = {};
         CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
@@ -164,7 +163,6 @@
                     //3851137658 is the hashid for the mountaintop triumph
                     clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[599626507].objectives[0].progress;
                     clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
-                    clan.membersWithMT   = clan.membersWithMT   + data.Response.profileRecords.data.records[3851137658].objectives[0].progress;
 
                     outputClanData(clan);
                 }
