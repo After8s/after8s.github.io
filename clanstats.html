@@ -20,6 +20,7 @@
         clan.unresolvedMemberNames = [];
         clan.membersWithLuna = 0;
         clan.membersWithMalf = 0;
+        clan.membersWithMT = 0;
 
         var CharStatsDataLocations = {};
         CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
@@ -158,9 +159,12 @@
                 if (data.ErrorCode > 1 || !data.Response) {
                     checkForSpecialAchievements(memberid); //try again
                 } else {
-                    //599626507 is the hashid for lunas triumph
+                    //599626507 is the hashid for the lunas triumph
+                    //723502823 is the hashid for the malf triumph
+                    //3851137658 is the hashid for the mountaintop triumph
                     clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[599626507].objectives[0].progress;
                     clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
+                    clan.membersWithMT   = clan.membersWithMT   + data.Response.profileRecords.data.records[3851137658].objectives[0].progress;
 
                     outputClanData(clan);
                 }
@@ -208,6 +212,7 @@
             $('#pvpNSFMF').html((clanobject.pvpNSFMF).toLocaleString('en'));
             $('#pvpSnipes').html((clanobject.pvpSnipes).toLocaleString('en'));
             $('#pvpLunas').html(clanobject.membersWithLuna);
+            $('#pvpMT').html(clanobject.membersWithMT);
 
             $('#pveKills').html((clanobject.pveKills).toLocaleString('en'));
             $('#pveDeaths').html((clanobject.pveDeaths).toLocaleString('en'));
@@ -312,7 +317,7 @@
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/nightfall.png" width="30" height="30" class="whitelogo"></th>
                 <td class="count-text align-middle">Total Nightfall Completions</td>
-                <td class="align-middle text-left">4571</td>
+                <td class="align-middle text-left">4979</td>
             </tr>
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/nightfall.png" width="30" height="30" class="whitelogo"></th>
@@ -375,14 +380,19 @@
                 <td id="pvpKDA" class="align-middle text-left"></td>
             </tr>
             <tr>
+                <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/sniper.png" width="30" height="30" class="whitelogo"></th>
+                <td class="count-text align-middle">Sniper Kills</td>
+                <td id="pvpSnipes" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/luna.jpg" width="30" height="30" class=""></th>
+                <td class="count-text align-middle">Luna's Howl</td>
+                <td id="pvpLunas" class="align-middle text-left">0</td>
+            </tr>
+            <tr>
                 <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/flawless.png" width="30" height="30" class="whitelogo"></th>
                 <td class="count-text align-middle">Total Flawless Runs</td>
                 <td class="align-middle text-left">134</td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="img/luna.jpg" width="30" height="30" class=""></th>
-                <td class="count-text align-middle">Luna's Howl</td>
-                <td id="pvpLunas" class="align-middle text-left">0</td>
             </tr>
             </tbody>
         </table>
@@ -433,20 +443,25 @@
                 <td class="count-text align-middle">Total Primeval Damage</td>
                 <td id="gambitPrimeDmg" class="align-middle text-left"></td>
             </tr>
+             <tr>
+                <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/malf.jpg" width="30" height="30" class="whitelogo"></th>
+                <td class="count-text align-middle">Malfeasance</td>
+                <td id="gambitMalfs" class="align-middle text-left">0</td>
+            </tr>
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/aoo.png" width="30" height="30"></th>
                 <td class="count-text align-middle">Army of One</td>
                 <td id="gambitAoO" class="align-middle text-left"></td>
             </tr>
             <tr>
+                <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/overkill.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Overkillmonger</td>
+                <td id="gambitOverkillmonger" class="align-middle text-left"></td>
+            </tr>
+            <tr>
                 <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/nsd.png" width="30" height="30"></th>
                 <td class="count-text align-middle">Never Say Die</td>
                 <td id="gambitNSD" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/malf.jpg" width="30" height="30" class="whitelogo"></th>
-                <td class="count-text align-middle">Malfeasance</td>
-                <td id="gambitMalfs" class="align-middle text-left">0</td>
             </tr>
             </tbody>
         </table>
