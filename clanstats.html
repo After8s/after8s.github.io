@@ -20,6 +20,12 @@
         clan.unresolvedMemberNames = [];
         clan.membersWithLuna = 0;
         clan.membersWithMalf = 0;
+        clan.membersWithChronicler = 0;
+        clan.membersWithCursebreaker = 0;
+        clan.membersWithDredgen = 0;
+        clan.membersWithRivensbane = 0;
+        clan.membersWithUnbroken = 0;
+        clan.membersWithWayfarer = 0;
 
         var CharStatsDataLocations = {};
         CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
@@ -70,6 +76,7 @@
             $('#tablink2').click(() => {openTab('tablink2', 't2');});
             $('#tablink3').click(() => {openTab('tablink3', 't3');});
             $('#tablink4').click(() => {openTab('tablink4', 't4');});
+            $('#tablink5').click(() => {openTab('tablink5', 't5');});
             //default
             $('#tablink1').click();
 
@@ -141,7 +148,7 @@
             return;
         }
 
-        // Todos for adding new checks:
+        // To-dos for adding new checks:
         // - add line in checkForSpecialAchievements() with new triumph hashid
         // - add variable definition in script head (eg: clan.membersWithLuna = 0; (l:21))
         // - add table row with new id in html part
@@ -158,11 +165,22 @@
                 if (data.ErrorCode > 1 || !data.Response) {
                     checkForSpecialAchievements(memberid); //try again
                 } else {
-                    //599626507 is the hashid for the lunas triumph
-                    //723502823 is the hashid for the malf triumph
-                    //3851137658 is the hashid for the mountaintop triumph
+                    //599626507 is the hashid for the Luna triumph
+                    //723502823 is the hashid for the Malf triumph
+                    //1754983323 is the hashid for the Chronicler seal
+                    //1693645129 is the hashid for the Cursebreaker seal
+                    //3798931976 is the hashid for the Dredgen seal
+                    //2182090828 is the hashid for the Rivensbane seal
+                    //3369119720 is the hashid for the Unbroken seal
+                    //2757681677 is the hashid for the Wayfarer seal
                     clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[599626507].objectives[0].progress;
                     clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
+                    clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete==true ? 1:0);
+                    clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete==true ? 1:0);
+                    clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[3798931976].objectives[0].complete==true ? 1:0);
+                    clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete==true ? 1:0);
+                    clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete==true ? 1:0);
+                    clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete==true ? 1:0);
 
                     outputClanData(clan);
                 }
@@ -210,7 +228,6 @@
             $('#pvpNSFMF').html((clanobject.pvpNSFMF).toLocaleString('en'));
             $('#pvpSnipes').html((clanobject.pvpSnipes).toLocaleString('en'));
             $('#pvpLunas').html(clanobject.membersWithLuna);
-            $('#pvpMT').html(clanobject.membersWithMT);
 
             $('#pveKills').html((clanobject.pveKills).toLocaleString('en'));
             $('#pveDeaths').html((clanobject.pveDeaths).toLocaleString('en'));
@@ -235,6 +252,13 @@
             $('#gambitNSD').html((clanobject.gambitNSD).toLocaleString('en'));
             $('#gambitMalfs').html(clanobject.membersWithMalf);
 
+            $('#sealChronicler').html(clanobject.membersWithChronicler);
+            $('#sealCursebreaker').html(clanobject.membersWithCursebreaker);
+            $('#sealDredgen').html(clanobject.membersWithDredgen);
+            $('#sealRivensbane').html(clanobject.membersWithRivensbane);
+            $('#sealUnbroken').html(clanobject.membersWithUnbroken);
+            $('#sealWayfarer').html(clanobject.membersWithWayfarer);
+
             $('#membercounter').html(clanobject.membersFetched + '/' + clanobject.memberCount);
             return;
         }
@@ -258,6 +282,7 @@
     <button id="tablink2" class="tablinks">Crucible <img src="img/bungie_icons/crucible.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
     <button id="tablink3" class="tablinks">Gambit <img src="img/bungie_icons/gambit.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
     <button id="tablink4" class="tablinks">Medals <img src="img/bungie_icons/medals.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
+    <button id="tablink5" class="tablinks">Seals </button>
 
     <div class="spinner">
 
@@ -523,6 +548,50 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<div id="t5" class="tabcontent">
+        <div class="table-responsive-sm src">
+            <table class="table table-sm">
+                <tbody>
+                <tr>
+                    <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/ba.png" width="40" height="48"></th>
+                    <td class="count-text align-middle">Blacksmith</td>
+                    <td id="sealBlacksmith" class="align-middle text-left">0</td>
+                </tr>    
+                <tr>
+                    <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/chronicler.png" width="40" height="48"></th>
+                    <td class="count-text align-middle">Chronicler</td>
+                    <td id="sealChronicler" class="align-middle text-left"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/cursebreaker.png" width="40" height="48"></th>
+                    <td class="count-text align-middle">Cursebreaker</td>
+                    <td id="sealCursebreaker" class="align-middle text-left"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/dredgen.png" width="40" height="48"></th>
+                    <td class="count-text align-middle">Dredgen</td>
+                    <td id="sealDredgen" class="align-middle text-left"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/rivensbane.png" width="40" height="48"></th>
+                    <td class="count-text align-middle">Rivensbane</td>
+                    <td id="sealRivensbane" class="align-middle text-left"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/unbroken.png" width="40" height="48"></th>
+                    <td class="count-text align-middle">Unbroken</td>
+                    <td id="sealUnbroken" class="align-middle text-left"></td>
+                </tr>
+                 <tr>
+                    <th scope="row" class="align-middle text-center"><img src="img/bungie_icons/wayfarer.png" width="40" height="48"></th>
+                    <td class="count-text align-middle">Wayfarer</td>
+                    <td id="sealWayfarer" class="align-middle text-left"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 </div>
 
 </body>
