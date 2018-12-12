@@ -124,7 +124,7 @@ function listMembers(rsp) {
             } else if (rank == 3) {
                 role = "Admin";
             } else if (rank == 5) {
-                role = "Owner"
+                role = "Founder"
             }
 
             // configure DOM node and add to page
