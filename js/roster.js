@@ -11,7 +11,6 @@ twitch['The_Jedd']         = 'the_j3dd';
 twitch['smashi__']         = 'supersmashi';
 twitch['ArctisFear']       = 'arctisfear';
 twitch['Intemerata_']      = 'intemerata_';
-twitch['Ty-Ni']            = 'ty_ni';
 twitch['ronobear87']       = 'ronobear87';
 twitch['Fryde']            = 'fry_de';
 twitch['iHackEpic']        = 'ihackepic';
