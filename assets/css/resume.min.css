@@ -1,6 +1,6 @@
 /*! * Start Bootstrap - Resume v5.0.1 (https://startbootstrap.com/template-overviews/resume) * Copyright 2013-2018 Start Bootstrap * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE) */
 body{
-    background-color:#2F363D;
+    background-color:#29323c;
     font-family:Muli,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
     padding-top:54px;
     color:#fff
@@ -63,7 +63,7 @@ p.lead{
     color:#bd5d38
 }
 #sideNav .navbar-nav .nav-item .nav-link{
-    font-weight:800;
+
     letter-spacing:.05rem;
     text-transform:uppercase
 }
@@ -72,7 +72,6 @@ p.lead{
 }
 @media (min-width:992px){
     #sideNav{
-        text-align:center;
         position:fixed;
         top:0;
         left:0;
@@ -85,13 +84,14 @@ p.lead{
         flex-direction:column;
         width:14rem;
         height:100vh
+
     }
     #sideNav .navbar-brand{
         display:-webkit-box;
         display:-ms-flexbox;
         display:flex;
         margin:auto auto 0;
-        padding:.5rem
+        padding:.5rem;
     }
     #sideNav .navbar-brand .img-profile{
         max-width:10rem;
@@ -161,15 +161,15 @@ a:active,a:focus,a:hover{
 /* Tablet and bigger */
  @media ( max-width: 768px ) {
      .vc{
-         width:100% !Important;
+         width:100% !important;
     }
      .vc #accordion{
-         width:100% !Important;
+         width:100% !important;
     }
 }
  @media ( max-width: 695px ) {
      #trak{
-         width:100% !Important;
+         width:100% !important;
     }
      .table{
          overflow-x: scroll;
@@ -254,7 +254,7 @@ body {
   width: 100% !important;
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
-  background-color: #2F363D;
+  background-color: #29323c;
   border-top: 1px solid #171B1E;
 }
 /* Custom page CSS

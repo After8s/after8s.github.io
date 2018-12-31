@@ -3,7 +3,7 @@ body {
 	height:100%;
 	float:left;
 	width:100%;
-	background-color: #2F363D;
+	background-color: #29323c;
 }
 tbody{
 	background-color: #13191E;
@@ -99,7 +99,7 @@ html{
     float: left;  
     width: 14rem;
     height: 100%;
-    background-color: #2F363D;
+    background-color: #29323c;
 }
 
 /* Style the buttons inside the tab */
