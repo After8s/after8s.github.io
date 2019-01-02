@@ -138,7 +138,7 @@ function listMembers(rsp) {
                     'data-searchable': name,
                 })
                 .html(
-                    '<th scope="row"><img src="https://www.bungie.net' + icon + '" style="width: 30px; height:30px"></th>' + // Avatar
+                    '<th class="align-middle" scope="row"><img src="https://www.bungie.net' + icon + '" style="width: 30px; height:30px"></th>' + // Avatar
                     '<td class="align-middle">' + name + '</td>' + // PSN username
                     '<td class="align-middle text-warning">' + role + '</td>' + // Role - Not the Discord role yet
                     '<td class="align-middle">' + joined.replace(/-/g, '/') + '</td>' + // Joined date
