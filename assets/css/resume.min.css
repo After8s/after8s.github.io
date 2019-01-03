@@ -80,7 +80,7 @@ p.lead{
         display:flex;
         -ms-flex-direction:column;
         flex-direction:column;
-        width:14rem;
+        width:14.5rem;
         height:100vh
     }
     #sideNav .navbar-brand{
