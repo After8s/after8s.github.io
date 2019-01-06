@@ -1,7 +1,6 @@
 var apiKey = "0a11942f318647978979f13ad8aa53ee", // production
     a8GroupId = "1801684";
 
-
 // get list of members and populate roster table
 
 var roster = [];
@@ -28,7 +27,7 @@ twitch['Dannilad09']       = 'dannilad';
 twitch['Smokebelch109']    = 'smokebelch109';
 twitch['PrOyKaEnR91']      = 'proykaenr';
 twitch['RubberBandLazer']  = 'gaienos';
-
+twitch['JLXJPG']           = 'jaypag';
 
 $.when(
         // get A8 roster
@@ -146,7 +145,7 @@ function listMembers(rsp) {
                     '<td class="align-middle text-center">'+((!twitch[name]) ? '' : '<a target="_blank" href="https://twitch.tv/' + twitch[name] +'"><i class="fab fa-twitch fa-lg" style="color:white"></i></a>')+'</td>' +  // Twitch - yes, show icon | no, show nothing
                     '<td class="align-middle text-center">'+('<a target="_blank" href="https://www.wastedondestiny.com/2_' + destinyId +'"><i class="far fa-clock fa-lg" style="color:white"></i></a>')+'</td>' + // Wasted Time on Destiny
                     '<td class="align-middle text-center"><a target="_blank" href="https://destinytracker.com/d2/profile/psn/' + name + '">View Stats</a></td>' + // DTR Profile
-                    '<td class="align-middle text-center"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // Raid Report Profile 
+                    '<td class="align-middle text-center"><a target="_blank" href="https://raid.report/ps/' + name + '">View Clears</a></td>' + // Raid Report Profile
                     '<td class="align-middle text-center"><a target="_blank" href="https://www.bungie.net/en/Profile/254/' + memberId + '/' + name + '">View Profile</a></td>' // Bungie Profile
                 );
 

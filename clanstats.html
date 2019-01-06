@@ -3,8 +3,8 @@
 <head>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="assets/css/clan_stats.css" rel="stylesheet" id="bootstrap-css">
 
     <script>
@@ -20,6 +20,7 @@
         clan.unresolvedMemberNames = [];
         clan.membersWithLuna = 0;
         clan.membersWithMalf = 0;
+        clan.membersSoloThrone = 0;
         clan.membersWithChronicler = 0;
         clan.membersWithCursebreaker = 0;
         clan.membersWithDredgen = 0;
@@ -35,6 +36,7 @@
         CharStatsDataLocations.pvpDeaths = 'Response.allPvP.allTime.deaths.basic.value';
         CharStatsDataLocations.pvpSuicides = 'Response.allPvP.allTime.suicides.basic.value';
         CharStatsDataLocations.pvpSeconds = 'Response.allPvP.allTime.secondsPlayed.basic.value';
+
         CharStatsDataLocations.pvpWROOMs = 'Response.allPvP.allTime.medalStreakAbsurd.basic.value';
         CharStatsDataLocations.pvpUndefeats = 'Response.allPvP.allTime.medalMatchUndefeated.basic.value';
         CharStatsDataLocations.pvpInvincible = 'Response.allPvP.allTime.medalShowdownUndefeated.basic.value';
@@ -45,6 +47,7 @@
         CharStatsDataLocations.pvpRuthless = 'Response.allPvP.allTime.medalStreak5x.basic.value';
         CharStatsDataLocations.pvpFightMe = 'Response.allPvP.allTime.medalMatchMostDamage.basic.value';
         CharStatsDataLocations.pvpNSFMF = 'Response.allPvP.allTime.medalSuperShutdown.basic.value';
+
         CharStatsDataLocations.pvpSnipes = 'Response.allPvP.allTime.weaponKillsSniper.basic.value';
 
         CharStatsDataLocations.pveKills = 'Response.allPvE.allTime.kills.basic.value';
@@ -65,6 +68,7 @@
         CharStatsDataLocations.gambitMotesDenied = 'Response.allPvECompetitive.allTime.motesDenied.basic.value';
         CharStatsDataLocations.gambitPrimeDmg = 'Response.allPvECompetitive.allTime.primevalDamage.basic.value';
         CharStatsDataLocations.gambitKills = 'Response.allPvECompetitive.allTime.kills.basic.value';
+
         CharStatsDataLocations.gambitAoO = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_invader_kill_four.basic.value';
         CharStatsDataLocations.gambitOverkillmonger = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_overkillmonger.basic.value';
         CharStatsDataLocations.gambitNSD = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_never_say_die.basic.value';
@@ -130,7 +134,7 @@
                 },
                 data: {
                     groups: "1,3",//general,medals
-                    modes: '4,5,7,64' //raid,allpve,allpvp,allpvecomp(gambit)
+                    modes: '4,5,7,64' //raid,allpvp,allpve,allpvecomp(gambit)
                 },
                 method: 'GET',
             }).done(function (data) {
@@ -167,6 +171,7 @@
                 } else {
                     //599626507 is the hashid for the Luna triumph
                     //723502823 is the hashid for the Malf triumph
+                    //851701008 is the hashid for Solo Throne triumph
                     //1754983323 is the hashid for the Chronicler seal
                     //1693645129 is the hashid for the Cursebreaker seal
                     //3798931976 is the hashid for the Dredgen seal
@@ -175,6 +180,7 @@
                     //2757681677 is the hashid for the Wayfarer seal
                     clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[599626507].objectives[0].progress;
                     clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
+                    clan.membersSoloThrone = clan.membersSoloThrone + (data.Response.profileRecords.data.records[851701008].objectives[0].complete==true ? 1:0);
                     clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete==true ? 1:0);
                     clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete==true ? 1:0);
                     clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[3798931976].objectives[0].complete==true ? 1:0);
@@ -236,6 +242,8 @@
             $('#pveAdventures').html((clanobject.pveAdventures).toLocaleString('en'));
             $('#pveHPE').html((clanobject.pveHPE).toLocaleString('en'));
             $('#pveSeconds').html(convertSeconds(clanobject.pveSeconds));
+
+            $('#soloThrone').html(clanobject.membersSoloThrone);
 
             $('#raidClears').html((clanobject.raidsCleared).toLocaleString('en'));
 
@@ -340,17 +348,22 @@
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/nightfall.png" width="30" height="30" class="whitelogo"></th>
                 <td class="count-text align-middle">Total Nightfall Completions</td>
-                <td class="align-middle text-left">4845</td>
+                <td class="align-middle text-left">4858</td>
             </tr>
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/nightfall.png" width="30" height="30" class="whitelogo"></th>
                 <td class="count-text align-middle">Highest Nightfall Score</td>
-                <td class="align-middle text-left">387,351</td>
+                <td class="align-middle text-left">415,458</td>
             </tr>
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/raid.png" width="30" height="30" class="whitelogo"></th>
                 <td class="count-text align-middle">Total Raid Completions</td>
                 <td id="raidClears" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/43541be45952e7eec59b7b57a0bf15a3.png" width="30" height="30" class="whitelogo"></th>
+                <td class="count-text align-middle">'Shattered Throne' solo</td>
+                <td id="soloThrone" class="align-middle text-left"></td>
             </tr>
             </tbody>
         </table>
@@ -408,7 +421,7 @@
                 <td id="pvpSnipes" class="align-middle text-left"></td>
             </tr>
             <tr>
-                <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/luna.jpg" width="30" height="30" class=""></th>
+                <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/ca86c130898a90ed19a0a317df8ab389.jpg" width="30" height="30"></th>
                 <td class="count-text align-middle">Luna's Howl</td>
                 <td id="pvpLunas" class="align-middle text-left">0</td>
             </tr>
@@ -467,7 +480,7 @@
                 <td id="gambitPrimeDmg" class="align-middle text-left"></td>
             </tr>
              <tr>
-                <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/malf.jpg" width="30" height="30" class="whitelogo"></th>
+                <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/86ef7fd7c087c434a16089602e2c00de.jpg" width="30" height="30"></th>
                 <td class="count-text align-middle">Malfeasance</td>
                 <td id="gambitMalfs" class="align-middle text-left">0</td>
             </tr>
@@ -521,6 +534,11 @@
                 <td id="pvpDoubles" class="align-middle text-left"></td>
             </tr>
             <tr>
+                <th ope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mdbab442edbc7e7ecd6a56f5ac1b1dd47.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Ruthless</td>
+                <td id="pvpRuthless" class="align-middle text-left"></td>
+            </tr>
+            <tr>
                 <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_ma60aa3835852cc63462a8539e9543419.png" width="30" height="30"></th>
                 <td class="count-text align-middle">Lights Out</td>
                 <td id="pvpLightsOut" class="align-middle text-left"></td>
@@ -529,11 +547,6 @@
                 <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mee5acb046145e887d1e7698fa0171603.png" width="30" height="30"></th>
                 <td class="count-text align-middle">From the Jaws of Defeat</td>
                 <td id="pvpComeback" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th ope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mdbab442edbc7e7ecd6a56f5ac1b1dd47.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Ruthless</td>
-                <td id="pvpRuthless" class="align-middle text-left"></td>
             </tr>
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_me582cbac24c4cecd6f728afc67f882f9.png" width="30" height="30"></th>
