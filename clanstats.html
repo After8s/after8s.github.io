@@ -19,8 +19,11 @@
         clan.retryCounter = {};
         clan.unresolvedMemberNames = [];
         clan.membersWithLuna = 0;
+        clan.membersWithNF = 0;
         clan.membersWithMalf = 0;
+        clan.membersWithMountaintop = 0;
         clan.membersSoloThrone = 0;
+        clan.membersFlawless = 0;
         clan.membersWithChronicler = 0;
         clan.membersWithCursebreaker = 0;
         clan.membersWithDredgen = 0;
@@ -160,7 +163,7 @@
 
         function checkForSpecialAchievements(memberid) {
             $.ajax({
-                url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=900',
+                url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=800,900',
                 headers: {
                     'X-API-KEY': bungieAPIkey
                 },
@@ -171,6 +174,9 @@
                 } else {
                     //599626507 is the hashid for the Luna triumph
                     //723502823 is the hashid for the Malf triumph
+                    //3260604717 is the hashid for the NF collectible item
+                    //3851137658 is the hashid for the Mountaintop triumph, but it's a character triumph (not account)
+                    //720205407 is the hasid for Flawless y1 triumph
                     //851701008 is the hashid for Solo Throne triumph
                     //1754983323 is the hashid for the Chronicler seal
                     //1693645129 is the hashid for the Cursebreaker seal
@@ -178,8 +184,10 @@
                     //2182090828 is the hashid for the Rivensbane seal
                     //3369119720 is the hashid for the Unbroken seal
                     //2757681677 is the hashid for the Wayfarer seal
+                    
                     clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[599626507].objectives[0].progress;
                     clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
+                    clan.membersFlawless = clan.membersFlawless + data.Response.profileRecords.data.records[720205407].objectives[0].progress;
                     clan.membersSoloThrone = clan.membersSoloThrone + (data.Response.profileRecords.data.records[851701008].objectives[0].complete==true ? 1:0);
                     clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete==true ? 1:0);
                     clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete==true ? 1:0);
@@ -187,6 +195,16 @@
                     clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete==true ? 1:0);
                     clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete==true ? 1:0);
                     clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete==true ? 1:0);
+
+                    clan.membersWithNF = clan.membersWithNF + (data.Response.profileCollectibles.data.collectibles[3260604717].state==0 ? 1:0);
+                    
+                    //check each character record for this account
+                    $.each(data.Response.characterRecords.data, function (index, value) {
+                        if (value.records[3851137658].objectives[0].progress) {
+                            clan.membersWithMountaintop = clan.membersWithMountaintop + 1;
+                            return false; 
+                        }
+                    });
 
                     outputClanData(clan);
                 }
@@ -234,6 +252,10 @@
             $('#pvpNSFMF').html((clanobject.pvpNSFMF).toLocaleString('en'));
             $('#pvpSnipes').html((clanobject.pvpSnipes).toLocaleString('en'));
             $('#pvpLunas').html(clanobject.membersWithLuna);
+            $('#pvpNFs').html(clanobject.membersWithNF);
+            $('#pvpMT').html(clanobject.membersWithMountaintop);
+
+            $('#trialsFlawless').html((clanobject.membersFlawless).toLocaleString('en'));
 
             $('#pveKills').html((clanobject.pveKills).toLocaleString('en'));
             $('#pveDeaths').html((clanobject.pveDeaths).toLocaleString('en'));
@@ -288,9 +310,10 @@
 <div class="tab" id="claninfo">
     <button id="tablink1" class="tablinks">Vanguard <img src="assets/img/bungie_icons/vanguard.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
     <button id="tablink2" class="tablinks">Crucible <img src="assets/img/bungie_icons/crucible.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
-    <button id="tablink3" class="tablinks">Gambit <img src="assets/img/bungie_icons/gambit.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
-    <button id="tablink4" class="tablinks">Medals <img src="assets/img/bungie_icons/medals.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
+    <button id="tablink3" class="tablinks">Medals <img src="assets/img/bungie_icons/medals.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
+    <button id="tablink4" class="tablinks">Gambit <img src="assets/img/bungie_icons/gambit.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
     <button id="tablink5" class="tablinks">Seals </button>
+    
 
     <div class="spinner">
 
@@ -421,14 +444,23 @@
                 <td id="pvpSnipes" class="align-middle text-left"></td>
             </tr>
             <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/1f5e4a3cfeaca5fd6465ffd15b81ffa6.jpg" width="30" height="30" class="whitelogo"></th>
+                <td class="count-text align-middle">Flawless Runs</td>
+                <td id="trialsFlawless" class="align-middle text-left"></td>
+                </tr>
+            <tr>
                 <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/ca86c130898a90ed19a0a317df8ab389.jpg" width="30" height="30"></th>
                 <td class="count-text align-middle">Luna's Howl</td>
                 <td id="pvpLunas" class="align-middle text-left">0</td>
+            </tr>            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/5098b108ad602dc6f003a332e9f74c27.jpg" width="30" height="30"></th>
+                <td class="count-text align-middle">Not Forgotten</td>
+                <td id="pvpNFs" class="align-middle text-left">0</td>
             </tr>
             <tr>
-                <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/flawless.png" width="30" height="30" class="whitelogo"></th>
-                <td class="count-text align-middle">Total Flawless Runs</td>
-                <td class="align-middle text-left">152</td>
+                <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/b372c65f81ad2d49196a6cec4e07704d.jpg" width="30" height="30"></th>
+                <td class="count-text align-middle">Mountaintop</td>
+                <td id="pvpMT" class="align-middle text-left">0</td>
             </tr>
             </tbody>
         </table>
@@ -436,6 +468,65 @@
 </div>
 
 <div id="t3" class="tabcontent">
+    <div class="table-responsive-sm src">
+        <table class="table table-sm">
+            <tbody>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_md2de6954efb417d6571bea9202dbadfd.png" width="30" height="30"></th>
+                <td class="count-text align-middle">We Ran out of Medals</td>
+                <td id="pvpWROOMs" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m3c7546b477f5378b3c605f4be6d45376.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Undefeated</td>
+                <td id="pvpUndefeats" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mf6bdc19ff454b545dec8e847696f8d57.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Invincible</td>
+                <td id="pvpInvincible" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5be2652a5476087266bb9cf3f95e8372.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Annihilation</td>
+                <td id="pvpAnnihilation" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5bee79e64764fa4c94d795848d4362e6.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Double Play</td>
+                <td id="pvpDoubles" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th ope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mdbab442edbc7e7ecd6a56f5ac1b1dd47.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Ruthless</td>
+                <td id="pvpRuthless" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_ma60aa3835852cc63462a8539e9543419.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Lights Out</td>
+                <td id="pvpLightsOut" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mee5acb046145e887d1e7698fa0171603.png" width="30" height="30"></th>
+                <td class="count-text align-middle">From the Jaws of Defeat</td>
+                <td id="pvpComeback" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_me582cbac24c4cecd6f728afc67f882f9.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Fight Me!</td>
+                <td id="pvpFightMe" class="align-middle text-left"></td>
+            </tr>
+            <tr>
+                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m164efd3b6b3104df99c3b86a6522f68b.png" width="30" height="30"></th>
+                <td class="count-text align-middle">Not So Fast, My Friend</td>
+                <td id="pvpNSFMF" class="align-middle text-left"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="t4" class="tabcontent">
     <div class="table-responsive-sm src">
         <table class="table table-sm">
             <tbody>
@@ -498,65 +589,6 @@
                 <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/nsd.png" width="30" height="30"></th>
                 <td class="count-text align-middle">Never Say Die</td>
                 <td id="gambitNSD" class="align-middle text-left"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div id="t4" class="tabcontent">
-    <div class="table-responsive-sm src">
-        <table class="table table-sm">
-            <tbody>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_md2de6954efb417d6571bea9202dbadfd.png" width="30" height="30"></th>
-                <td class="count-text align-middle">We Ran out of Medals</td>
-                <td id="pvpWROOMs" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m3c7546b477f5378b3c605f4be6d45376.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Undefeated</td>
-                <td id="pvpUndefeats" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mf6bdc19ff454b545dec8e847696f8d57.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Invincible</td>
-                <td id="pvpInvincible" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5be2652a5476087266bb9cf3f95e8372.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Annihilation</td>
-                <td id="pvpAnnihilation" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m5bee79e64764fa4c94d795848d4362e6.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Double Play</td>
-                <td id="pvpDoubles" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th ope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mdbab442edbc7e7ecd6a56f5ac1b1dd47.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Ruthless</td>
-                <td id="pvpRuthless" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_ma60aa3835852cc63462a8539e9543419.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Lights Out</td>
-                <td id="pvpLightsOut" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_mee5acb046145e887d1e7698fa0171603.png" width="30" height="30"></th>
-                <td class="count-text align-middle">From the Jaws of Defeat</td>
-                <td id="pvpComeback" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_me582cbac24c4cecd6f728afc67f882f9.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Fight Me!</td>
-                <td id="pvpFightMe" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/icon_m164efd3b6b3104df99c3b86a6522f68b.png" width="30" height="30"></th>
-                <td class="count-text align-middle">Not So Fast, My Friend</td>
-                <td id="pvpNSFMF" class="align-middle text-left"></td>
             </tr>
             </tbody>
         </table>
