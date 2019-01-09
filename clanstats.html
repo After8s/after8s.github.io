@@ -37,7 +37,6 @@
         CharStatsDataLocations.pvpKD = 'Response.allPvP.allTime.killsDeathsRatio.basic.value';
         CharStatsDataLocations.pvpWon = 'Response.allPvP.allTime.activitiesWon.basic.value';
         CharStatsDataLocations.pvpDeaths = 'Response.allPvP.allTime.deaths.basic.value';
-        CharStatsDataLocations.pvpSuicides = 'Response.allPvP.allTime.suicides.basic.value';
         CharStatsDataLocations.pvpSeconds = 'Response.allPvP.allTime.secondsPlayed.basic.value';
 
         CharStatsDataLocations.pvpWROOMs = 'Response.allPvP.allTime.medalStreakAbsurd.basic.value';
@@ -235,7 +234,6 @@
             $('#pvpAssists').html((clanobject.pvpAssists).toLocaleString('en'));
             $('#pvpWon').html((clanobject.pvpWon).toLocaleString('en'));
             $('#pvpDeaths').html((clanobject.pvpDeaths).toLocaleString('en'));
-            $('#pvpSuicides').html((clanobject.pvpSuicides).toLocaleString('en'));
             $('#pvpKD').html((Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString('en'));
             $('#pvpKDA').html((Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString('en'));
             $('#pvpCollKD').html((Math.round(clanobject.pvpKD * 100) / 100).toLocaleString('en'));
@@ -417,11 +415,6 @@
                 <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/crucible.png" width="30" height="30" class="whitelogo"></th>
                 <td class="count-text align-middle">Deaths</td>
                 <td id="pvpDeaths" class="align-middle text-left"></td>
-            </tr>
-            <tr>
-                <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/crucible.png" width="30" height="30" class="whitelogo"></th>
-                <td class="count-text align-middle">Suicides</td>
-                <td id="pvpSuicides" class="align-middle text-left"></td>
             </tr>
             <tr>
                 <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/crucible.png" width="30" height="30" class="whitelogo"></th>
