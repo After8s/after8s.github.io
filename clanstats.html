@@ -199,7 +199,7 @@
                     //closest I could find to explain the values is : https://bungie-net.github.io/multi/schema_Destiny-DestinyCollectibleState.html#schema_Destiny-DestinyCollectibleState
                     //but thats missing 5, which most people have, that have not achieved it...
                     //16 is maybe: acquired but out of space
-                    clan.membersWithNF = clan.membersWithNF + (data.Response.profileCollectibles.data.collectibles[3260604717].state==0 || data.Response.profileCollectibles.data.collectibles[3260604717].state==16) ? 1:0;
+                    clan.membersWithNF = clan.membersWithNF + ((data.Response.profileCollectibles.data.collectibles[3260604717].state==0 || data.Response.profileCollectibles.data.collectibles[3260604717].state==16) ? 1:0);
                     
                     //check each character record for this account
                     $.each(data.Response.characterRecords.data, function (index, value) {
