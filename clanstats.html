@@ -194,8 +194,12 @@
                     clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete==true ? 1:0);
                     clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete==true ? 1:0);
                     clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete==true ? 1:0);
-
-                    clan.membersWithNF = clan.membersWithNF + (data.Response.profileCollectibles.data.collectibles[3260604717].state==0 ? 1:0);
+                    
+                    //state is a littly tricky
+                    //closest I could find to explain the values is : https://bungie-net.github.io/multi/schema_Destiny-DestinyCollectibleState.html#schema_Destiny-DestinyCollectibleState
+                    //but thats missing 5, which most people have, that have not achieved it...
+                    //16 is maybe: acquired but out of space
+                    clan.membersWithNF = clan.membersWithNF + (data.Response.profileCollectibles.data.collectibles[3260604717].state==0 || data.Response.profileCollectibles.data.collectibles[3260604717].state==16) ? 1:0;
                     
                     //check each character record for this account
                     $.each(data.Response.characterRecords.data, function (index, value) {
