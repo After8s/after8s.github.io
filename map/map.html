@@ -101,14 +101,14 @@
             // m.push({name:'FaiNt87'           ,icon:iconPurples    ,city:'Hinckley,UK'				    ,coords:[52.5454, -1.3766]});
             // m.push({name:'Ty-Ni'             ,icon:iconBlues      ,city:'Haarlem,Nederland'			    ,coords:[52.3811,  4.635278]});
             // m.push({name:'LetsWipe'          ,icon:iconPurples    ,city:'Reading,UK'                     ,coords:[51.4564, -0.9756]});
-            //m.push({name:'LiamRS24'            ,icon:iconPurples     ,city:'Hipperholme,UK'                 ,coords:[53.7258807, -1.8122128]});
+            // m.push({name:'LiamRS24'          ,icon:iconPurples    ,city:'Hipperholme,UK'                 ,coords:[53.7258807, -1.8122128]});
 
                         
             //add all markers to the layer
             var markers = L.markerClusterGroup();
             
             for (var i in m) {
-                markers.addLayer(L.marker(m[i].coords, {icon: m[i].icon}).bindPopup("<b>"+m[i].name+"</b><br />"+m[i].city,{autoClose:false,closeButton:false,closeOnClick:false}).on('mouseover', function (e) {this.openPopup();}));         
+                markers.addLayer(L.marker(m[i].coords, {icon: m[i].icon}).bindPopup("<b>"+m[i].name+"</b><br />"+m[i].city,{autoClose:true,closeButton:false}).on('mouseover', function (e) {this.openPopup();}).on('mouseout', function (e) {this.closePopup();}));
             }          
             
             mymap.addLayer(markers);
