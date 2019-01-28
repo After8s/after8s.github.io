@@ -21,7 +21,6 @@ twitch['Deecs259']         = 'deecs259';
 twitch['CristianoRicky16'] = 'ricdvs';
 twitch['Puntmannetje']     = 'puntmannetje';
 twitch['murdie1']          = 'gabbercrew';
-twitch['ctrcmo1029']       = 'ctrcmo1029';
 twitch['Dannilad09']       = 'dannilad';
 twitch['Smokebelch109']    = 'smokebelch109';
 twitch['PrOyKaEnR91']      = 'proykaenr';
