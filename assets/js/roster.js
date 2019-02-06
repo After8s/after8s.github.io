@@ -26,6 +26,7 @@ twitch['Smokebelch109']    = 'smokebelch109';
 twitch['PrOyKaEnR91']      = 'proykaenr';
 twitch['RubberBandLazer']  = 'gaienos';
 twitch['JLXJPG']           = 'jaypag';
+twitch['KinetiClutch']     = 'kineticlutch';
 
 $.when(
         // get A8 roster
