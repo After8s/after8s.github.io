@@ -210,6 +210,21 @@
                     });
 
                     outputClanData(clan);
+                    
+// DEBUG log item state of every member, collectible hashid can be in one of two places:
+/*
+//for collectibles that are not in profilerecords, but only in characterCollectibles
+//!log everyone that has NOT the item
+$.each(data.Response.characterCollectibles.data, function (index, value) {
+	if (!(value.collectibles[1279318101].state==0 || value.collectibles[1279318101].state==16) ? 1:0) console.log(clan.memberName[memberid]);
+	return false;   //if one char has it in collectibles , all others do as well
+});
+
+//for collectibles that are in profilerecords                  
+if (!((data.Response.profileCollectibles.data.collectibles[1279318101].state==0 || data.Response.profileCollectibles.data.collectibles[1279318101].state==16) ? 1:0)) console.log(clan.memberName[memberid]);
+*/                    
+                    
+                    
                 }
             });
             return;
