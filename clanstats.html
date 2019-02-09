@@ -30,6 +30,7 @@
         clan.membersWithRivensbane = 0;
         clan.membersWithUnbroken = 0;
         clan.membersWithWayfarer = 0;
+        clan.membersWithBlacksmith = 0;
 
         var CharStatsDataLocations = {};
         CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
@@ -183,6 +184,7 @@
                     //2182090828 is the hashid for the Rivensbane seal
                     //3369119720 is the hashid for the Unbroken seal
                     //2757681677 is the hashid for the Wayfarer seal
+                    //2053985130 is the hashid for the Blacksmith seal
                     
                     clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[599626507].objectives[0].progress;
                     clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
@@ -194,6 +196,7 @@
                     clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete==true ? 1:0);
                     clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete==true ? 1:0);
                     clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete==true ? 1:0);
+                    clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete==true ? 1:0);
                     
                     //state is a littly tricky
                     //closest I could find to explain the values is : https://bungie-net.github.io/multi/schema_Destiny-DestinyCollectibleState.html#schema_Destiny-DestinyCollectibleState
@@ -305,6 +308,7 @@ if (!((data.Response.profileCollectibles.data.collectibles[1279318101].state==0 
             $('#sealRivensbane').html(clanobject.membersWithRivensbane);
             $('#sealUnbroken').html(clanobject.membersWithUnbroken);
             $('#sealWayfarer').html(clanobject.membersWithWayfarer);
+            $('#sealBlacksmith').html(clanobject.membersWithBlacksmith);
 
             $('#membercounter').html(clanobject.membersFetched + '/' + clanobject.memberCount);
             return;
