@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    
+    //v1.0.0
+var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
+var clanid = '1801684';
+
+
+var clan = {};
+clan.memberIds = [];
+clan.memberName = {};
+clan.retryCounter = {};
+
+
+var aquiredvalues = [0, 16, 64]; //itemstates
+
+var nightfalldata = {
+     'invertedspire': {
+        'itemid': 1718922261,
+        'location': 'character',
+        'members': []
+    },
+     'pyramidion': {
+        'itemid': 1152758802,
+        'location': 'character',
+        'members': []
+    },
+     'exoduscrash': {
+        'itemid': 3036030067,
+        'location': 'character',
+        'members': []
+    },
+     'armsdealer': {
+        'itemid': 3036030066,
+        'location': 'character',
+        'members': []
+    },
+     'savathunssong': {
+        'itemid': 1333654061,
+        'location': 'character',
+        'members': []
+    },
+     'treeprobabilities': {
+        'itemid': 1279318110,
+        'location': 'character',
+        'members': []
+    },
+     'gardenworld': {
+        'itemid': 2448009818,
+        'location': 'character',
+        'members': []
+    },
+     'willofthousands': {
+        'itemid': 2466440635,
+        'location': 'profile',
+        'members': []
+    },
+     'strangeterrain': {
+        'itemid': 1534387877,
+        'location': 'character',
+        'members': []
+    },
+     'lakeofshadows': {
+        'itemid': 1602518767,
+        'location': 'profile',
+        'members': []
+    },
+     'insightterminus': {
+        'itemid': 1186314105,
+        'location': 'profile',
+        'members': []
+    },
+     'corrupted': {
+        'itemid': 1099984904,
+        'location': 'profile',
+        'members': []
+    },
+     'hollowedlair': {
+        'itemid': 1074861258,
+        'location': 'profile',
+        'members': []
+    },
+     'wardenofnothing': {
+        'itemid': 1279318101,
+        'location': 'profile',
+        'members': []
+    },
+    
+    
+
+    
+
+};
+
+
+$(document).ready(function () {
+    $.ajax({
+        //get member infos from our clan
+        url: 'https://www.bungie.net/Platform/GroupV2/' + clanid + '/Members/',
+        headers: { 'X-API-KEY': bungieAPIkey },
+        method: 'GET',
+    }).done(
+        function (data) {
+            //collect id strings from every clan member
+            if (!data.Response) {
+                $('body').html('API down?');
+                return;
+            }
+            $.each(data.Response.results, function (index, value) {
+                clan.memberIds.push(value.destinyUserInfo.membershipId);
+                clan.retryCounter[value.destinyUserInfo.membershipId] = 0;
+                clan.memberName[value.destinyUserInfo.membershipId] = value.destinyUserInfo.displayName;
+            });
+            //iterate over every member
+            $.each(clan.memberIds, function (index, memberid) {checkForNFLoot(memberid);});
+        });
+});
+
+
+function checkForNFLoot(memberid) {
+    $.ajax({
+        url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=800',
+        headers: { 'X-API-KEY': bungieAPIkey },
+        method: 'GET',
+    }).done(function (data) {
+        if (data.ErrorCode > 1 || !data.Response) {
+            checkForNFLoot(memberid); //try again
+        } else {
+            //iterate every nf
+            $.each(nightfalldata, function (nfname, nfdata) {
+                if (nfdata.location == 'character') {
+                    $.each(data.Response.characterCollectibles.data, function (charindex, charvalue) {
+                        var itemstate = charvalue.collectibles[nfdata.itemid].state;
+                        if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid]);
+                        return false; //if one char has it in collectibles, all others do as well
+                    });
+                } else { //profile
+                    var itemstate = data.Response.profileCollectibles.data.collectibles[nfdata.itemid].state;
+                    if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid])
+                }
+            });
+            outputLootData(nightfalldata);
+        }
+    });
+    return;
+}
+
+
+function outputLootData(nfobject) {
+    $.each(nightfalldata, function (nfname, nfdata) {
+        $('#' + nfname).html(nfdata['members'].sort().join(', '))
+        
+    });
+    return;
+}
+
+
+    </script>
+
+
+<style>
+
+body {
+
+    font-family: sans-serif;
+    color: #fff;
+    background: #090b0e;
+    margin: 0;
+    padding: 0;
+
+}
+
+.nfblock {
+  width: 480px;
+  height: 200px;
+  
+  padding: 10px;
+  padding-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  margin: 15px 0 0 15px;
+  float: left;
+}
+
+.nfblock .bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: center center;
+    opacity: .5;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.nfblock .loot {
+    display: -webkit-box;
+    margin: 5px 5px 5px 5px;
+}
+.nfblock .loot-image {
+    display: block;
+    height: 44px;
+    width: auto;
+    min-width: 44px;
+    background: rgba(210,210,210,0.1);
+    background-color: rgba(210, 210, 210, 0.1);
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.nfblock .loot-desc {
+    margin:  5px 5px 5px 5px;
+    line-height: 1.2;
+}
+.nfblock .loot-desc .loot-desc-type {
+  
+  font-size: smaller;
+}
+
+
+.nfblock .strike {
+    right: 10px;
+    position: absolute;
+    top: 0px;
+    margin-right: 20px;
+}
+
+.strike-name {
+  margin-bottom: 0.25em;
+  color: #f7f8f8;
+  font-weight: 500;
+}
+
+.nfblock .members h4 {
+  margin-top: 10px;
+  margin-bottom: 2px;
+  font-weight: 400;
+    
+}
+
+.nfblock .members  {
+ margin: 25px 0 0 5px;
+    
+}
+
+</style>
+
+
+<body>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_inverted_spire.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/bb72e6b7b2a7ac6165431d4a47171b2f.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Trichromatica</div>
+            <div class="loot-desc-type">Ghost Shell</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">The Inverted Spire</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="invertedspire"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_the_pyramdion.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/77364d95fdc16bb1d23f6f00817dc6ab.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Silicon Neuroma</div>
+            <div class="loot-desc-type">Sniper Rifle</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Pyramidion</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="pyramidion"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_exodus_crash.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/4d0ecd27dd8a6d02a8a0f3b2618a097e.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Impact Velocity</div>
+            <div class="loot-desc-type">Sparrow</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Exodus Crash</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="exoduscrash"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_the_arms_dealer.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/a2dd642b18b15f764db069f845f5173c.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Tilt Fuse</div>
+            <div class="loot-desc-type">Sparrow</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">The Arms Dealer</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="armsdealer"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_savanthuns_song.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/0497af906c184a43fa7e2accae899c35.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Duty Bound</div>
+            <div class="loot-desc-type">Auto Rifle</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Savathûn's Song</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="savathunssong"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/campaign_tree_of_probabilities.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/6e692a14162839d0489e11cf9d84746e.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>D.F.A.</div>
+            <div class="loot-desc-type">Hand Cannon</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Tree Of Probabilities</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="treeprobabilities"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/rituals_a_garden_world.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/d6c77755df5761e5626b052d440cf5c7.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Universal Wavefunction</div>
+            <div class="loot-desc-type">Ship</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">A Garden World</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="gardenworld"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_xol.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/2d6ff9e9e65253a82ec0856f310e2b94.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Worm God Incarnation</div>
+            <div class="loot-desc-type">Transmat Effect</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Will of the Thousands</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="willofthousands"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_nokris.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/659ebe95206951d7c97022b47a93c459.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>BrayTech Osprey</div>
+            <div class="loot-desc-type">Rocket Launcher</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Strange Terrain</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="strangeterrain"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_lake_of_shadows.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/39b67dae56153d70e935bfad21faecc7.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>The Militia's Birthright</div>
+            <div class="loot-desc-type">Grenade Launcher</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Lake of Shadows</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="lakeofshadows"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_glee.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/fe07633a2ee87f0c00d5b0c0f3838a7d.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>The Long Goodbye</div>
+            <div class="loot-desc-type">Sniper Rifle</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">The Insight Terminus</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="insightterminus"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_gemini.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/c5454c80b15ecb3b3abf2d69d4bfe5ff.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Horror's Least</div>
+            <div class="loot-desc-type">Pulse Rifle</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">The Corrupted</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="corrupted"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_taurus.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/0d39a47ea705e188a3674fa5f41b99a5.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Mindbender's Ambition</div>
+            <div class="loot-desc-type">Shotgun</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">The Hollowed Lair</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="hollowedlair"></div></div>
+</div>
+
+
+<div class="nfblock">
+    <div class="bg" style="background-image: url(https://www.bungie.net/img/destiny_content/pgcr/strike_aries.jpg);"></div>
+    <div class="loot">
+        <img src="https://www.bungie.net/common/destiny2_content/icons/89a68f864854dd80155eb194ee8f5cb7.jpg" class="loot-image" alt="">
+        <div class="loot-desc">
+            <div>Warden's Law</div>
+            <div class="loot-desc-type">Hand Cannon</div>
+        </div>
+        <div class="strike">
+            <h3 class="strike-name">Warden of Nothing</h3>
+        </div> 
+   </div>
+   <div class="members"><h4>still needed by:</h4><div class="memberslist" id="wardenofnothing"></div></div>
+</div>
+
+
+</body>
+</html>
