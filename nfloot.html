@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
     
-    //v1.0.0
+    //v1.1
 var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
 var clanid = '1801684';
 
@@ -17,7 +17,7 @@ clan.memberName = {};
 clan.retryCounter = {};
 
 
-var aquiredvalues = [0, 16, 64]; //itemstates
+var aquiredvalues = [0, 16, 64, 80]; //itemstates
 
 var nightfalldata = {
      'invertedspire': {
@@ -136,11 +136,15 @@ function checkForNFLoot(memberid) {
                 if (nfdata.location == 'character') {
                     $.each(data.Response.characterCollectibles.data, function (charindex, charvalue) {
                         var itemstate = charvalue.collectibles[nfdata.itemid].state;
+                        //debug
+                        //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid] + ' '+itemstate);
                         if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid]);
                         return false; //if one char has it in collectibles, all others do as well
                     });
                 } else { //profile
                     var itemstate = data.Response.profileCollectibles.data.collectibles[nfdata.itemid].state;
+                    //debug
+                    //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid]+ ' '+itemstate)
                     if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid])
                 }
             });
