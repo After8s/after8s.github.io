@@ -6,13 +6,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
 
-        //v1.2
+        //v2.1
         var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
         var clanid = '1801684';
 
         var clan = {};
-        clan.memberIds = [];
-        clan.memberName = {};
+        clan.members = {};
         clan.retryCounter = {};
 
         var aquiredvalues = [0, 16, 64, 80]; //itemstates
@@ -23,106 +22,136 @@
                 'thisweek': false,
                 'itemid': 1718922261,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'pyramidion': {
                 'activityid': 3289589202,
                 'thisweek': false,
                 'itemid': 1152758802,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'exoduscrash': {
                 'activityid': 1282886582,
                 'thisweek': false,
                 'itemid': 3036030067,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'armsdealer': {
                 'activityid': 3145298904,
                 'thisweek': false,
                 'itemid': 3036030066,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'savathunssong': {
                 'activityid': 3280234344,
                 'thisweek': false,
                 'itemid': 1333654061,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'treeprobabilities': {
                 'activityid': 3718330161,
                 'thisweek': false,
                 'itemid': 1279318110,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'gardenworld': {
                 'activityid': 936308438,
                 'thisweek': false,
                 'itemid': 2448009818,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'willofthousands': {
                 'activityid': 272852450,
                 'thisweek': false,
                 'itemid': 2466440635,
                 'location': 'profile',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'strangeterrain': {
                 'activityid': 522318687,
                 'thisweek': false,
                 'itemid': 1534387877,
                 'location': 'character',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'lakeofshadows': {
                 'activityid': 3372160277,
                 'thisweek': false,
                 'itemid': 1602518767,
                 'location': 'profile',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'insightterminus': {
                 'activityid': 1034003646,
                 'thisweek': false,
                 'itemid': 1186314105,
                 'location': 'profile',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'corrupted': {
                 'activityid': 3034843176,
                 'thisweek': false,
                 'itemid': 1099984904,
                 'location': 'profile',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'hollowedlair': {
                 'activityid': 3701132453,
                 'thisweek': false,
                 'itemid': 1074861258,
                 'location': 'profile',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
             'wardenofnothing': {
                 'activityid': 3108813009,
                 'thisweek': false,
                 'itemid': 1279318101,
                 'location': 'profile',
-                'members': []
+                'members': [],
+                'membercompletions': {}
             },
 
 
         };
 
+        var nfIdName = {
+            '4259769141': 'invertedspire',
+            '3289589202': 'pyramidion',
+            '1282886582': 'exoduscrash',
+            '3145298904': 'armsdealer',
+            '3280234344': 'savathunssong',
+            '3718330161': 'treeprobabilities',
+            '936308438' : 'gardenworld',
+            '272852450' : 'willofthousands',
+            '522318687' : 'strangeterrain',
+            '3372160277': 'lakeofshadows',
+            '1034003646': 'insightterminus',
+            '3034843176': 'corrupted',
+            '3701132453': 'hollowedlair',
+            '3108813009': 'wardenofnothing',
+        };
 
         $(document).ready(function () {
-            
+
             //links
             $("#currentnfs").click(function() {
                 $("#currentnfs").addClass("SectionList--itemActive");
@@ -136,6 +165,13 @@
                 $(".nfblock").show();
             });
 
+            //add class to pre-marked elements
+            $.each(nightfalldata, function (nfname, nfdata) {
+                if (nfdata.thisweek===true) {
+                    $('#' + nfname).parent().parent().addClass("thisWeekActive");
+                }
+            });
+            
             //query milestone api        
             markThisWeeksNFs();
 
@@ -152,15 +188,19 @@
                         return;
                     }
                     $.each(data.Response.results, function (index, value) {
-                        clan.memberIds.push(value.destinyUserInfo.membershipId);
                         clan.retryCounter[value.destinyUserInfo.membershipId] = 0;
-                        clan.memberName[value.destinyUserInfo.membershipId] = value.destinyUserInfo.displayName;
-                    });
-                    //iterate over every member
-                    $.each(clan.memberIds, function (index, memberid) {
-                        checkForNFLoot(memberid);
+                        clan.members[value.destinyUserInfo.membershipId] = value.destinyUserInfo.displayName;
+                        checkForNFLoot(value.destinyUserInfo.membershipId);
+                        getCharacterHistories(value.destinyUserInfo.membershipId);
+
                     });
                 });
+        });
+
+        $(document).ajaxStop(function () {
+            //make sure final changes are updated to the html
+            outputLootData(nightfalldata);
+            console.log('done');
         });
 
         //functions
@@ -171,25 +211,31 @@
                 headers: {'X-API-KEY': bungieAPIkey},
                 method: 'GET',
             }).done(function (data) {
-                if (data.ErrorCode > 1 || !data.Response) {
+                if (data.ErrorCode > 1 || !data.Response || typeof data.Response.profileCollectibles.data === 'undefined') {
+                    clan.retryCounter[memberid]++;
+                    if (clan.retryCounter[memberid]>2) return;
                     checkForNFLoot(memberid); //try again
                 } else {
                     //iterate every nf
                     $.each(nightfalldata, function (nfname, nfdata) {
+
                         if (nfdata.location === 'character') {
                             $.each(data.Response.characterCollectibles.data, function (charindex, charvalue) {
                                 var itemstate = charvalue.collectibles[nfdata.itemid].state;
                                 //debug
-                                //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid] + ' '+itemstate);
-                                if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid]);
+                                //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid] + ' '+itemstate);
+                                if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid]);
                                 return false; //if one char has it in collectibles, all others do as well
                             });
                         } else { //profile
                             var itemstate = data.Response.profileCollectibles.data.collectibles[nfdata.itemid].state;
                             //debug
-                            //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid]+ ' '+itemstate)
-                            if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.memberName[memberid])
+                            //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid]+ ' '+itemstate)
+                            if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid])
                         }
+
+                      //  getCompletions(memberid, '', nfdata.activityid);
+                        
                     });
                     outputLootData(nightfalldata);
                 }
@@ -200,9 +246,13 @@
 
         function outputLootData(nfobject) {
             $.each(nightfalldata, function (nfname, nfdata) {
-                $('#' + nfname).html(nfdata['members'].sort().join(', '));
-                if (nfdata.thisweek) $('#' + nfname).parent().parent().addClass("thisWeekActive");
-
+                var nameswithcounter = [];
+                $.each(nfdata['members'], function (mindex, mname) {
+                    if (typeof nfdata['membercompletions'][mname] !== 'undefined') {
+                        nameswithcounter.push(mname+ ' ('+nfdata['membercompletions'][mname]+')');
+                    } else nameswithcounter.push(mname+ '&nbsp;(0)');
+                });
+                $('#' + nfname).html(nameswithcounter.sort().join(', '));
             });
             return;
         }
@@ -219,6 +269,7 @@
                     $.each(nightfalldata, function (nfname, nfdata) {
                         if (activitydata.activityHash == nfdata.activityid) {
                             nightfalldata[nfname].thisweek = true;
+                            $('#' + nfname).parent().parent().addClass("thisWeekActive");
                             return false;
                         }
                     });
@@ -228,6 +279,40 @@
             return;
         }
 
+        function getCharacterHistories(memberid) {
+
+            //collect all characterids from member
+            var cids = [];
+            $.ajax({
+                url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=100', //most basic infos
+                headers: {'X-API-KEY': bungieAPIkey},
+                method: 'GET'
+            }).done(function (data) {
+                //collect characterids for counting nf completions
+                $.each(data.Response.profile.data.characterIds, function (cindex, currentcharacterid) {
+                    $.ajax({
+                        url: 'https://www.bungie.net/Platform/Destiny2/2/Account/' + memberid + '/Character/' + currentcharacterid + '/Stats/AggregateActivityStats/',
+                        headers: {'X-API-KEY': bungieAPIkey},
+                        method: 'GET',
+                    }).done(function (data2) {
+                        //collect characterids for counting nf completions
+                        $.each(data2.Response.activities, function (aindex, activitydata) {
+                            var aid = activitydata.activityHash;
+                            aid = aid.toString()
+                            //only add activities for our nfs
+                            if ( typeof nfIdName[activitydata.activityHash] !== 'undefined') {
+                                if (typeof nightfalldata[nfIdName[activitydata.activityHash]]['membercompletions'][clan.members[memberid]] === 'undefined') {
+                                    nightfalldata[nfIdName[activitydata.activityHash]]['membercompletions'][clan.members[memberid]] = activitydata.values.activityCompletions.basic.value;
+                                } else {
+                                    nightfalldata[nfIdName[activitydata.activityHash]]['membercompletions'][clan.members[memberid]] += activitydata.values.activityCompletions.basic.value;
+                                }
+                            }
+                        });
+                    });
+                });
+            });
+            return;
+        }
 
     </script>
 
@@ -242,7 +327,7 @@
         }
         
         .nfblock {
-            width: 450px;
+            width: 480px;
             height: 200px;
             padding: 10px;
             padding-bottom: 20px;
@@ -299,7 +384,7 @@
             right: 10px;
             position: absolute;
             top: 0px;
-            margin-right: 10px;
+            margin-right: 20px;
         }
 
         .strike-name {
