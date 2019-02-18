@@ -169,7 +169,7 @@
                 },
                 method: 'GET',
             }).done(function (data) {
-                if (data.ErrorCode > 1 || !data.Response) {
+                if (data.ErrorCode > 1 || !data.Response || typeof data.Response.profileCollectibles.data === 'undefined') {
                     checkForSpecialAchievements(memberid); //try again
                 } else {
                     //599626507 is the hashid for the Luna triumph
