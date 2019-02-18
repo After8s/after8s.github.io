@@ -20,7 +20,7 @@
             'invertedspire': {
                 'activityid': 4259769141,
                 'thisweek': false,
-                'itemid': 1718922261,
+                'itemid': [1718922261],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -28,7 +28,7 @@
             'pyramidion': {
                 'activityid': 3289589202,
                 'thisweek': false,
-                'itemid': 1152758802,
+                'itemid': [1152758802],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -36,7 +36,7 @@
             'exoduscrash': {
                 'activityid': 1282886582,
                 'thisweek': false,
-                'itemid': 3036030067,
+                'itemid': [3036030067],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -44,7 +44,7 @@
             'armsdealer': {
                 'activityid': 3145298904,
                 'thisweek': false,
-                'itemid': 3036030066,
+                'itemid': [3036030066],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -52,7 +52,7 @@
             'savathunssong': {
                 'activityid': 3280234344,
                 'thisweek': false,
-                'itemid': 1333654061,
+                'itemid': [1333654061],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -60,7 +60,7 @@
             'treeprobabilities': {
                 'activityid': 3718330161,
                 'thisweek': false,
-                'itemid': 1279318110,
+                'itemid': [1279318110],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -68,7 +68,7 @@
             'gardenworld': {
                 'activityid': 936308438,
                 'thisweek': false,
-                'itemid': 2448009818,
+                'itemid': [2448009818],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -76,7 +76,7 @@
             'willofthousands': {
                 'activityid': 272852450,
                 'thisweek': false,
-                'itemid': 2466440635,
+                'itemid': [2466440635],
                 'location': 'profile',
                 'members': [],
                 'membercompletions': {}
@@ -84,7 +84,7 @@
             'strangeterrain': {
                 'activityid': 522318687,
                 'thisweek': false,
-                'itemid': 1534387877,
+                'itemid': [1534387877],
                 'location': 'character',
                 'members': [],
                 'membercompletions': {}
@@ -92,7 +92,7 @@
             'lakeofshadows': {
                 'activityid': 3372160277,
                 'thisweek': false,
-                'itemid': 1602518767,
+                'itemid': [1602518767],
                 'location': 'profile',
                 'members': [],
                 'membercompletions': {}
@@ -100,7 +100,7 @@
             'insightterminus': {
                 'activityid': 1034003646,
                 'thisweek': false,
-                'itemid': 1186314105,
+                'itemid': [1186314105],
                 'location': 'profile',
                 'members': [],
                 'membercompletions': {}
@@ -108,7 +108,7 @@
             'corrupted': {
                 'activityid': 3034843176,
                 'thisweek': false,
-                'itemid': 1099984904,
+                'itemid': [1099984904],
                 'location': 'profile',
                 'members': [],
                 'membercompletions': {}
@@ -116,7 +116,7 @@
             'hollowedlair': {
                 'activityid': 3701132453,
                 'thisweek': false,
-                'itemid': 1074861258,
+                'itemid': [1074861258],
                 'location': 'profile',
                 'members': [],
                 'membercompletions': {}
@@ -124,15 +124,48 @@
             'wardenofnothing': {
                 'activityid': 3108813009,
                 'thisweek': false,
-                'itemid': 1279318101,
+                'itemid': [1279318101],
                 'location': 'profile',
+                'members': [],
+                'membercompletions': {}
+            },
+            'ascendantchallenge': {
+                'activityid': 0,
+                'thisweek': true,
+                'itemid': [3360537487],
+                'location': 'character',
+                'members': [],
+                'membercompletions': {}
+            },
+            'dcweeklystory': {
+                'activityid': 0,
+                'thisweek': true,
+                'itemid': [1469913807],
+                'location': 'character',
+                'members': [],
+                'membercompletions': {}
+            },
+            'shatteredthrone': {
+                'activityid': 0,
+                'thisweek': false,
+                'itemid': [3163873689],
+                'location': 'character',
+                'members': [],
+                'membercompletions': {}
+            },
+            'gambitcosmetics': {
+                'activityid': 0,
+                'thisweek': true,
+                'itemid': [3360537486,1469913806,3163873691], //  1469913806 , 3163873691
+                'location': 'character',
                 'members': [],
                 'membercompletions': {}
             },
 
 
-        };
 
+        };
+        //for completions counter, can be multiple activityids per event
         var nfIdName = {
             '4259769141': 'invertedspire',
             '3289589202': 'pyramidion',
@@ -148,6 +181,11 @@
             '3034843176': 'corrupted',
             '3701132453': 'hollowedlair',
             '3108813009': 'wardenofnothing',
+            '2032534090': 'shatteredthrone',
+            '1893059148': 'shatteredthrone',
+            '1640956655': 'dcweeklystory',
+            '3746811765': 'dcweeklystory',
+            '1313738982': 'dcweeklystory',
         };
 
         $(document).ready(function () {
@@ -173,7 +211,7 @@
             });
             
             //query milestone api        
-            markThisWeeksNFs();
+            markThisWeeksActivities();
 
             $.ajax({
                 //get member infos from our clan
@@ -190,7 +228,7 @@
                     $.each(data.Response.results, function (index, value) {
                         clan.retryCounter[value.destinyUserInfo.membershipId] = 0;
                         clan.members[value.destinyUserInfo.membershipId] = value.destinyUserInfo.displayName;
-                        checkForNFLoot(value.destinyUserInfo.membershipId);
+                        checkForLoot(value.destinyUserInfo.membershipId);
                         getCharacterHistories(value.destinyUserInfo.membershipId);
 
                     });
@@ -205,7 +243,7 @@
 
         //functions
 
-        function checkForNFLoot(memberid) {
+        function checkForLoot(memberid) {
             $.ajax({
                 url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=800',
                 headers: {'X-API-KEY': bungieAPIkey},
@@ -214,28 +252,31 @@
                 if (data.ErrorCode > 1 || !data.Response || typeof data.Response.profileCollectibles.data === 'undefined') {
                     clan.retryCounter[memberid]++;
                     if (clan.retryCounter[memberid]>2) return;
-                    checkForNFLoot(memberid); //try again
+                    checkForLoot(memberid); //try again
                 } else {
                     //iterate every nf
                     $.each(nightfalldata, function (nfname, nfdata) {
 
-                        if (nfdata.location === 'character') {
-                            $.each(data.Response.characterCollectibles.data, function (charindex, charvalue) {
-                                var itemstate = charvalue.collectibles[nfdata.itemid].state;
-                                //debug
-                                //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid] + ' '+itemstate);
-                                if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid]);
-                                return false; //if one char has it in collectibles, all others do as well
-                            });
-                        } else { //profile
-                            var itemstate = data.Response.profileCollectibles.data.collectibles[nfdata.itemid].state;
-                            //debug
-                            //if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid]+ ' '+itemstate)
-                            if (jQuery.inArray(itemstate, aquiredvalues) === -1) nightfalldata[nfname]['members'].push(clan.members[memberid])
-                        }
-
-                      //  getCompletions(memberid, '', nfdata.activityid);
-                        
+                        $.each(nfdata.itemid, function(itemindex, itemidtocheck) {
+                            if (nfdata.location === 'character') {
+                                $.each(data.Response.characterCollectibles.data, function (charindex, charvalue) {
+                                    var itemstate = (typeof charvalue.collectibles[itemidtocheck] === 'undefined') ? -1 : charvalue.collectibles[itemidtocheck].state;
+                                    if (jQuery.inArray(itemstate, aquiredvalues) === -1 && jQuery.inArray(clan.members[memberid], nightfalldata[nfname]['members']) === -1) {
+                                        nightfalldata[nfname]['members'].push(clan.members[memberid]);
+                                        //debug
+                                        //nightfalldata[nfname]['members'].push(clan.members[memberid] + ' '+itemstate);
+                                    }
+                                    return false; //if one char has it in collectibles, all others do as well
+                                });
+                            } else { //profile
+                                var itemstate = (typeof data.Response.profileCollectibles.data.collectibles[itemidtocheck] === 'undefined') ? -1 : data.Response.profileCollectibles.data.collectibles[itemidtocheck].state;
+                                if (jQuery.inArray(itemstate, aquiredvalues) === -1 && jQuery.inArray(clan.members[memberid], nightfalldata[nfname]['members']) === -1) {
+                                    nightfalldata[nfname]['members'].push(clan.members[memberid]);
+                                    //debug
+                                    //nightfalldata[nfname]['members'].push(clan.members[memberid] + ' '+itemstate);
+                                }
+                            }
+                        });
                     });
                     outputLootData(nightfalldata);
                 }
@@ -250,15 +291,14 @@
                 $.each(nfdata['members'], function (mindex, mname) {
                     if (typeof nfdata['membercompletions'][mname] !== 'undefined') {
                         nameswithcounter.push(mname+ ' ('+nfdata['membercompletions'][mname]+')');
-                    } else nameswithcounter.push(mname+ '&nbsp;(0)');
+                    } else nameswithcounter.push(mname);
                 });
                 $('#' + nfname).html(nameswithcounter.sort().join(', '));
             });
             return;
         }
 
-
-        function markThisWeeksNFs() {
+        function markThisWeeksActivities() {
             $.ajax({
                 url: 'https://www.bungie.net/Platform/Destiny2/Milestones/',
                 headers: {'X-API-KEY': bungieAPIkey},
@@ -276,6 +316,41 @@
                 });
 
             });
+
+            //taken from justrealmilk/braytech.org
+            const resetTime = '17:00:00Z';
+            const cycleInfo = {
+              epoch: {
+                // start of cycle in UTC
+                ascendant: new Date(`2018-09-04T${resetTime}`).getTime(),
+                curse: new Date(`2018-09-11T${resetTime}`).getTime(),
+                ep: new Date(`2018-05-08T${resetTime}`).getTime()
+              },
+              cycle: {
+                // how many week cycle
+                ascendant: 6,
+                curse: 3,
+                ep: 5
+              },
+              elapsed: {}, // elapsed time since cycle started
+              week: {} // current week in cycle
+            };
+            const time = new Date().getTime();
+            const msPerWk = 604800000;
+            for (var cycle in cycleInfo.cycle) {
+              cycleInfo.elapsed[cycle] = time - cycleInfo.epoch[cycle];
+              cycleInfo.week[cycle] = Math.floor((cycleInfo.elapsed[cycle] / msPerWk) % cycleInfo.cycle[cycle]) + 1;
+            }
+            //taken from justrealmilk/braytech.org
+
+
+            //add shattered throne to weekly activities
+            if (cycleInfo.week.curse === 3) {
+                nightfalldata['shatteredthrone'].thisweek = true;
+                $('#shatteredthrone').parent().parent().addClass("thisWeekActive");
+            }
+
+
             return;
         }
 
@@ -297,8 +372,6 @@
                     }).done(function (data2) {
                         //collect characterids for counting nf completions
                         $.each(data2.Response.activities, function (aindex, activitydata) {
-                            var aid = activitydata.activityHash;
-                            aid = aid.toString()
                             //only add activities for our nfs
                             if ( typeof nfIdName[activitydata.activityHash] !== 'undefined') {
                                 if (typeof nightfalldata[nfIdName[activitydata.activityHash]]['membercompletions'][clan.members[memberid]] === 'undefined') {
@@ -308,6 +381,7 @@
                                 }
                             }
                         });
+
                     });
                 });
             });
@@ -327,13 +401,13 @@
         }
         
         .nfblock {
-            width: 450px;
+            width: 480px;
             height: 200px;
             padding: 10px;
             padding-bottom: 20px;
             position: relative;
             z-index: 1;
-            margin: 15px 0 0 5px;
+            margin: 15px 0 0 15px;
             float: left;
             display: none;
         }
@@ -384,6 +458,7 @@
             right: 10px;
             position: absolute;
             top: 0px;
+            margin-right: 20px;
         }
 
         .strike-name {
@@ -405,7 +480,7 @@
 
          
         .SectionList {
-            padding: 0 5px;
+            padding: 0 15px;
 
         }
            .SectionList--list {
@@ -448,9 +523,87 @@
 
     <div class="SectionList">
         <ul class="SectionList--list">
-            <a id="currentnfs" class="SectionList--item SectionList--itemActive">This Weeks Nightfalls</a>
-            <a id="allnfs" class="SectionList--item">All Nightfalls</a>
+            <a id="currentnfs" class="SectionList--item SectionList--itemActive">This Week</a>
+            <a id="allnfs" class="SectionList--item">All</a>
         </ul>
+    </div>
+
+    <div class="nfblock">
+        <div class="bg" style="background-image: url('gambit.jpg');"></div>
+        <div class="loot">
+            <img src="https://www.bungie.net/common/destiny2_content/icons/b8f886c5449debdad7ec8d0d5c7d2203.jpg" class="loot-image" alt="">
+            <div class="loot-desc">
+                <div>&nbsp;</div>
+                <div class="loot-desc-type">or</div>
+            </div>
+            <img src="https://www.bungie.net/common/destiny2_content/icons/fe57c27ac7ed67835d846682e37b283f.jpg" class="loot-image" alt="">
+            <div class="loot-desc">
+                <div>&nbsp;</div>
+                <div class="loot-desc-type">or</div>
+            </div>
+            <img src="https://www.bungie.net/common/destiny2_content/icons/69fc64450cd472b76fb5a4a21b172224.jpg" class="loot-image" alt="">
+            <div class="loot-desc">
+                <div>&nbsp;</div>
+                <div class="loot-desc-type"></div>
+            </div>
+            <div class="strike">
+                <h3 class="strike-name">Gambit Buttboss</h3>
+            </div>
+        </div>
+        <div class="members"><h4>still needed by:</h4>
+            <div class="memberslist" id="gambitcosmetics"></div>
+        </div>
+    </div>
+
+    <div class="nfblock">
+        <div class="bg" style="background-image: url('dc_st.jpg');"></div>
+        <div class="loot">
+            <img src="https://www.bungie.net/common/destiny2_content/icons/70d9fc6adb0a207f43a127142acbd415.jpg" class="loot-image" alt="">
+            <div class="loot-desc">
+                <div>&nbsp;</div>
+                <div class="loot-desc-type">Ship</div>
+            </div>
+            <div class="strike">
+                <h3 class="strike-name">Shattered Throne</h3>
+            </div>
+        </div>
+        <div class="members"><h4>still needed by:</h4>
+            <div class="memberslist" id="shatteredthrone"></div>
+        </div>
+    </div>
+
+    <div class="nfblock">
+        <div class="bg" style="background-image: url('dc_ass.jpg');"></div>
+        <div class="loot">
+            <img src="https://www.bungie.net/common/destiny2_content/icons/a5be7f207cc65de65f99d3224ec440dd.jpg" class="loot-image" alt="">
+            <div class="loot-desc">
+                <div>&nbsp;</div>
+                <div class="loot-desc-type">Ghost</div>
+            </div>
+            <div class="strike">
+                <h3 class="strike-name">Ascendant Challenge</h3>
+            </div>
+        </div>
+        <div class="members"><h4>still needed by:</h4>
+            <div class="memberslist" id="ascendantchallenge"></div>
+        </div>
+    </div>
+
+    <div class="nfblock">
+        <div class="bg" style="background-image: url('dc_mission.jpg');"></div>
+        <div class="loot">
+            <img src="https://www.bungie.net/common/destiny2_content/icons/c4cce6bf993e1d4391f3846638f04e83.jpg" class="loot-image" alt="">
+            <div class="loot-desc">
+                <div>&nbsp;</div>
+                <div class="loot-desc-type">Sparrow</div>
+            </div>
+            <div class="strike">
+                <h3 class="strike-name">Dreaming City Weekly Story</h3>
+            </div>
+        </div>
+        <div class="members"><h4>still needed by:</h4>
+            <div class="memberslist" id="dcweeklystory"></div>
+        </div>
     </div>
 
     <div class="nfblock">
