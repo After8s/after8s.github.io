@@ -114,11 +114,11 @@
                     });
                 });
         });
+       
         $(document).ajaxStop(function () {
+            $('.sk-folding-cube').hide();
             if (clan.unresolvedMemberNames.length > 0) {
-                $('.sk-folding-cube').html('(unable to fetch ' + clan.unresolvedMemberNames.join(', ') + ')');
-            } else {
-                $('.sk-folding-cube').hide();
+                $('.cubelegend').append('<br><small>(unable to fetch ' + clan.unresolvedMemberNames.join(', ') + ')</small>');
             }
         });
 
