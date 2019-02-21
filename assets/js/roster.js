@@ -46,7 +46,7 @@ $.when(
                     roster.push(members[i])
                 });
 
-                console.log('a8s member list:', members);
+                //console.log('a8s member list:', members);
 
             } else {
 
@@ -63,7 +63,7 @@ $.when(
 
     )
     .then(function() {
-        console.log(roster);
+       // console.log(roster);
         listMembers(roster);
 
     });
