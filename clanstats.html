@@ -190,17 +190,18 @@
                 //2757681677 is the hashid for the Wayfarer seal
                 //2053985130 is the hashid for the Blacksmith seal
 
-                clan.membersWithLuna = clan.membersWithLuna + data.Response.profileRecords.data.records[599626507].objectives[0].progress;
-                clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
-                clan.membersFlawless = clan.membersFlawless + data.Response.profileRecords.data.records[720205407].objectives[0].progress;
-                clan.membersSoloThrone = clan.membersSoloThrone + (data.Response.profileRecords.data.records[851701008].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[3798931976].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
+
+               clan.membersWithMountaintop = clan.membersWithMountaintop + data.Response.profileRecords.data.records[3851137658].objectives[0].progress;
+               clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
+               clan.membersFlawless = clan.membersFlawless + data.Response.profileRecords.data.records[720205407].objectives[0].progress;
+               clan.membersSoloThrone = clan.membersSoloThrone + (data.Response.profileRecords.data.records[851701008].objectives[0].complete == true ? 1 : 0);
+               clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete == true ? 1 : 0);
+               clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete == true ? 1 : 0);
+               clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[3798931976].objectives[0].complete == true ? 1 : 0);
+               clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete == true ? 1 : 0);
+               clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete == true ? 1 : 0);
+               clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete == true ? 1 : 0);
+               clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
 
                 //state is a littly tricky
                 //closest I could find to explain the values is : https://bungie-net.github.io/multi/schema_Destiny-DestinyCollectibleState.html#schema_Destiny-DestinyCollectibleState
@@ -209,9 +210,11 @@
                 clan.membersWithNF = clan.membersWithNF + ((data.Response.profileCollectibles.data.collectibles[3260604717].state == 0 || data.Response.profileCollectibles.data.collectibles[3260604717].state == 16) ? 1 : 0);
 
                 //check each character record for this account
+
+                
                 $.each(data.Response.characterRecords.data, function(index, value) {
-                    if (value.records[3851137658].objectives[0].progress) {
-                        clan.membersWithMountaintop = clan.membersWithMountaintop + 1;
+                    if (typeof value.records[599626507] !== 'undefined' && value.records[599626507].objectives[0].progress) {
+                        clan.membersWithLuna = clan.membersWithLuna + 1;
                         return false;
                     }
                 });
