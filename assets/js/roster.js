@@ -15,14 +15,12 @@ twitch['Fryde']            = 'fry_de';
 twitch['iHackEpic']        = 'ihackepic';
 twitch['Hushspesh']        = 'hushspesh101';
 twitch['LyRaD87cP']        = 'dazzah87';
-twitch['Vortex4950']       = 'vortex4950';
 twitch['Mini-B0rg40']      = 'terrybjsr27';
 twitch['Deecs259']         = 'deecs259';
 twitch['CristianoRicky16'] = 'ricdvs';
 twitch['Puntmannetje']     = 'puntmannetje';
 twitch['murdie1']          = 'gabbercrew';
 twitch['Dannilad09']       = 'dannilad';
-twitch['KinetiClutch']     = 'kineticlutch';
 twitch['XanderLuke']       = 'AndImGoneX';
 
 $.when(
