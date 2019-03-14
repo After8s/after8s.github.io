@@ -125,7 +125,7 @@
     function getAccountData(memberid) {
         //track number of tries for every member
         clan.retryCounter[memberid] = clan.retryCounter[memberid] + 1;
-        if (clan.retryCounter[memberid] > 10) {
+        if (clan.retryCounter[memberid] > 4) {
             //give up on him =/
             clan.unresolvedMemberNames.push(clan.memberName[memberid]);
             return;
@@ -163,7 +163,7 @@
 
     function checkForSpecialAchievements(memberid) {
         
-        var aquiredCollectibleStateValues = [0, 16, 8, 64, 80];
+        var aquiredCollectibleStateValues = [0, 8, 16, 64, 80];
         
         $.ajax({
             url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=800,900',
@@ -174,7 +174,7 @@
         }).done(function(data) {
             if (data.ErrorCode > 1 || !data.Response || typeof data.Response.profileCollectibles.data === 'undefined') {
                 clan.retryCounter[memberid]++;
-                if (clan.retryCounter[memberid] > 10) {
+                if (clan.retryCounter[memberid] > 4) {
                     //give up on him =/
                     clan.unresolvedMemberNames.push(clan.memberName[memberid]);
                     return;
