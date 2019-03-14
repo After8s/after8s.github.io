@@ -162,6 +162,9 @@
     // - add setter line for this new id in outputClanData()
 
     function checkForSpecialAchievements(memberid) {
+        
+        var aquiredCollectibleStateValues = [0, 16, 8, 64, 80];
+        
         $.ajax({
             url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=800,900',
             headers: {
@@ -208,15 +211,10 @@
                 clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
                 clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
 
-                //state is a littly tricky
-                //closest I could find to explain the values is : https://bungie-net.github.io/multi/schema_Destiny-DestinyCollectibleState.html#schema_Destiny-DestinyCollectibleState
-                //but thats missing 5, which most people have, that have not achieved it...
-                //16 is maybe: acquired but out of space
-                clan.membersWithNF = clan.membersWithNF + ((data.Response.profileCollectibles.data.collectibles[3260604717].state == 0 || data.Response.profileCollectibles.data.collectibles[3260604717].state == 16) ? 1 : 0);
-
-                clan.membersWithRecluse = clan.membersWithRecluse + ((data.Response.profileCollectibles.data.collectibles[2335550020].state == 0 || data.Response.profileCollectibles.data.collectibles[2335550020].state == 16) ? 1 : 0);
-
-                clan.membersWithThorn = clan.membersWithThorn + ((data.Response.profileCollectibles.data.collectibles[4009683574].state == 0 || data.Response.profileCollectibles.data.collectibles[4009683574].state == 16) ? 1 : 0);
+               
+                clan.membersWithNF = clan.membersWithNF + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[3260604717].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
+                clan.membersWithRecluse = clan.membersWithRecluse + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[2335550020].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
+                clan.membersWithThorn = clan.membersWithThorn + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[4009683574].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
 
                 //check each character record for this account
 
