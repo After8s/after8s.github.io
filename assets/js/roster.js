@@ -18,7 +18,6 @@ twitch['LyRaD87cP']        = 'dazzah87';
 twitch['Mini-B0rg40']      = 'terrybjsr27';
 twitch['Deecs259']         = 'deecs259';
 twitch['CristianoRicky16'] = 'cristianoricky1';
-twitch['Puntmannetje']     = 'puntmannetje';
 twitch['murdie1']          = 'gabbercrew';
 twitch['Dannilad09']       = 'dannilad';
 twitch['XanderLuke']       = 'andimgonex';
