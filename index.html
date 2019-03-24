@@ -21,7 +21,7 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/resume.min.css" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" rel="stylesheet" crossorigin="anonymous">
 </head>
 
 <body id="page-top">
@@ -35,13 +35,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#about"><i class="far fa-user fa-lg mr-2"></i> About us</a>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#home"><i class="fas fa-home fa-lg mr-2"></i> Home</a>
                 </li>
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#clan"><i class="fas fa-globe-europe fa-lg mr-2"></i> Clan Roster</a>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#roster"><i class="fas fa-globe-europe fa-lg mr-2"></i> Roster</a>
                 </li>
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#stats"><i class="far fa-chart-bar fa-lg mr-2"></i> Clan Stats</a>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#stats"><i class="far fa-chart-bar fa-lg mr-2"></i> Stats</a>
                 </li>
-                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#map"><i class="fas fa-map-marked-alt fa-lg mr-2"></i> Get mapped</a>
+                <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#map"><i class="fas fa-map-marked-alt fa-lg mr-2"></i> Map</a>
                 </li>
                 <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="#tools"><i class="fas fa-tools fa-lg mr-2"></i> Tools</a>
                 </li>
@@ -53,7 +53,7 @@
         </div>
     </nav>
     <div class="container-fluid p-0">
-        <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+        <section class="resume-section p-3 p-lg-5 d-flex d-column" id="home">
             <div class="my-auto noover">
                 <h2 class="mb-0">We are the
                     <span class="text-primary">After8s</span>
@@ -73,23 +73,21 @@
     </div>
     </section>
     <hr class="m-0">
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="clan">
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="roster">
         <div class="my-auto">
-            <h4 class="mb-2">Clan Roster</h4>
-            <h6 id="member-count">Members Online</h6>
+            <h5 class="mb-2">Clan Roster - <span id="member-count">Members Online</span></h5>
             <table class="table table-sm table-hover roster-table">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col"></th>
                         <th scope="col">Username</th>
                         <th scope="col">Role</th>
                         <th scope="col">Joined</th>
                         <th scope="col">Status</th>
+                        <th scope="col" class="text-center">Characters</th>
                         <th scope="col" class="text-center">Twitch</th>
                         <th scope="col" class="text-center">Time</th>
                         <th scope="col" class="text-center">DTR</th>
                         <th scope="col" class="text-center">Raid Report</th>
-                        <th scope="col" class="text-center">Bungie</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -136,7 +134,7 @@
                                 <h5 class="text-info my-auto">2-3 man raids</h5>
                             </a>
                         </div>
-                        <div id="collapseFIRST" class="collapse show" data-parent="#accordion">
+                        <div id="collapseFIRST" class="collapse" data-parent="#accordion">
                             <div class="card-body text-left">
                                 <p class="text-left"> <strong>2-man Calus</strong>: <a target="_blank" href="https://raid.report/pgcr/1958344572">http://raid.report/pgcr/1958344572</a>
                                     </br>- <a target="_blank" href="https://www.twitch.tv/videos/290692334">Murdie1's POV</a>
@@ -192,7 +190,7 @@
                                 <h5 class="text-info my-auto">Raid Speedruns</h5>
                             </a>
                         </div>
-                        <div id="collapseTHIRD" class="collapse" data-parent="#accordion">
+                        <div id="collapseTHIRD" class="collapse show" data-parent="#accordion">
                             <div class="card-body text-left">
                                 <table class="table group table-sm">
                                     <tbody>
