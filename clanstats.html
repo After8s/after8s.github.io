@@ -8,338 +8,272 @@
     <link href="assets/css/clan_stats.css" rel="stylesheet" id="bootstrap-css">
     <script>
     //v4.0.0
-    var bungieAPIkey = '0a11942f318647978979f13ad8aa53ee';
+    var bungieAPIkey = "0a11942f318647978979f13ad8aa53ee";
     var clan = {};
-    clan.memberIds = [];
-    clan.memberCount = 0;
-    clan.membersFetched = 0;
-    clan.memberName = {};
-    clan.retryCounter = {};
-    clan.unresolvedMemberNames = [];
-    clan.membersWithLuna = 0;
-    clan.membersWithNF = 0;
-    clan.membersWithMalf = 0;
-    clan.membersWithMountaintop = 0;
-    clan.membersWithRecluse = 0;
-    clan.membersWithThorn = 0;
-    clan.membersSoloThrone = 0;
-    clan.membersFlawless = 0;
-    clan.membersWithChronicler = 0;
-    clan.membersWithCursebreaker = 0;
-    clan.membersWithDredgen = 0;
-    clan.membersWithRivensbane = 0;
-    clan.membersWithUnbroken = 0;
-    clan.membersWithWayfarer = 0;
-    clan.membersWithBlacksmith = 0;
-    clan.membersWithReckoner = 0;
+        clan.memberIds = [];
+        clan.memberCount = 0;
+        clan.membersFetched = 0;
+        clan.memberName = {};
+        clan.retryCounter = {};
+        clan.unresolvedMemberNames = [];
+        clan.membersWithLuna = 0;
+        clan.membersWithNF = 0;
+        clan.membersWithMalf = 0;
+        clan.membersWithMountaintop = 0;
+        clan.membersWithRecluse = 0;
+        clan.membersWithThorn = 0;
+        clan.membersSoloThrone = 0;
+        clan.membersFlawless = 0;
+        clan.membersWithChronicler = 0;
+        clan.membersWithCursebreaker = 0;
+        clan.membersWithDredgen = 0;
+        clan.membersWithRivensbane = 0;
+        clan.membersWithUnbroken = 0;
+        clan.membersWithWayfarer = 0;
+        clan.membersWithBlacksmith = 0;
+        clan.membersWithReckoner = 0;
+        var CharStatsDataLocations = {};
+        CharStatsDataLocations.pvpKills = "Response.allPvP.allTime.kills.basic.value";
+        CharStatsDataLocations.pvpAssists = "Response.allPvP.allTime.assists.basic.value";
+        CharStatsDataLocations.pvpKD = "Response.allPvP.allTime.killsDeathsRatio.basic.value";
+        CharStatsDataLocations.pvpWon = "Response.allPvP.allTime.activitiesWon.basic.value";
+        CharStatsDataLocations.pvpDeaths = "Response.allPvP.allTime.deaths.basic.value";
+        CharStatsDataLocations.pvpSeconds = "Response.allPvP.allTime.secondsPlayed.basic.value";
+        CharStatsDataLocations.pvpWROOMs = "Response.allPvP.allTime.medalStreakAbsurd.basic.value";
+        CharStatsDataLocations.pvpUndefeats = "Response.allPvP.allTime.medalMatchUndefeated.basic.value";
+        CharStatsDataLocations.pvpInvincible = "Response.allPvP.allTime.medalShowdownUndefeated.basic.value";
+        CharStatsDataLocations.pvpComeback = "Response.allPvP.allTime.medalMatchComeback.basic.value";
+        CharStatsDataLocations.pvpDoubles = "Response.allPvP.allTime.medalMulti2x.basic.value";
+        CharStatsDataLocations.pvpLightsOut = "Response.allPvP.allTime.medalMulti4x.basic.value";
+        CharStatsDataLocations.pvpAnnihilation = "Response.allPvP.allTime.medalMultiEntireTeam.basic.value";
+        CharStatsDataLocations.pvpSeven = "Response.allPvP.allTime.medalStreak7x.basic.value";
+        CharStatsDataLocations.pvpGhost = "Response.allPvP.allTime.Medals_pvp_medal_streak_no_damage.basic.value";
+        CharStatsDataLocations.pvpRuthless = "Response.allPvP.allTime.medalStreak5x.basic.value";
+        CharStatsDataLocations.pvpFightMe = "Response.allPvP.allTime.medalMatchMostDamage.basic.value";
+        CharStatsDataLocations.pvpNSFMF = "Response.allPvP.allTime.medalSuperShutdown.basic.value";
+        CharStatsDataLocations.pvpSnipes = "Response.allPvP.allTime.weaponKillsSniper.basic.value";
+        CharStatsDataLocations.pveKills = "Response.allPvE.allTime.kills.basic.value";
+        CharStatsDataLocations.pveDeaths = "Response.allPvE.allTime.deaths.basic.value";
+        CharStatsDataLocations.pveSuicides = "Response.allPvE.allTime.suicides.basic.value";
+        CharStatsDataLocations.pveOrbs = "Response.allPvE.allTime.orbsDropped.basic.value";
+        CharStatsDataLocations.pveHPE = "Response.allPvE.allTime.heroicPublicEventsCompleted.basic.value";
+        CharStatsDataLocations.pveAdventures = "Response.allPvE.allTime.adventuresCompleted.basic.value";
+        CharStatsDataLocations.pveSeconds = "Response.allPvE.allTime.secondsPlayed.basic.value";
+        CharStatsDataLocations.raidsCleared = "Response.raid.allTime.activitiesCleared.basic.value";
+        CharStatsDataLocations.gambitSeconds = "Response.allPvECompetitive.allTime.secondsPlayed.basic.value";
+        CharStatsDataLocations.gambitWins = "Response.allPvECompetitive.allTime.activitiesWon.basic.value";
+        CharStatsDataLocations.gambitInvadingKills = "Response.allPvECompetitive.allTime.invasionKills.basic.value";
+        CharStatsDataLocations.gambitInvaderKills = "Response.allPvECompetitive.allTime.invaderKills.basic.value";
+        CharStatsDataLocations.gambitMotesDep = "Response.allPvECompetitive.allTime.motesDeposited.basic.value";
+        CharStatsDataLocations.gambitMotesDenied = "Response.allPvECompetitive.allTime.motesDenied.basic.value";
+        CharStatsDataLocations.gambitKills = "Response.allPvECompetitive.allTime.kills.basic.value";
+        CharStatsDataLocations.gambitAoO = "Response.allPvECompetitive.allTime.medals_pvecomp_medal_invader_kill_four.basic.value";
+        CharStatsDataLocations.gambitOverkillmonger = "Response.allPvECompetitive.allTime.medals_pvecomp_medal_overkillmonger.basic.value";
+        CharStatsDataLocations.gambitNSD = "Response.allPvECompetitive.allTime.medals_pvecomp_medal_never_say_die.basic.value";
+$(document).ready(function() {
+    $("#tablink1").click(function() {
+        openTab("tablink1", "t1")
+    });
+    $("#tablink2").click(function() {
+        openTab("tablink2", "t2")
+    });
+    $("#tablink3").click(function() {
+        openTab("tablink3", "t3")
+    });
+    $("#tablink4").click(function() {
+        openTab("tablink4", "t4")
+    });
+    $("#tablink5").click(function() {
+        openTab("tablink5", "t5")
+    });
+    $("#tablink1").click();
+    $.ajax({
+        url: "https://www.bungie.net/Platform/GroupV2/1801684/Members/",
+        headers: {
+            "X-API-KEY": bungieAPIkey
+        },
+        method: "GET"
+    }).done(function(data) {
+        if (!data.Response) {
+            $("#claninfo").html("API down?");
+            return
+        }
+        $.each(data.Response.results, function(index, value) {
+            clan.memberIds.push(value.destinyUserInfo.membershipId);
+            clan.retryCounter[value.destinyUserInfo.membershipId] = 0;
+            clan.memberName[value.destinyUserInfo.membershipId] = value.destinyUserInfo.displayName
+        });
+        clan.memberCount = clan.memberIds.length;
+        $.each(clan.memberIds, function(index, memberid) {
+            getAccountData(memberid);
+            checkForSpecialAchievements(memberid)
+        })
+    })
+});
+$(document).ajaxStop(function() {
+    $(".sk-folding-cube").hide();
+    if (clan.unresolvedMemberNames.length > 0) $(".cubelegend").append("<br><small>(unable to fetch " + clan.unresolvedMemberNames.join(", ") + ")</small>")
+});
 
-    var CharStatsDataLocations = {};
-    CharStatsDataLocations.pvpKills = 'Response.allPvP.allTime.kills.basic.value';
-    CharStatsDataLocations.pvpAssists = 'Response.allPvP.allTime.assists.basic.value';
-    CharStatsDataLocations.pvpKD = 'Response.allPvP.allTime.killsDeathsRatio.basic.value';
-    CharStatsDataLocations.pvpWon = 'Response.allPvP.allTime.activitiesWon.basic.value';
-    CharStatsDataLocations.pvpDeaths = 'Response.allPvP.allTime.deaths.basic.value';
-    CharStatsDataLocations.pvpSeconds = 'Response.allPvP.allTime.secondsPlayed.basic.value';
-
-    CharStatsDataLocations.pvpWROOMs = 'Response.allPvP.allTime.medalStreakAbsurd.basic.value';
-    CharStatsDataLocations.pvpUndefeats = 'Response.allPvP.allTime.medalMatchUndefeated.basic.value';
-    CharStatsDataLocations.pvpInvincible = 'Response.allPvP.allTime.medalShowdownUndefeated.basic.value';
-    CharStatsDataLocations.pvpComeback = 'Response.allPvP.allTime.medalMatchComeback.basic.value';
-    CharStatsDataLocations.pvpDoubles = 'Response.allPvP.allTime.medalMulti2x.basic.value';
-    CharStatsDataLocations.pvpLightsOut = 'Response.allPvP.allTime.medalMulti4x.basic.value';
-    CharStatsDataLocations.pvpAnnihilation = 'Response.allPvP.allTime.medalMultiEntireTeam.basic.value';
-    CharStatsDataLocations.pvpSeven = 'Response.allPvP.allTime.medalStreak7x.basic.value';
-    CharStatsDataLocations.pvpGhost = 'Response.allPvP.allTime.Medals_pvp_medal_streak_no_damage.basic.value';
-    CharStatsDataLocations.pvpRuthless = 'Response.allPvP.allTime.medalStreak5x.basic.value';
-    CharStatsDataLocations.pvpFightMe = 'Response.allPvP.allTime.medalMatchMostDamage.basic.value';
-    CharStatsDataLocations.pvpNSFMF = 'Response.allPvP.allTime.medalSuperShutdown.basic.value';
-    CharStatsDataLocations.pvpSnipes = 'Response.allPvP.allTime.weaponKillsSniper.basic.value';
-
-    CharStatsDataLocations.pveKills = 'Response.allPvE.allTime.kills.basic.value';
-    CharStatsDataLocations.pveDeaths = 'Response.allPvE.allTime.deaths.basic.value';
-    CharStatsDataLocations.pveSuicides = 'Response.allPvE.allTime.suicides.basic.value';
-    CharStatsDataLocations.pveOrbs = 'Response.allPvE.allTime.orbsDropped.basic.value';
-    CharStatsDataLocations.pveHPE = 'Response.allPvE.allTime.heroicPublicEventsCompleted.basic.value';
-    CharStatsDataLocations.pveAdventures = 'Response.allPvE.allTime.adventuresCompleted.basic.value';
-    CharStatsDataLocations.pveSeconds = 'Response.allPvE.allTime.secondsPlayed.basic.value';
-
-    CharStatsDataLocations.raidsCleared = 'Response.raid.allTime.activitiesCleared.basic.value';
-
-    CharStatsDataLocations.gambitSeconds = 'Response.allPvECompetitive.allTime.secondsPlayed.basic.value';
-    CharStatsDataLocations.gambitWins = 'Response.allPvECompetitive.allTime.activitiesWon.basic.value';
-    CharStatsDataLocations.gambitInvadingKills = 'Response.allPvECompetitive.allTime.invasionKills.basic.value';
-    CharStatsDataLocations.gambitInvaderKills = 'Response.allPvECompetitive.allTime.invaderKills.basic.value';
-    CharStatsDataLocations.gambitMotesDep = 'Response.allPvECompetitive.allTime.motesDeposited.basic.value';
-    CharStatsDataLocations.gambitMotesDenied = 'Response.allPvECompetitive.allTime.motesDenied.basic.value';
-    CharStatsDataLocations.gambitKills = 'Response.allPvECompetitive.allTime.kills.basic.value';
-    CharStatsDataLocations.gambitAoO = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_invader_kill_four.basic.value';
-    CharStatsDataLocations.gambitOverkillmonger = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_overkillmonger.basic.value';
-    CharStatsDataLocations.gambitNSD = 'Response.allPvECompetitive.allTime.medals_pvecomp_medal_never_say_die.basic.value';
-
-
-    $(document).ready(function() {
-
-        $('#tablink1').click(() => { openTab('tablink1', 't1'); });
-        $('#tablink2').click(() => { openTab('tablink2', 't2'); });
-        $('#tablink3').click(() => { openTab('tablink3', 't3'); });
-        $('#tablink4').click(() => { openTab('tablink4', 't4'); });
-        $('#tablink5').click(() => { openTab('tablink5', 't5'); });
-        //default
-        $('#tablink1').click();
-
-        $.ajax({
-            //get member infos from our clan
-            url: 'https://www.bungie.net/Platform/GroupV2/1801684/Members/',
-            headers: {
-                'X-API-KEY': bungieAPIkey
-            },
-            method: 'GET',
-        }).done(
-            function(data) {
-                //collect id strings from every clan member
-                if (!data.Response) {
-                    $('#claninfo').html('API down?');
-                    return;
-                }
-                $.each(data.Response.results, function(index, value) {
-                    clan.memberIds.push(value.destinyUserInfo.membershipId);
-                    clan.retryCounter[value.destinyUserInfo.membershipId] = 0;
-                    clan.memberName[value.destinyUserInfo.membershipId] = value.destinyUserInfo.displayName;
-                });
-                clan.memberCount = clan.memberIds.length;
-                //iterate over every member
-                $.each(clan.memberIds, function(index, memberid) {
-                    getAccountData(memberid);
-                    checkForSpecialAchievements(memberid);
-                });
+function getAccountData(memberid) {
+    clan.retryCounter[memberid] = clan.retryCounter[memberid] + 1;
+    if (clan.retryCounter[memberid] > 4) {
+        clan.unresolvedMemberNames.push(clan.memberName[memberid]);
+        return
+    }
+    $.ajax({
+        url: "https://www.bungie.net/Platform/Destiny2/2/Account/" + memberid + "/Character/0/Stats/",
+        headers: {
+            "X-API-KEY": bungieAPIkey
+        },
+        data: {
+            groups: "1,3",
+            modes: "4,5,7,64"
+        },
+        method: "GET"
+    }).done(function(data) {
+        if (data.ErrorCode > 1 || !data.Response) getAccountData(memberid);
+        else {
+            clan.membersFetched = clan.membersFetched +
+                1;
+            $.each(CharStatsDataLocations, function(statName, statLocation) {
+                if (!clan[statName]) clan[statName] = 0;
+                clan[statName] = clan[statName] + getDescendantProp(data, statLocation)
             });
-    });
-
-    $(document).ajaxStop(function() {
-        $('.sk-folding-cube').hide();
-        if (clan.unresolvedMemberNames.length > 0) {
-            $('.cubelegend').append('<br><small>(unable to fetch ' + clan.unresolvedMemberNames.join(', ') + ')</small>');
+            outputClanData(clan)
         }
     });
+    return
+}
 
-    function getAccountData(memberid) {
-        //track number of tries for every member
-        clan.retryCounter[memberid] = clan.retryCounter[memberid] + 1;
-        if (clan.retryCounter[memberid] > 4) {
-            //give up on him =/
-            clan.unresolvedMemberNames.push(clan.memberName[memberid]);
-            return;
-        }
-        $.ajax({
-            url: 'https://www.bungie.net/Platform/Destiny2/2/Account/' + memberid + '/Character/0/Stats/',
-            headers: {
-                'X-API-KEY': bungieAPIkey
-            },
-            data: {
-                groups: "1,3", //general,medals
-                modes: '4,5,7,64' //raid,allpvp,allpve,allpvecomp(gambit)
-            },
-            method: 'GET',
-        }).done(function(data) {
-            if (data.ErrorCode > 1 || !data.Response) {
-                getAccountData(memberid); //try again
-            } else {
-                clan.membersFetched = clan.membersFetched + 1;
-                $.each(CharStatsDataLocations, function(statName, statLocation) {
-                    if (!clan[statName]) clan[statName] = 0;
-                    clan[statName] = clan[statName] + getDescendantProp(data, statLocation);
-                });
-                outputClanData(clan);
+function checkForSpecialAchievements(memberid) {
+    var aquiredCollectibleStateValues = [0, 8, 16, 64, 80];
+    $.ajax({
+        url: "https://www.bungie.net/Platform/Destiny2/2/Profile/" + memberid + "/?components=800,900",
+        headers: {
+            "X-API-KEY": bungieAPIkey
+        },
+        method: "GET"
+    }).done(function(data) {
+        if (data.ErrorCode > 1 || !data.Response || typeof data.Response.profileCollectibles.data === "undefined") {
+            clan.retryCounter[memberid]++;
+            if (clan.retryCounter[memberid] > 4) {
+                clan.unresolvedMemberNames.push(clan.memberName[memberid]);
+                return
             }
-        });
-        return;
-    }
-
-    // To-dos for adding new checks:
-    // - add line in checkForSpecialAchievements() with new triumph hashid
-    // - add variable definition in script head (eg: clan.membersWithLuna = 0; (l:21))
-    // - add table row with new id in html part
-    // - add setter line for this new id in outputClanData()
-
-    function checkForSpecialAchievements(memberid) {
-        
-        var aquiredCollectibleStateValues = [0, 8, 16, 64, 80];
-        
-        $.ajax({
-            url: 'https://www.bungie.net/Platform/Destiny2/2/Profile/' + memberid + '/?components=800,900',
-            headers: {
-                'X-API-KEY': bungieAPIkey
-            },
-            method: 'GET',
-        }).done(function(data) {
-            if (data.ErrorCode > 1 || !data.Response || typeof data.Response.profileCollectibles.data === 'undefined') {
-                clan.retryCounter[memberid]++;
-                if (clan.retryCounter[memberid] > 4) {
-                    //give up on him =/
-                    clan.unresolvedMemberNames.push(clan.memberName[memberid]);
-                    return;
+            checkForSpecialAchievements(memberid)
+        } else {
+            clan.membersWithMountaintop = clan.membersWithMountaintop + data.Response.profileRecords.data.records[3851137658].objectives[0].progress;
+            clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
+            clan.membersFlawless = clan.membersFlawless + data.Response.profileRecords.data.records[720205407].objectives[0].progress;
+            clan.membersSoloThrone = clan.membersSoloThrone + (data.Response.profileRecords.data.records[851701008].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[3798931976].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithNF = clan.membersWithNF + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[3260604717].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
+            clan.membersWithRecluse = clan.membersWithRecluse + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[2335550020].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
+            clan.membersWithThorn = clan.membersWithThorn + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[4009683574].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
+            $.each(data.Response.characterRecords.data, function(index, value) {
+                if (typeof value.records[599626507] !== "undefined" && value.records[599626507].objectives[0].progress) {
+                    clan.membersWithLuna = clan.membersWithLuna + 1;
+                    return false
                 }
-                checkForSpecialAchievements(memberid); //try again
-            } else {
-                //599626507 is the hashid for the Luna triumph
-                //723502823 is the hashid for the Malf triumph
-                //3260604717 is the hashid for the NF collectible item
-                //2335550020 is the hashid for the Recluse collectible item
-                //4009683574 is the hashid for the Thorn collectible item
-                //3851137658 is the hashid for the Mountaintop triumph, but it's a character triumph (not account)
-                //720205407 is the hasid for Flawless y1 triumph
-                //851701008 is the hashid for Solo Throne triumph
-                //1754983323 is the hashid for the Chronicler seal
-                //1693645129 is the hashid for the Cursebreaker seal
-                //3798931976 is the hashid for the Dredgen seal
-                //2182090828 is the hashid for the Rivensbane seal
-                //3369119720 is the hashid for the Unbroken seal
-                //2757681677 is the hashid for the Wayfarer seal
-                //2053985130 is the hashid for the Blacksmith seal
-                //1313291220 is the hashid for the Reckoner seal
+            });
+            outputClanData(clan)
+        }
+    });
+    return
+}
 
-                clan.membersWithMountaintop = clan.membersWithMountaintop + data.Response.profileRecords.data.records[3851137658].objectives[0].progress;
-                clan.membersWithMalf = clan.membersWithMalf + data.Response.profileRecords.data.records[723502823].objectives[0].progress;
-                clan.membersFlawless = clan.membersFlawless + data.Response.profileRecords.data.records[720205407].objectives[0].progress;
-                clan.membersSoloThrone = clan.membersSoloThrone + (data.Response.profileRecords.data.records[851701008].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[3798931976].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
-                clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
+function getDescendantProp(obj, desc) {
+    var arr = desc.split(".");
+    while (arr.length && (obj = obj[arr.shift()]));
+    return obj
+}
 
-               
-                clan.membersWithNF = clan.membersWithNF + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[3260604717].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
-                clan.membersWithRecluse = clan.membersWithRecluse + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[2335550020].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
-                clan.membersWithThorn = clan.membersWithThorn + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[4009683574].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
+function convertSeconds(s) {
+    var d, h, m;
+    m = Math.floor(s / 60);
+    s = s % 60;
+    h = Math.floor(m / 60);
+    m = m % 60;
+    d = Math.floor(h / 24);
+    h = h % 24;
+    return d + " days, " + h + " hours, " + m + " minutes"
+}
 
-                //check each character record for this account
+function outputClanData(clanobject) {
+    $("#pvpKills").html(clanobject.pvpKills.toLocaleString("en"));
+    $("#pvpAssists").html(clanobject.pvpAssists.toLocaleString("en"));
+    $("#pvpWon").html(clanobject.pvpWon.toLocaleString("en"));
+    $("#pvpKD").html((Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString("en"));
+    $("#pvpKDA").html((Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString("en"));
+    $("#pvpCollKD").html((Math.round(clanobject.pvpKD * 100) / 100).toLocaleString("en"));
+    $("#pvpSeconds").html(convertSeconds(clanobject.pvpSeconds));
+    $("#pvpWROOMs").html(clanobject.pvpWROOMs.toLocaleString("en"));
+    $("#pvpUndefeats").html(clanobject.pvpUndefeats.toLocaleString("en"));
+    $("#pvpInvincible").html(clanobject.pvpInvincible.toLocaleString("en"));
+    $("#pvpComeback").html(clanobject.pvpComeback.toLocaleString("en"));
+    $("#pvpDoubles").html(clanobject.pvpDoubles.toLocaleString("en"));
+    $("#pvpLightsOut").html(clanobject.pvpLightsOut.toLocaleString("en"));
+    $("#pvpAnnihilation").html(clanobject.pvpAnnihilation.toLocaleString("en"));
+    $("#pvpSeven").html(clanobject.pvpSeven.toLocaleString("en"));
+    $("#pvpGhost").html(clanobject.pvpGhost.toLocaleString("en"));
+    $("#pvpRuthless").html(clanobject.pvpRuthless.toLocaleString("en"));
+    $("#pvpFightMe").html(clanobject.pvpFightMe.toLocaleString("en"));
+    $("#pvpNSFMF").html(clanobject.pvpNSFMF.toLocaleString("en"));
+    $("#pvpSnipes").html(clanobject.pvpSnipes.toLocaleString("en"));
+    $("#pvpLunas").html(clanobject.membersWithLuna);
+    $("#pvpNFs").html(clanobject.membersWithNF);
+    $("#pvpMT").html(clanobject.membersWithMountaintop);
+    $("#pvpRec").html(clanobject.membersWithRecluse);
+    $("#pvpThorn").html(clanobject.membersWithThorn);
+    $("#trialsFlawless").html(clanobject.membersFlawless.toLocaleString("en"));
+    $("#pveKills").html(clanobject.pveKills.toLocaleString("en"));
+    $("#pveDeaths").html(clanobject.pveDeaths.toLocaleString("en"));
+    $("#pveSuicides").html(clanobject.pveSuicides.toLocaleString("en"));
+    $("#pveOrbs").html(clanobject.pveOrbs.toLocaleString("en"));
+    $("#pveAdventures").html(clanobject.pveAdventures.toLocaleString("en"));
+    $("#pveHPE").html(clanobject.pveHPE.toLocaleString("en"));
+    $("#pveSeconds").html(convertSeconds(clanobject.pveSeconds));
+    $("#soloThrone").html(clanobject.membersSoloThrone);
+    $("#raidClears").html(clanobject.raidsCleared.toLocaleString("en"));
+    $("#gambitSeconds").html(convertSeconds(clanobject.gambitSeconds));
+    $("#gambitWins").html(clanobject.gambitWins.toLocaleString("en"));
+    $("#gambitInvadingKills").html(clanobject.gambitInvadingKills.toLocaleString("en"));
+    $("#gambitInvaderKills").html(clanobject.gambitInvaderKills.toLocaleString("en"));
+    $("#gambitMotesDep").html(clanobject.gambitMotesDep.toLocaleString("en"));
+    $("#gambitMotesDenied").html(clanobject.gambitMotesDenied.toLocaleString("en"));
+    $("#gambitKills").html(clanobject.gambitKills.toLocaleString("en"));
+    $("#gambitAoO").html(clanobject.gambitAoO.toLocaleString("en"));
+    $("#gambitOverkillmonger").html(clanobject.gambitOverkillmonger.toLocaleString("en"));
+    $("#gambitNSD").html(clanobject.gambitNSD.toLocaleString("en"));
+    $("#gambitMalfs").html(clanobject.membersWithMalf);
+    $("#sealChronicler").html(clanobject.membersWithChronicler);
+    $("#sealCursebreaker").html(clanobject.membersWithCursebreaker);
+    $("#sealDredgen").html(clanobject.membersWithDredgen);
+    $("#sealRivensbane").html(clanobject.membersWithRivensbane);
+    $("#sealUnbroken").html(clanobject.membersWithUnbroken);
+    $("#sealWayfarer").html(clanobject.membersWithWayfarer);
+    $("#sealBlacksmith").html(clanobject.membersWithBlacksmith);
+    $("#sealReckoner").html(clanobject.membersWithReckoner);
+    $("#membercounter").html(clanobject.membersFetched + "/" + clanobject.memberCount);
+    return
+}
 
-                $.each(data.Response.characterRecords.data, function(index, value) {
-                    if (typeof value.records[599626507] !== 'undefined' && value.records[599626507].objectives[0].progress) {
-                        clan.membersWithLuna = clan.membersWithLuna + 1;
-                        return false;
-                    }
-                });
-
-                outputClanData(clan);
-
-                // DEBUG log item state of every member, collectible hashid can be in one of two places:
-                /*
-                //for collectibles that are not in profilerecords, but only in characterCollectibles
-                //!log everyone that has NOT the item
-                $.each(data.Response.characterCollectibles.data, function (index, value) {
-                    if (!(value.collectibles[1279318101].state==0 || value.collectibles[1279318101].state==16) ? 1:0) console.log(clan.memberName[memberid]);
-                    return false;   //if one char has it in collectibles , all others do as well
-                });
-
-                //for collectibles that are in profilerecords                  
-                if (!((data.Response.profileCollectibles.data.collectibles[1279318101].state==0 || data.Response.profileCollectibles.data.collectibles[1279318101].state==16) ? 1:0)) console.log(clan.memberName[memberid]);
-                */
-
-
-            }
-        });
-        return;
-    }
-
-    function getDescendantProp(obj, desc) {
-        var arr = desc.split('.');
-        while (arr.length && (obj = obj[arr.shift()]));
-        return obj;
-    }
-
-    function convertSeconds(s) {
-        var d, h, m;
-        m = Math.floor(s / 60);
-        s = s % 60;
-        h = Math.floor(m / 60);
-        m = m % 60;
-        d = Math.floor(h / 24);
-        h = h % 24;
-        return d + ' days, ' + h + ' hours, ' + m + ' minutes'
-    }
-
-    function outputClanData(clanobject) {
-
-        $('#pvpKills').html((clanobject.pvpKills).toLocaleString('en'));
-        $('#pvpAssists').html((clanobject.pvpAssists).toLocaleString('en'));
-        $('#pvpWon').html((clanobject.pvpWon).toLocaleString('en'));
-        $('#pvpKD').html((Math.round(clanobject.pvpKills / clanobject.pvpDeaths * 100) / 100).toLocaleString('en'));
-        $('#pvpKDA').html((Math.round((clanobject.pvpKills + clanobject.pvpAssists) / clanobject.pvpDeaths * 100) / 100).toLocaleString('en'));
-        $('#pvpCollKD').html((Math.round(clanobject.pvpKD * 100) / 100).toLocaleString('en'));
-        $('#pvpSeconds').html(convertSeconds(clanobject.pvpSeconds));
-        $('#pvpWROOMs').html((clanobject.pvpWROOMs).toLocaleString('en'));
-        $('#pvpUndefeats').html((clanobject.pvpUndefeats).toLocaleString('en'));
-        $('#pvpInvincible').html((clanobject.pvpInvincible).toLocaleString('en'));
-        $('#pvpComeback').html((clanobject.pvpComeback).toLocaleString('en'));
-        $('#pvpDoubles').html((clanobject.pvpDoubles).toLocaleString('en'));
-        $('#pvpLightsOut').html((clanobject.pvpLightsOut).toLocaleString('en'));
-        $('#pvpAnnihilation').html((clanobject.pvpAnnihilation).toLocaleString('en'));
-        $('#pvpSeven').html((clanobject.pvpSeven).toLocaleString('en'));
-        $('#pvpGhost').html((clanobject.pvpGhost).toLocaleString('en'));
-        $('#pvpRuthless').html((clanobject.pvpRuthless).toLocaleString('en'));
-        $('#pvpFightMe').html((clanobject.pvpFightMe).toLocaleString('en'));
-        $('#pvpNSFMF').html((clanobject.pvpNSFMF).toLocaleString('en'));
-        $('#pvpSnipes').html((clanobject.pvpSnipes).toLocaleString('en'));
-        $('#pvpLunas').html(clanobject.membersWithLuna);
-        $('#pvpNFs').html(clanobject.membersWithNF);
-        $('#pvpMT').html(clanobject.membersWithMountaintop);
-        $('#pvpRec').html(clanobject.membersWithRecluse);
-        $('#pvpThorn').html(clanobject.membersWithThorn);
-
-        $('#trialsFlawless').html((clanobject.membersFlawless).toLocaleString('en'));
-
-        $('#pveKills').html((clanobject.pveKills).toLocaleString('en'));
-        $('#pveDeaths').html((clanobject.pveDeaths).toLocaleString('en'));
-        $('#pveSuicides').html((clanobject.pveSuicides).toLocaleString('en'));
-        $('#pveOrbs').html((clanobject.pveOrbs).toLocaleString('en'));
-        $('#pveAdventures').html((clanobject.pveAdventures).toLocaleString('en'));
-        $('#pveHPE').html((clanobject.pveHPE).toLocaleString('en'));
-        $('#pveSeconds').html(convertSeconds(clanobject.pveSeconds));
-
-        $('#soloThrone').html(clanobject.membersSoloThrone);
-
-        $('#raidClears').html((clanobject.raidsCleared).toLocaleString('en'));
-
-        $('#gambitSeconds').html(convertSeconds(clanobject.gambitSeconds));
-        $('#gambitWins').html((clanobject.gambitWins).toLocaleString('en'));
-        $('#gambitInvadingKills').html((clanobject.gambitInvadingKills).toLocaleString('en'));
-        $('#gambitInvaderKills').html((clanobject.gambitInvaderKills).toLocaleString('en'));
-        $('#gambitMotesDep').html((clanobject.gambitMotesDep).toLocaleString('en'));
-        $('#gambitMotesDenied').html((clanobject.gambitMotesDenied).toLocaleString('en'));
-        $('#gambitKills').html((clanobject.gambitKills).toLocaleString('en'));
-        $('#gambitAoO').html((clanobject.gambitAoO).toLocaleString('en'));
-        $('#gambitOverkillmonger').html((clanobject.gambitOverkillmonger).toLocaleString('en'));
-        $('#gambitNSD').html((clanobject.gambitNSD).toLocaleString('en'));
-        $('#gambitMalfs').html(clanobject.membersWithMalf);
-
-        $('#sealChronicler').html(clanobject.membersWithChronicler);
-        $('#sealCursebreaker').html(clanobject.membersWithCursebreaker);
-        $('#sealDredgen').html(clanobject.membersWithDredgen);
-        $('#sealRivensbane').html(clanobject.membersWithRivensbane);
-        $('#sealUnbroken').html(clanobject.membersWithUnbroken);
-        $('#sealWayfarer').html(clanobject.membersWithWayfarer);
-        $('#sealBlacksmith').html(clanobject.membersWithBlacksmith);
-        $('#sealReckoner').html(clanobject.membersWithReckoner);
-
-        $('#membercounter').html(clanobject.membersFetched + '/' + clanobject.memberCount);
-        return;
-    }
-
-
-    function openTab(btn, tabName) {
-        $('.tabcontent').hide();
-        $('.tablinks').removeClass("active");
-        $('#' + tabName).show();
-        $('#' + btn).addClass("active");
-    }
-    </script>
+function openTab(btn, tabName) {
+    $(".tabcontent").hide();
+    $(".tablinks").removeClass("active");
+    $("#" + tabName).show();
+    $("#" + btn).addClass("active")
+};
+</script>
 </head>
-
 <body>
     <div class="tab" id="claninfo">
         <button id="tablink1" class="tablinks">Vanguard <img src="assets/img/bungie_icons/vanguard.png" width="50px" height="50px" class="greylogo" style="float: right; margin:-10px 0 -10px 0;"></button>
