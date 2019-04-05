@@ -1,1 +1,354 @@
-/*! * Start Bootstrap - Resume v5.0.1 (https://startbootstrap.com/template-overviews/resume) * Copyright 2013-2018 Start Bootstrap * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE) */body,h1{color:#fff}body{background-color:#29323c;font-family:Muli,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';padding-top:54px}.subheading,h1,h2,h3,h4,h5,h6{font-family:'Saira Extra Condensed',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';text-transform:uppercase}h1,h2,h3,h4,h5,h6{font-weight:700;color:#fff}h1{font-size:5rem;line-height:4.5rem}h2{font-size:3.5rem}h3{font-size:2rem}.subheading{font-weight:500;font-size:1.3rem}#sideNav .navbar-nav .nav-item .nav-link{letter-spacing:.05rem;text-transform:uppercase}#sideNav .navbar-toggler:focus{outline-color:#d48a6e}@media (min-width:992px){body{padding-top:0;padding-left:13rem}#sideNav,#sideNav .navbar-collapse .navbar-nav{-webkit-box-orient:vertical;-webkit-box-direction:normal}#sideNav{position:fixed;top:0;left:0;display:flex;-ms-flex-direction:column;flex-direction:column;width:14.5rem;height:100vh}#sideNav .navbar-brand{display:flex;margin:auto auto 0;padding:.5rem}#sideNav .navbar-brand .img-profile{max-width:10rem;max-height:10rem}#sideNav .navbar-collapse{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start;-webkit-box-flex:0;-ms-flex-positive:0;flex-grow:0;width:100%;margin-bottom:auto}#sideNav .navbar-collapse .navbar-nav{-ms-flex-direction:column;flex-direction:column;width:100%}#sideNav .navbar-collapse .navbar-nav .nav-item,#sideNav .navbar-collapse .navbar-nav .nav-item .nav-link{display:block}}section.resume-section{padding-top:5rem!important;padding-bottom:5rem!important;max-width:75rem}section.resume-section .resume-item .resume-date{min-width:none}@media (min-width:992px){section.resume-section{padding-top:1rem!important;padding-bottom:1rem!important}}.bg-primary{background-color:#13191e!important}.text-primary{color:#44c948!important}a{color:#44c948}a:active,a:focus,a:hover{color:#824027}@media (max-width:768px){.vc,.vc #accordion{width:100%!important}}@media (max-width:695px){.table{overflow-x:scroll;display:block}.table::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px #fff;border-radius:10px;background-color:#fff}.table::-webkit-scrollbar{width:12px;background-color:#375a7f}.table::-webkit-scrollbar-thumb{border-radius:10px;-webkit-box-shadow:inset 0 0 6px #fff;background-color:#375a7f}}.noover{overflow:hidden}@media (min-width:768px){section.resume-section{min-height:100vh}section.resume-section .resume-item .resume-date{min-width:18rem}}span.member-online{color:#e54d42}span.member-online.online{color:#44c948}html{position:relative;min-height:100%}body{margin-bottom:60px}.footer{position:absolute;bottom:0;width:100%!important;height:60px;line-height:60px;background-color:#29323c;border-top:1px solid #171b1e}.container{width:auto;max-width:680px;padding:0 15px}
+/*! * Start Bootstrap - Resume v5.0.1 (https://startbootstrap.com/template-overviews/resume) * Copyright 2013-2018 Start Bootstrap * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-resume/blob/master/LICENSE) */
+body,
+h1 {
+    color: #fff
+}
+
+body {
+    background-color: #29323c;
+    font-family: Muli, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    padding-top: 54px
+}
+
+.subheading,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    text-transform: uppercase
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    color: #fff
+}
+
+h1 {
+    font-size: 5rem;
+    line-height: 4.5rem
+}
+
+h2 {
+    font-size: 3.5rem
+}
+
+h3 {
+    font-size: 2rem
+}
+
+p.lead {
+    font-size: 1.15rem;
+    font-weight: 400
+}
+
+.subheading {
+    font-weight: 500;
+    font-size: 1.3rem
+}
+
+.social-icons a {
+    display: inline-block;
+    height: 3.5rem;
+    width: 3.5rem;
+    background-color: #495057;
+    color: #fff !important;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 3.5rem;
+    margin-right: 1rem
+}
+
+.social-icons a:last-child {
+    margin-right: 0
+}
+
+.social-icons a:hover {
+    background-color: #bd5d38
+}
+
+.dev-icons {
+    font-size: 3rem
+}
+
+.dev-icons .list-inline-item i:hover {
+    color: #bd5d38
+}
+
+#sideNav .navbar-nav .nav-item .nav-link {
+    letter-spacing: .05rem;
+    text-transform: uppercase
+}
+
+#sideNav .navbar-toggler:focus {
+    outline-color: #d48a6e
+}
+
+@media (min-width:992px) {
+    body {
+        padding-top: 0;
+        padding-left: 13rem
+    }
+
+    #sideNav,
+    #sideNav .navbar-collapse .navbar-nav {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal
+    }
+
+    #sideNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 14.5rem;
+        height: 100vh
+    }
+
+    #sideNav .navbar-brand {
+        display: flex;
+        margin: auto auto 0;
+        padding: .5rem
+    }
+
+    #sideNav .navbar-brand .img-profile {
+        max-width: 10rem;
+        max-height: 10rem
+    }
+
+    #sideNav .navbar-collapse {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+        flex-grow: 0;
+        width: 100%;
+        margin-bottom: auto
+    }
+
+    #sideNav .navbar-collapse .navbar-nav {
+        -ms-flex-direction: column;
+        flex-direction: column;
+        width: 100%
+    }
+
+    #sideNav .navbar-collapse .navbar-nav .nav-item,
+    #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
+        display: block
+    }
+}
+
+section.resume-section {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+    max-width: 75rem
+}
+
+section.resume-section .resume-item .resume-date {
+    min-width: none
+}
+
+@media (min-width:992px) {
+    section.resume-section {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important
+    }
+}
+
+.bg-primary {
+    background-color: #13191E !important
+}
+
+.text-primary {
+    color: #44C948 !important
+}
+
+a {
+    color: #44C948
+}
+
+a:active,
+a:focus,
+a:hover {
+    color: #824027
+}
+
+@media (max-width:768px) {
+
+    .vc,
+    .vc #accordion {
+        width: 100% !important
+    }
+}
+
+@media (max-width:695px) {
+    #trak {
+        width: 100% !important
+    }
+
+    .table {
+        overflow-x: scroll;
+        display: block
+    }
+
+    .table::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px #fff;
+        border-radius: 10px;
+        background-color: #fff
+    }
+
+    .table::-webkit-scrollbar {
+        width: 12px;
+        background-color: #375a7f
+    }
+
+    .table::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px #fff;
+        background-color: #375a7f
+    }
+}
+
+.noover {
+    overflow: hidden
+}
+
+@media (min-width:768px) {
+    section.resume-section {
+        min-height: 100vh
+    }
+
+    section.resume-section .resume-item .resume-date {
+        min-width: 18rem
+    }
+
+    .grid-divider {
+        position: relative;
+        padding: 0
+    }
+
+    .grid-divider>[class*=col-] {
+        position: static
+    }
+
+    .grid-divider>[class*=col-]:nth-child(n+2):before {
+        content: "";
+        border-left: 1px solid #DDD;
+        position: absolute;
+        top: 0;
+        bottom: 0
+    }
+
+    .col-padding {
+        padding: 0 15px
+    }
+}
+
+.btn-twitch {
+    color: #FFF;
+    background-color: #6441A5;
+    border-color: #2F1F4E
+}
+
+.btn-twitch.active,
+.btn-twitch:active,
+.btn-twitch:focus,
+.btn-twitch:hover,
+.open .dropdown-toggle.btn-twitch {
+    color: #FFF;
+    background-color: #472e75;
+    border-color: #2F1F4E
+}
+
+.btn-twitch.active,
+.btn-twitch:active,
+.open .dropdown-toggle.btn-twitch {
+    background-image: none
+}
+
+.btn-twitch.disabled,
+.btn-twitch.disabled.active,
+.btn-twitch.disabled:active,
+.btn-twitch.disabled:focus,
+.btn-twitch.disabled:hover,
+.btn-twitch[disabled],
+.btn-twitch[disabled].active,
+.btn-twitch[disabled]:active,
+.btn-twitch[disabled]:focus,
+.btn-twitch[disabled]:hover,
+fieldset[disabled] .btn-twitch,
+fieldset[disabled] .btn-twitch.active,
+fieldset[disabled] .btn-twitch:active,
+fieldset[disabled] .btn-twitch:focus,
+fieldset[disabled] .btn-twitch:hover {
+    background-color: #6441A5;
+    border-color: #2F1F4E
+}
+
+.btn-twitch .badge {
+    color: #6441A5;
+    background-color: #FFF
+}
+
+span.member-online {
+    color: #E54D42
+}
+
+span.member-online.online {
+    color: #44C948
+}
+
+html {
+    position: relative;
+    min-height: 100%
+}
+
+body {
+    margin-bottom: 60px
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100% !important;
+    height: 60px;
+    line-height: 60px;
+    background-color: #29323c;
+    border-top: 1px solid #171B1E
+}
+
+.container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px
+}
+
+.light {
+    font-size: 16px
+}
+
+.level {
+    font-size: 10px;
+    line-height: 12px
+}
+
+.character {
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat
+}
