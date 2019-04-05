@@ -7,12 +7,12 @@
     <script>
     //v2.1
     var bungieAPIkey="0a11942f318647978979f13ad8aa53ee";
-var clanid="1801684";
-var clan= {};
-clan.members= {};
-clan.retryCounter= {};
-var aquiredvalues=[0, 8, 16, 64, 80];
-var nightfalldata= {
+    var clanid="1801684";
+    var clan= {};
+        clan.members= {};
+        clan.retryCounter= {};
+    var aquiredvalues=[0, 8, 16, 64, 80];
+    var nightfalldata= {
     "invertedspire": {
         "activityid":4259769141,
         "thisweek":false,
@@ -20,8 +20,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "pyramidion": {
         "activityid":3289589202,
         "thisweek":false,
@@ -29,8 +28,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "exoduscrash": {
         "activityid":1282886582,
         "thisweek":false,
@@ -38,8 +36,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "armsdealer": {
         "activityid":3145298904,
         "thisweek":false,
@@ -47,8 +44,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "savathunssong": {
         "activityid":3280234344,
         "thisweek":false,
@@ -56,8 +52,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "treeprobabilities": {
         "activityid":3718330161,
         "thisweek":false,
@@ -65,8 +60,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "gardenworld": {
         "activityid":936308438,
         "thisweek":false,
@@ -74,8 +68,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "willofthousands": {
         "activityid":272852450,
         "thisweek":false,
@@ -83,8 +76,7 @@ var nightfalldata= {
         "location":"profile",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "strangeterrain": {
         "activityid":522318687,
         "thisweek":false,
@@ -92,8 +84,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "lakeofshadows": {
         "activityid":3372160277,
         "thisweek":false,
@@ -101,8 +92,7 @@ var nightfalldata= {
         "location":"profile",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "insightterminus": {
         "activityid":1034003646,
         "thisweek":false,
@@ -110,8 +100,7 @@ var nightfalldata= {
         "location":"profile",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "corrupted": {
         "activityid":3034843176,
         "thisweek":false,
@@ -119,8 +108,7 @@ var nightfalldata= {
         "location":"profile",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "hollowedlair": {
         "activityid":3701132453,
         "thisweek":false,
@@ -128,8 +116,7 @@ var nightfalldata= {
         "location":"profile",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "wardenofnothing": {
         "activityid":3108813009,
         "thisweek":false,
@@ -137,8 +124,7 @@ var nightfalldata= {
         "location":"profile",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "ascendantchallenge": {
         "activityid":0,
         "thisweek":true,
@@ -146,8 +132,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "dcweeklystory": {
         "activityid":0,
         "thisweek":true,
@@ -155,8 +140,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "shatteredthrone": {
         "activityid":0,
         "thisweek":false,
@@ -164,8 +148,7 @@ var nightfalldata= {
         "location":"character",
         "members":[],
         "membercompletions": {}
-    }
-    ,
+    },
     "gambitcosmetics": {
         "activityid":0,
         "thisweek":true,
@@ -200,8 +183,7 @@ $(document).ready(function() {
     $.ajax( {
         url:"https://www.bungie.net/Platform/GroupV2/"+clanid+"/Members/", headers: {
             "X-API-KEY": bungieAPIkey
-        }
-        , method:"GET"
+        }, method:"GET"
     }
     ).done(function(data) {
         if(!data.Response) {
@@ -230,8 +212,7 @@ function checkForLoot(memberid) {
     $.ajax( {
         url:"https://www.bungie.net/Platform/Destiny2/2/Profile/"+memberid+"/?components=800", headers: {
             "X-API-KEY": bungieAPIkey
-        }
-        , method:"GET"
+        }, method:"GET"
     }
     ).done(function(data) {
         if(data.ErrorCode>1||!data.Response||typeof data.Response.profileCollectibles.data==="undefined") {
@@ -281,8 +262,7 @@ function markThisWeeksActivities() {
     $.ajax( {
         url:"https://www.bungie.net/Platform/Destiny2/Milestones/", headers: {
             "X-API-KEY": bungieAPIkey
-        }
-        , method:"GET"
+        }, method:"GET"
     }
     ).done(function(data) {
         $.each(data.Response[2171429505].activities, function(activityindex, activitydata) {
@@ -302,17 +282,13 @@ function markThisWeeksActivities() {
     var cycleInfo= {
         epoch: {
             ascendant: (new Date("2018-09-04T"+resetTime)).getTime(), curse: (new Date("2018-09-11T"+resetTime)).getTime(), ep: (new Date("2018-05-08T"+resetTime)).getTime()
-        }
-        ,
+        },
         cycle: {
             ascendant: 6, curse: 3, ep: 5
-        }
-        ,
-        elapsed: {}
-        ,
+        },
+        elapsed: {},
         week: {}
-    }
-    ;
+    };
     var time=(new Date).getTime();
     var msPerWk=6048E5;
     for(var cycle in cycleInfo.cycle) {
@@ -331,16 +307,14 @@ function getCharacterHistories(memberid) {
     $.ajax( {
         url:"https://www.bungie.net/Platform/Destiny2/2/Profile/"+memberid+"/?components=100", headers: {
             "X-API-KEY": bungieAPIkey
-        }
-        , method:"GET"
+        }, method:"GET"
     }
     ).done(function(data) {
         $.each(data.Response.profile.data.characterIds, function(cindex, currentcharacterid) {
             $.ajax( {
                 url:"https://www.bungie.net/Platform/Destiny2/2/Account/"+memberid+"/Character/"+currentcharacterid+"/Stats/AggregateActivityStats/", headers: {
                     "X-API-KEY": bungieAPIkey
-                }
-                , method:"GET"
+                }, method:"GET"
             }
             ).done(function(data2) {
                 $.each(data2.Response.activities, function(aindex, activitydata) {
@@ -356,8 +330,8 @@ function getCharacterHistories(memberid) {
     );
     return
 };
-    </script>
-    <style>
+</script>
+<style>
     body {
         font-family: sans-serif;
         color: #fff;
@@ -483,7 +457,7 @@ function getCharacterHistories(memberid) {
     .SectionList--itemActive {
         opacity: 1;
     }
-    </style>
+</style>
 
 <body>
     <div class="SectionList">
