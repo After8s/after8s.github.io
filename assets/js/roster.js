@@ -16,7 +16,7 @@ twitch["TezzaBear-JSR40"] = "terrybjsr27";
 twitch["Deecs259"] = "deecs259";
 twitch["ricdvs"] = "cristianoricky1";
 twitch["murdie1"] = "gabbercrew";
-twitch["Dannilad09"] = "dannilad";
+twitch["Dannilad"] = "dannilad";
 twitch["Gonasm"] = "andimgonex";
 twitch["PrOme-"] = "prome84";
 $.when($.ajax({
