@@ -174,7 +174,7 @@ function checkForSpecialAchievements(memberid) {
             clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
             clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
             clan.membersWithShadow = clan.membersWithShadow + (data.Response.profileRecords.data.records[1883929036].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithMMXIX = clan.membersWithMMXIX + (data.Response.profileRecords.data.records[2254764897].objectives[0].complete == true ? 1 : 0);
+            // clan.membersWithMMXIX = clan.membersWithMMXIX + (data.Response.profileRecords.data.records[2254764897].objectives[0].complete == true ? 1 : 0);
             clan.membersWithLuna = clan.membersWithLuna + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[3260604718].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
             clan.membersWithNF = clan.membersWithNF + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[3260604717].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
             clan.membersWithRecluse = clan.membersWithRecluse + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[2335550020].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
