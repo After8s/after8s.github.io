@@ -4,7 +4,7 @@ var roster = [];
 var profiledata = {};
 var twitch = new Object;
 twitch["The_Jedd"] = "the_j3dd";
-twitch["smashi__"] = "supersmashi";
+twitch["ssmashi"] = "supersmashi";
 twitch["xLionSin_Escanor"] = "razz_prince_wl";
 twitch["Intemerata_"] = "intemerata_";
 twitch["rLycan_"] = "rlycan_";
@@ -16,7 +16,7 @@ twitch["Deecs259"] = "deecs259";
 twitch["ricdvs"] = "ric_dvs";
 twitch["MurdieX"] = "murdieuk";
 twitch["Dannilad"] = "dannilad";
-twitch["Gonasm"] = "andimgonex";
+twitch["Disrupticz"] = "andimgonex";
 twitch["PrOme-"] = "prome84";
 $.when($.ajax({
     url: "https://www.bungie.net/platform/GroupV2/" + a8GroupId + "/Members/",
