@@ -6,7 +6,6 @@ var twitch = new Object;
 twitch["The_Jedd"] = "the_j3dd";
 twitch["ssmashi"] = "supersmashi";
 twitch["xLionSin_Escanor"] = "razz_prince_wl";
-twitch["Intemerata_"] = "intemerata_";
 twitch["rLycan_"] = "rlycan_";
 twitch["Fryde"] = "fry_de";
 twitch["iWhackEpic"] = "ihackepic";
