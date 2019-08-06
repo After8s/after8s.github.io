@@ -13,6 +13,7 @@ twitch["Aliashush"] = "hushspesh101";
 twitch["dazzah87"] = "dazzah87";
 twitch["Deecs259"] = "deecs259";
 twitch["ricdvs"] = "ric_dvs";
+twitch["Intemerata_"] = "intemerata_";
 twitch["MurdieX"] = "murdieuk";
 twitch["Dannilad"] = "dannilad";
 twitch["Disrupticz"] = "andimgonex";
