@@ -14,9 +14,7 @@ twitch["dazzah87"] = "dazzah87";
 twitch["Deecs259"] = "deecs259";
 twitch["ricdvs"] = "ric_dvs";
 twitch["Intemerata_"] = "intemerata_";
-twitch["MurdieX"] = "murdieuk";
 twitch["Dannilad"] = "dannilad";
-twitch["Disrupticz"] = "andimgonex";
 twitch["PrOme-"] = "prome84";
 twitch["X_White-_-Ninja_"] = "xz_white_ninja_zx";
 $.when($.ajax({
