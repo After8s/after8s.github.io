@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet">
@@ -52,6 +53,24 @@
         clan.membersWithReckoner = 0;
         clan.membersWithShadow = 0;
         clan.membersWithMMXIX = 0;
+        clan.pvpKills = 0;
+        clan.pvpWon = 0;
+        clan.pvpSeconds = 0;
+        clan.pvpWROOMs = 0;
+        clan.pvpUndefeats = 0;
+        clan.pvpInvincible = 0;
+        clan.pvpAnnihilation = 0;
+        clan.pvpIMTFY = 0;
+        clan.pvpSeven = 0;
+        clan.pvpGhost = 0;
+        clan.pveSeconds = 0;
+        clan.raidsCleared = 0;
+        clan.gambitSeconds = 0;
+        clan.gambitWon = 0;
+        clan.gambitInvadingKills  = 0;
+        clan.gambitAoO = 0;
+        clan.gambitOverkillmonger = 0;
+        clan.gambitNSD = 0;
         var CharStatsDataLocations = {};
         CharStatsDataLocations.pvpKills = "Response.allPvP.allTime.kills.basic.value";
         CharStatsDataLocations.pvpWon = "Response.allPvP.allTime.activitiesWon.basic.value";
@@ -174,7 +193,7 @@ function checkForSpecialAchievements(memberid) {
             clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
             clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
             clan.membersWithShadow = clan.membersWithShadow + (data.Response.profileRecords.data.records[1883929036].objectives[0].complete == true ? 1 : 0);
-            //clan.membersWithMMXIX = clan.membersWithMMXIX + (data.Response.profileRecords.data.records[2254764897].objectives[0].complete == true ? 1 : 0);
+            
             clan.membersWithLuna = clan.membersWithLuna + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[3260604718].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
             clan.membersWithNF = clan.membersWithNF + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[3260604717].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
             clan.membersWithRecluse = clan.membersWithRecluse + (jQuery.inArray(data.Response.profileCollectibles.data.collectibles[2335550020].state, aquiredCollectibleStateValues) !== -1 ? 1 : 0);
@@ -202,6 +221,13 @@ function checkForSpecialAchievements(memberid) {
             $.each(data.Response.characterCollectibles.data, function(index, value) {
                 if ((jQuery.inArray(value.collectibles[1469913804].state, aquiredCollectibleStateValues) !== -1)) {
                     clan.membersWithLWS = clan.membersWithLWS + 1;
+                    return false
+                }
+            });
+            
+            $.each(data.Response.characterRecords.data, function(index, value) {
+                if (value.records[2254764897].objectives[0].complete == true) {
+                    clan.membersWithMMXIX = clan.membersWithMMXIX + 1;
                     return false
                 }
             });
