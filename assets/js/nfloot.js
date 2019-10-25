@@ -9,7 +9,7 @@
         "activityid":4259769141,
         "thisweek":false,
         "itemid":[1718922261],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -17,7 +17,7 @@
         "activityid":3289589202,
         "thisweek":false,
         "itemid":[1152758802],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -25,7 +25,7 @@
         "activityid":1282886582,
         "thisweek":false,
         "itemid":[3036030067],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -33,7 +33,7 @@
         "activityid":3145298904,
         "thisweek":false,
         "itemid":[3036030066],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -41,7 +41,7 @@
         "activityid":3280234344,
         "thisweek":false,
         "itemid":[1333654061],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -49,7 +49,7 @@
         "activityid":3718330161,
         "thisweek":false,
         "itemid":[1279318110],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -57,7 +57,7 @@
         "activityid":936308438,
         "thisweek":false,
         "itemid":[2448009818],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -73,7 +73,7 @@
         "activityid":522318687,
         "thisweek":false,
         "itemid":[1534387877],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -117,11 +117,12 @@
         "members":[],
         "membercompletions": {}
     },
+
     "ascendantchallenge": {
         "activityid":0,
         "thisweek":true,
         "itemid":[3360537487],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -129,15 +130,15 @@
         "activityid":0,
         "thisweek":true,
         "itemid":[1469913807],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
     "shatteredthrone": {
         "activityid":0,
-        "thisweek":false,
+        "thisweek":true,
         "itemid":[3163873689],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     },
@@ -146,7 +147,7 @@
         "thisweek":true,
         "itemid":[1469913806,
         3163873691],
-        "location":"character",
+        "location":"profile",
         "members":[],
         "membercompletions": {}
     }
@@ -257,7 +258,8 @@ function markThisWeeksActivities() {
         }, method:"GET"
     }
     ).done(function(data) {
-        $.each(data.Response[2171429505].activities, function(activityindex, activitydata) {
+        //2171429505 was the nf activity hash pre SK
+        $.each(data.Response[1942283261].activities, function(activityindex, activitydata) {
             $.each(nightfalldata, function(nfname, nfdata) {
                 if(activitydata.activityHash==nfdata.activityid) {
                     nightfalldata[nfname].thisweek=true;
@@ -270,6 +272,9 @@ function markThisWeeksActivities() {
         )
     }
     );
+    /*
+    shattered throne is always active in SK
+    
     var resetTime="17:00:00Z";
     var cycleInfo= {
         epoch: {
@@ -291,6 +296,7 @@ function markThisWeeksActivities() {
         nightfalldata["shatteredthrone"].thisweek=true;
         $("#shatteredthrone").parent().parent().addClass("thisWeekActive")
     }
+    */
     return
 }
 
