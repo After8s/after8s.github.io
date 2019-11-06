@@ -165,7 +165,7 @@ $(document).ready(function() {
     $("#allnfs").click(function() {
         $("#allnfs").addClass("SectionList--itemActive");
         $("#currentnfs").removeClass("SectionList--itemActive");
-        $(".nfblock").show()
+        $(".nfblock").not('.complete').show() // exclude complete which is hidden by default
     }
     );
     $.each(nightfalldata, function(nfname, nfdata) {
@@ -246,6 +246,14 @@ function outputLootData(nfobject) {
         }
         );
         $("#"+nfname).html(nameswithcounter.sort().join(", "))
+
+        // check if namesWithCounter array is empty and add complete. Due to loop remove complete class if not empty
+        if(nameswithcounter.length < 1) {
+            $('#'+nfname).closest('.nfblock').addClass('complete')
+        } else {
+            $('#' + nfname).closest('.nfblock').removeClass('complete')
+
+        }
     }
     );
     return
