@@ -52,7 +52,6 @@
         clan.membersWithBlacksmith = 0;
         clan.membersWithReckoner = 0;
         clan.membersWithShadow = 0;
-        clan.membersWithMMXIX = 0;
         clan.pvpKills = 0;
         clan.pvpWon = 0;
         clan.pvpSeconds = 0;
@@ -193,7 +192,6 @@ function checkForSpecialAchievements(memberid) {
             clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
             clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
             clan.membersWithShadow = clan.membersWithShadow + (data.Response.profileRecords.data.records[1883929036].objectives[0].complete == true ? 1 : 0);
-            //clan.membersWithMMXIX = clan.membersWithMMXIX + (data.Response.profileRecords.data.records[2254764897].objectives[0].complete == true ? 1 : 0);
             
             clan.membersWithNF += data.Response.profileCollectibles.data.collectibles[3260604717].state % 2 === 0 ? 1 : 0;
             clan.membersWithLuna += data.Response.profileCollectibles.data.collectibles[3260604718].state % 2 === 0 ? 1 : 0;
@@ -222,11 +220,6 @@ function checkForSpecialAchievements(memberid) {
             
             $.each(data.Response.characterCollectibles.data, function(index, value) {
                                                                                                                    
-                                                                  
-                                
-                 
-               
-             
              //nearly everything moved to profileCollectibles, just leaving this here in case we need it later again
              //   if (value.collectibles[1469913804].state % 2 === 0) {
              //       clan.membersWithLWS = clan.membersWithLWS + 1;
@@ -310,7 +303,6 @@ function outputClanData(clanobject) {
     $("#sealBlacksmith").html(clanobject.membersWithBlacksmith);
     $("#sealReckoner").html(clanobject.membersWithReckoner);
     $("#sealShadow").html(clanobject.membersWithShadow);
-    $("#sealMMXIX").html(clanobject.membersWithMMXIX);
     $("#membercounter").html(clanobject.membersFetched + "/" + clanobject.memberCount);
     return
 }
@@ -625,11 +617,6 @@ function openTab(btn, tabName) {
                         <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/59c2c744dca630140a8a01690e0d7fd9.png" width="38" height="46"></th>
                         <td class="count-text align-middle">Dredgen</td>
                         <td id="sealDredgen" class="align-middle text-left"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/c6074edd6d01d703000704ae95461895.png" width="38" height="46"></th>
-                        <td class="count-text align-middle">MMXIX</td>
-                        <td id="sealMMXIX" class="align-middle text-left"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/c7d249682178891ed7e737e76e395765.png" width="38" height="46"></th>
