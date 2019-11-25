@@ -52,6 +52,7 @@
         clan.membersWithBlacksmith = 0;
         clan.membersWithReckoner = 0;
         clan.membersWithShadow = 0;
+        clan.membersWithUndying = 0;
         clan.pvpKills = 0;
         clan.pvpWon = 0;
         clan.pvpSeconds = 0;
@@ -60,7 +61,6 @@
         clan.pvpInvincible = 0;
         clan.pvpAnnihilation = 0;
         clan.pvpIMTFY = 0;
-        clan.pvpSeven = 0;
         clan.pvpGhost = 0;
         clan.pveSeconds = 0;
         clan.raidsCleared = 0;
@@ -79,7 +79,6 @@
         CharStatsDataLocations.pvpInvincible = "Response.allPvP.allTime.medalShowdownUndefeated.basic.value";
         CharStatsDataLocations.pvpAnnihilation = "Response.allPvP.allTime.medalMultiEntireTeam.basic.value";
         CharStatsDataLocations.pvpIMTFY = "Response.allPvP.allTime.Medals_pvp_medal_streak_extra_absurd_b.basic.value";
-        CharStatsDataLocations.pvpSeven = "Response.allPvP.allTime.medalStreak7x.basic.value";
         CharStatsDataLocations.pvpGhost = "Response.allPvP.allTime.Medals_pvp_medal_streak_no_damage.basic.value";
         CharStatsDataLocations.pveSeconds = "Response.allPvE.allTime.secondsPlayed.basic.value";
         CharStatsDataLocations.raidsCleared = "Response.raid.allTime.activitiesCleared.basic.value";
@@ -192,6 +191,7 @@ function checkForSpecialAchievements(memberid) {
             clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
             clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
             clan.membersWithShadow = clan.membersWithShadow + (data.Response.profileRecords.data.records[1883929036].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithUndying = clan.membersWithUndying + (data.Response.profileRecords.data.records[2707428411].objectives[0].complete == true ? 1 : 0);
             
             clan.membersWithNF += data.Response.profileCollectibles.data.collectibles[3260604717].state % 2 === 0 ? 1 : 0;
             clan.membersWithLuna += data.Response.profileCollectibles.data.collectibles[3260604718].state % 2 === 0 ? 1 : 0;
@@ -258,7 +258,6 @@ function outputClanData(clanobject) {
     $("#pvpUndefeats").html(clanobject.pvpUndefeats.toLocaleString("en"));
     $("#pvpInvincible").html(clanobject.pvpInvincible.toLocaleString("en"));
     $("#pvpAnnihilation").html(clanobject.pvpAnnihilation.toLocaleString("en"));
-    $("#pvpSeven").html(clanobject.pvpSeven.toLocaleString("en"));
     $("#pvpGhost").html(clanobject.pvpGhost.toLocaleString("en"));
     $("#pvpIMTFY").html(clanobject.pvpIMTFY.toLocaleString("en"));
     $("#pvpLunas").html(clanobject.membersWithLuna);
@@ -303,6 +302,7 @@ function outputClanData(clanobject) {
     $("#sealBlacksmith").html(clanobject.membersWithBlacksmith);
     $("#sealReckoner").html(clanobject.membersWithReckoner);
     $("#sealShadow").html(clanobject.membersWithShadow);
+    $("#sealUndying").html(clanobject.membersWithUndying);
     $("#membercounter").html(clanobject.membersFetched + "/" + clanobject.memberCount);
     return
 }
@@ -498,11 +498,6 @@ function openTab(btn, tabName) {
                         <td id="pvpIMTFY" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/be709754feb404b9901845b272a70ddb.png" width="35" height="35"></th>
-                        <td class="count-text align-middle">Seventh Column</td>
-                        <td id="pvpSeven" class="align-middle text-left"></td>
-                    </tr>
-                    <tr>
                         <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/dd4c221d0c0ede4e568850cf0e73edc7.png" width="35" height="35"></th>
                         <td class="count-text align-middle">Army of One</td>
                         <td id="gambitAoO" class="align-middle text-left"></td>
@@ -632,6 +627,11 @@ function openTab(btn, tabName) {
                         <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/d214b107e924ba2d2ac55719d48e0d27.png" width="38" height="46"></th>
                         <td class="count-text align-middle">Unbroken</td>
                         <td id="sealUnbroken" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/8963919519c4b3d79779ee2bf0a2a623.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Undying</td>
+                        <td id="sealUndying" class="align-middle text-left"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/885677894bf02b920ad48bfc60e1bbe2.png" width="38" height="46"></th>
