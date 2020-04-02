@@ -86,18 +86,26 @@ function listMembers(rsp) {
                 "light": rsp[i].toons.char0.light,
                 "class": classTypes[rsp[i].toons.char0.classType]
             };
-            toon1 = {
-                "id": rsp[i].toons.char1.characterId,
-                "emblem": "https://bungie.net/" + rsp[i].toons.char1.emblemPath,
-                "light": rsp[i].toons.char1.light,
-                "class": classTypes[rsp[i].toons.char1.classType]
-            };
-            toon2 = {
-                "id": rsp[i].toons.char2.characterId,
-                "emblem": "https://bungie.net/" + rsp[i].toons.char2.emblemPath,
-                "light": rsp[i].toons.char2.light,
-                "class": classTypes[rsp[i].toons.char2.classType]
-            };
+             if(typeof rsp[i].toons.char2!=="undefined") {
+				toon1 = {
+					"id": rsp[i].toons.char1.characterId,
+					"emblem": "https://bungie.net/" + rsp[i].toons.char1.emblemPath,
+					"light": rsp[i].toons.char1.light,
+					"class": classTypes[rsp[i].toons.char1.classType]
+				};		 
+			 } else {
+				toon1 = toon2;
+			 }
+	        if(typeof rsp[i].toons.char2!=="undefined") {
+				toon2 = {
+					"id": rsp[i].toons.char2.characterId,
+					"emblem": "https://bungie.net/" + rsp[i].toons.char2.emblemPath,
+					"light": rsp[i].toons.char2.light,
+					"class": classTypes[rsp[i].toons.char2.classType]
+				};
+			} else {
+				toon2 = toon1;
+			}
             rank = rsp[i].memberType, role = "";
             if (rank == 2) role = '<font color="#FFFFFF">' + "Member" + " </font>";
             else if (rank == 3) role = '<font color="#F1C410">' +
