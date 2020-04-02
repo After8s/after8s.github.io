@@ -8,13 +8,12 @@ twitch["ssmashi"] = "supersmashi";
 twitch["rLycan_"] = "rlycan_";
 twitch["Fryde"] = "fry_de";
 twitch["iWhackEpic"] = "ihackepic";
-twitch["Aliashush"] = "hushspesh101";
+twitch["Aileyus"] = "alias616";
 twitch["dazzah87"] = "dazzah87";
 twitch["Deecs259"] = "deecs259";
 twitch["ricdvs"] = "ric_dvs";
 twitch["Intemerata_"] = "intemerata_";
-twitch["Dannilad"] = "eccsmarksthespot";
-twitch["PrOme-"] = "prome84";
+twitch["Dannilad"] = "dannilad09";
 twitch["X_White-_-Ninja_"] = "xz_white_ninja_zx";
 twitch["Disrupticz"] = "disrupticz";
 $.when($.ajax({
