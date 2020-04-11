@@ -16,6 +16,7 @@ twitch["Intemerata_"] = "intemerata_";
 twitch["Dannilad"] = "dannilad09";
 twitch["X_White-_-Ninja_"] = "xz_white_ninja_zx";
 twitch["Disrupticz"] = "disrupticz";
+twitch["i-Parzi"] = "iParzi";
 $.when($.ajax({
     url: "https://www.bungie.net/platform/GroupV2/" + a8GroupId + "/Members/",
     headers: {
