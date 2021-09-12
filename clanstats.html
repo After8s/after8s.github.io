@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/darkly/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/clan_stats.css" rel="stylesheet" id="bootstrap-css">
     <script>
-    //v4.0.0
+    //v5.0.0
     var bungieAPIkey = "0a11942f318647978979f13ad8aa53ee";
     var clan = {};
         clan.memberIds = [];
@@ -42,17 +42,22 @@
         clan.membersWithOP = 0;
         clan.membersWithScrap = 0;
         clan.membersSoloThrone = 0;
-        clan.membersFlawless = 0;
-        clan.membersWithChronicler = 0;
+        clan.membersWithChosen = 0;
+        clan.membersWithConqueror = 0;
         clan.membersWithCursebreaker = 0;
+        clan.membersWithDeadeye = 0;
+        clan.membersWithDescendant = 0;
         clan.membersWithDredgen = 0;
+        clan.membersWithEnlightened = 0;
+        clan.membersWithFatebreaker = 0;
+        clan.membersWithFlawless = 0;
+        clan.membersWithHarbinger = 0;
+        clan.membersWithRealmwalker = 0;
         clan.membersWithRivensbane = 0;
+        clan.membersWithSplicer = 0;
+        clan.membersWithSplintered = 0;
         clan.membersWithUnbroken = 0;
-        clan.membersWithWayfarer = 0;
-        clan.membersWithBlacksmith = 0;
-        clan.membersWithReckoner = 0;
-        clan.membersWithShadow = 0;
-        clan.membersWithUndying = 0;
+        clan.membersWithWarden = 0;
         clan.pvpKills = 0;
         clan.pvpWon = 0;
         clan.pvpSeconds = 0;
@@ -181,17 +186,22 @@ function checkForSpecialAchievements(memberid) {
             }
             checkForSpecialAchievements(memberid)
         } else {
-            clan.membersFlawless = clan.membersFlawless + data.Response.profileRecords.data.records[720205407].objectives[0].progress;
-            clan.membersWithChronicler = clan.membersWithChronicler + (data.Response.profileRecords.data.records[1754983323].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[1693645129].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[3798931976].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[2182090828].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[3369119720].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithWayfarer = clan.membersWithWayfarer + (data.Response.profileRecords.data.records[2757681677].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithBlacksmith = clan.membersWithBlacksmith + (data.Response.profileRecords.data.records[2053985130].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithReckoner = clan.membersWithReckoner + (data.Response.profileRecords.data.records[1313291220].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithShadow = clan.membersWithShadow + (data.Response.profileRecords.data.records[1883929036].objectives[0].complete == true ? 1 : 0);
-            clan.membersWithUndying = clan.membersWithUndying + (data.Response.profileRecords.data.records[2707428411].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithChosen = clan.membersWithChosen + (data.Response.profileRecords.data.records[1087927672].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithConqueror = clan.membersWithConqueror + (data.Response.profileRecords.data.records[3464275895].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithCursebreaker = clan.membersWithCursebreaker + (data.Response.profileRecords.data.records[3214425110].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithDeadeye = clan.membersWithDeadeye + (data.Response.profileRecords.data.records[1438167672].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithDescendant = clan.membersWithDescendant + (data.Response.profileRecords.data.records[540377256].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithDredgen = clan.membersWithDredgen + (data.Response.profileRecords.data.records[1556658903].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithEnlightened = clan.membersWithEnlightened + (data.Response.profileRecords.data.records[2909250963].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithFatebreaker = clan.membersWithFatebreaker + (data.Response.profileRecords.data.records[4141971983].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithFlawless= clan.membersWithFlawless + (data.Response.profileRecords.data.records[3298130972].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithHarbinger= clan.membersWithHarbinger + (data.Response.profileRecords.data.records[2584970263].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithRealmwalker = clan.membersWithRealmwalker + (data.Response.profileRecords.data.records[2991743002].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithRivensbane = clan.membersWithRivensbane + (data.Response.profileRecords.data.records[1384029371].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithSplicer = clan.membersWithSplicer + (data.Response.profileRecords.data.records[2796658869].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithSplintered = clan.membersWithSplintered + (data.Response.profileRecords.data.records[2482004751].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithUnbroken = clan.membersWithUnbroken + (data.Response.profileRecords.data.records[1343839969].objectives[0].complete == true ? 1 : 0);
+            clan.membersWithWarden = clan.membersWithWarden + (data.Response.profileRecords.data.records[1561715947].objectives[0].complete == true ? 1 : 0);
             
             clan.membersWithNF += data.Response.profileCollectibles.data.collectibles[3260604717].state % 2 === 0 ? 1 : 0;
             clan.membersWithLuna += data.Response.profileCollectibles.data.collectibles[3260604718].state % 2 === 0 ? 1 : 0;
@@ -266,7 +276,6 @@ function outputClanData(clanobject) {
     $("#pvpRec").html(clanobject.membersWithRecluse);
     $("#pvpRevoker").html(clanobject.membersWithRevoker);
     $("#pvpRB").html(clanobject.membersWithRB);
-    $("#trialsFlawless").html(clanobject.membersFlawless.toLocaleString("en"));
     $("#pveSeconds").html(convertSeconds(clanobject.pveSeconds));
     $("#raidClears").html(clanobject.raidsCleared.toLocaleString("en"));
     $("#pveLQ").html(clanobject.membersWithLQ);
@@ -293,16 +302,22 @@ function outputClanData(clanobject) {
     $("#gambitOverkillmonger").html(clanobject.gambitOverkillmonger.toLocaleString("en"));
     $("#gambitNSD").html(clanobject.gambitNSD.toLocaleString("en"));
     $("#gambitMalf").html(clanobject.membersWithMalf);
-    $("#sealChronicler").html(clanobject.membersWithChronicler);
+    $("#sealChosen").html(clanobject.membersWithChosen);
+    $("#sealConqueror").html(clanobject.membersWithConqueror);
     $("#sealCursebreaker").html(clanobject.membersWithCursebreaker);
+    $("#sealDeadeye").html(clanobject.membersWithDeadeye);
+    $("#sealDescendant").html(clanobject.membersWithDescendant);
     $("#sealDredgen").html(clanobject.membersWithDredgen);
+    $("#sealEnlightened").html(clanobject.membersWithEnlightened);
+    $("#sealFatebreaker").html(clanobject.membersWithFatebreaker);
+    $("#sealFlawless").html(clanobject.membersWithFlawless);
+    $("#sealHarbinger").html(clanobject.membersWithHarbinger);
+    $("#sealRealmwalker").html(clanobject.membersWithRealmwalker);
     $("#sealRivensbane").html(clanobject.membersWithRivensbane);
+    $("#sealSplicer").html(clanobject.membersWithSplicer);
+    $("#sealSplintered").html(clanobject.membersWithSplintered);
     $("#sealUnbroken").html(clanobject.membersWithUnbroken);
-    $("#sealWayfarer").html(clanobject.membersWithWayfarer);
-    $("#sealBlacksmith").html(clanobject.membersWithBlacksmith);
-    $("#sealReckoner").html(clanobject.membersWithReckoner);
-    $("#sealShadow").html(clanobject.membersWithShadow);
-    $("#sealUndying").html(clanobject.membersWithUndying);
+    $("#sealWarden").html(clanobject.membersWithWarden);
     $("#membercounter").html(clanobject.membersFetched + "/" + clanobject.memberCount);
     return
 }
@@ -358,12 +373,12 @@ function openTab(btn, tabName) {
                     </tr>
                     <tr>
                         <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/gambit.png" width="35" height="35" class="whitelogo"></th>
-                        <td class="count-text align-middle">PvEvP Total Time</td>
+                        <td class="count-text align-middle">Gambit Total Time</td>
                         <td id="gambitSeconds" class="align-middle text-left"></td>
                     </tr>
                     <tr>
                         <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/gambit.png" width="35" height="35" class="whitelogo"></th>
-                        <td class="count-text align-middle">PvEvP Matches Won</td>
+                        <td class="count-text align-middle">Gambit Matches Won</td>
                         <td id="gambitWon" class="align-middle text-left"></td>
                     </tr>
                     <tr>
@@ -385,11 +400,6 @@ function openTab(btn, tabName) {
                         <th scope="row" class="align-middle text-center"><img src="assets/img/bungie_icons/crucible.png" width="35" height="35" class="whitelogo"></th>
                         <td class="count-text align-middle">PvP Kills</td>
                         <td id="pvpKills" class="align-middle text-left"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/1f5e4a3cfeaca5fd6465ffd15b81ffa6.jpg" width="35" height="35" class="whitelogo"></th>
-                        <td class="count-text align-middle">Flawless Runs</td>
-                        <td id="trialsFlawless" class="align-middle text-left"></td>
                     </tr>
                 </tbody>
             </table>
@@ -589,54 +599,84 @@ function openTab(btn, tabName) {
             <table class="table table-sm">
                 <tbody>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/2e3c60186f7aa64107d843ed697fad1f.png" width="38" height="46"></th>
-                        <td class="count-text align-middle">Shadow</td>
-                        <td id="sealShadow" class="align-middle text-left">0</td>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/482a4865a3411920804df3e9357e3311.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Chosen</td>
+                        <td id="sealChosen" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/1a6e93e560351ceb4b5a3bb76504fed6.png" width="38" height="46"></th>
-                        <td class="count-text align-middle">Blacksmith</td>
-                        <td id="sealBlacksmith" class="align-middle text-left">0</td>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/d3548d7e67c29eaeb451549f7c7fa30f.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Conqueror</td>
+                        <td id="sealConqueror" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/f7e108baecc867a8124dc8f6f0bd2b23.png" width="38" height="46"></th>
-                        <td class="count-text align-middle">Chronicler</td>
-                        <td id="sealChronicler" class="align-middle text-left"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/8f755eb3a9109ed7adfc4a8b27871e7a.png" width="38" height="46"></th>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/b041bf140e5ae669f83341a9d013b7c6.png" width="38" height="46"></th>
                         <td class="count-text align-middle">Cursebreaker</td>
                         <td id="sealCursebreaker" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/59c2c744dca630140a8a01690e0d7fd9.png" width="38" height="46"></th>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/f665fecd93ac4e65627df9d68f8e9d44.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Deadeye</td>
+                        <td id="sealDeadeye" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/a5855e9be367b486e77e7a08f4772d9c.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Descendant</td>
+                        <td id="sealDescendant" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/7f2c8cf97807a0e4a3da082657b6ef1f.png" width="38" height="46"></th>
                         <td class="count-text align-middle">Dredgen</td>
                         <td id="sealDredgen" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/c7d249682178891ed7e737e76e395765.png" width="38" height="46"></th>
-                        <td class="count-text align-middle">Reckoner</td>
-                        <td id="sealReckoner" class="align-middle text-left"></td>
+                        <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/5152cff277108d6fca0710e1ba75568e.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Enlightened</td>
+                        <td id="sealEnlightened" class="align-middle text-left"></td>
+                    </tr>
+                     <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/a8be7eacce85386c3bd319a2fbf6497a.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Fatebreaker</td>
+                        <td id="sealFatebreaker" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/92d4e0eab5d4ab4f29eed35abe6d72d1.png" width="38" height="46"></th>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/4be9530fadd633410bae07a755da5b1d.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Flawless</td>
+                        <td id="sealFlawless" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/1d93f7b19091cd214a51a455231d4768.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Harbinger</td>
+                        <td id="sealHarbinger" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/68b72388eb498abe47858e01127cb145.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Realmwalker</td>
+                        <td id="sealRealmwalker" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/f6eb7c39e591b5adb55967733d6989cc.png" width="38" height="46"></th>
                         <td class="count-text align-middle">Rivensbane</td>
                         <td id="sealRivensbane" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/d214b107e924ba2d2ac55719d48e0d27.png" width="38" height="46"></th>
+                        <th scope="row" class="align-middle text-center"><img src="https://www.bungie.net/common/destiny2_content/icons/4c96651d45e825d22653ca2e6d13e6fd.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Splicer</td>
+                        <td id="sealSplicer" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/48a2123c40f63a5478838dfebefe497e.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Splintered</td>
+                        <td id="sealSplintered" class="align-middle text-left"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/f6130c41c3d8e682ff6eac2adabd6fce.png" width="38" height="46"></th>
                         <td class="count-text align-middle">Unbroken</td>
                         <td id="sealUnbroken" class="align-middle text-left"></td>
                     </tr>
                     <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/8963919519c4b3d79779ee2bf0a2a623.png" width="38" height="46"></th>
-                        <td class="count-text align-middle">Undying</td>
-                        <td id="sealUndying" class="align-middle text-left"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/885677894bf02b920ad48bfc60e1bbe2.png" width="38" height="46"></th>
-                        <td class="count-text align-middle">Wayfarer</td>
-                        <td id="sealWayfarer" class="align-middle text-left"></td>
+                        <th scope="row" class="align-middle text-center"><img src="https://bungie.net/common/destiny2_content/icons/e70e26b5d40c2d17fb77d79ea1aa7194.png" width="38" height="46"></th>
+                        <td class="count-text align-middle">Warden</td>
+                        <td id="sealWarden" class="align-middle text-left"></td>
                     </tr>
                 </tbody>
             </table>
