@@ -1,23 +1,21 @@
-var apiKey = "0a11942f318647978979f13ad8aa53ee",
-    a8GroupId = "1801684";
-var roster = [];
-var profiledata = {};
-var twitch = new Object;
-twitch["The_Jedd"] = "the_j3dd";
-twitch["ssmashi"] = "supersmashi";
-twitch["Alphalune"] = "rlycan_";
-twitch["Fryde"] = "fry_de";
-twitch["EdgySince93"] = "ihackepic";
-twitch["Hushiiy"] = "alias616";
-twitch["dazzah87"] = "dazzah87";
-twitch["Deecs259"] = "deecs259";
-twitch["ricdvs"] = "ric_dvs";
-twitch["Intemerata_"] = "intemerata_";
-twitch["Dannilad"] = "dannilad09";
-twitch["X_White-_-Ninja_"] = "xz_white_ninja_zx";
-twitch["Disrupticz"] = "disrupticz";
-twitch["i-Parzi"] = "iParzi";
-twitch["A_Magic_Burrito"] = "a_cool_burrito";
+const apiKey = "0a11942f318647978979f13ad8aa53ee",
+      a8GroupId = "1801684";
+let roster = [];
+let profiledata = {};
+const twitch = new Map();
+twitch.set("Jedd#5293", "the_j3dd");
+twitch.set("smash#5929", "supersmashi");
+twitch.set("Rono#7535", "rlycan_");
+twitch.set("Fry#4377", "fry_de");
+twitch.set("Joe, Banger of Mama's#4623", "ihackepic");
+twitch.set("Hush#2648", "alias616");
+twitch.set("dazzah#2005", "dazzah87");
+twitch.set("Deecs259#3809", "deecs259");
+twitch.set("Samurai -^_^- Jack#5269", "intemerata_");
+twitch.set("Dannilad#5187", "dannilad09");
+twitch.set("X_White-_-Ninja_#8921", "xz_white_ninja_zx");
+twitch.set("Abyss#0899", "disrupticz");
+twitch.set("Parzi#3779", "iParzi");
 $.when($.ajax({
     url: "https://www.bungie.net/platform/GroupV2/" + a8GroupId + "/Members/",
     headers: {
